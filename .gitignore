@@ -1,0 +1,32 @@
+# Custom
+
+# GENERAL
+.DS_Store
+node_modules
+/dist
+
+# ENV FILES
+.env.local
+.env.*.local
+.secrets
+.env*
+!.env.example
+
+
+# LOG FILES
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# EDITOR FILES
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-settings
+
+# DATABASE - FILES
+*.db

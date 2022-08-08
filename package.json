@@ -1,0 +1,39 @@
+{
+  "name": "directus-extension-text-action-display-interface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test --workspaces",
+    "build": "npm run build --workspaces",
+    "dev": "echo \\\"Dev process run untin you stop them, so they need to be started from the specific package\\\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utomic-media/directus-extension-text-action-display-interface.git"
+  },
+  "keywords": [
+    "directus",
+    "directus-extension",
+    "directus-interface",
+    "directus-display",
+    "directus-text-action",
+    "directus-copy-to-clipboard",
+    "directus-link"
+  ],
+  "author": "Dominic Marcelino | Utomic Media",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/utomic-media/directus-extension-text-action-display-interface/issues"
+  },
+  "homepage": "https://github.com/utomic-media/directus-extension-text-action-display-interface#readme",
+  "workspaces": [
+    "packages/interface",
+    "packages/display"
+  ],
+  "devDependencies": {
+    "@directus/extensions-sdk": "^9.15.1",
+    "typescript": "^4.7.4",
+    "vue": "^3.2.37"
+  }
+}
