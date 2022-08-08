@@ -33,6 +33,9 @@
   ],
   "devDependencies": {
     "@directus/extensions-sdk": "^9.15.1",
+    "node-sass": "^7.0.1",
+    "sass": "^1.54.3",
+    "sass-loader": "^13.0.2",
     "typescript": "^4.7.4",
     "vue": "^3.2.37"
   }
