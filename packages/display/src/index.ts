@@ -6,7 +6,7 @@ export default defineDisplay({
 	id: 'custom',
 	name: 'Action display',
 	icon: 'ads_click',
-	description: 'Display content with actions line linking or copy to clipboard. (By clicking on the content (only at readonly) and seperate buttons)!',
+	description: 'Display content with actions like linking or copy to clipboard. (By clicking on the content (only at readonly) and seperate buttons)! NOTE: the content needs to match the schema',
 	component: DisplayComponent,
 	types: ['string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
 	options: ({ field  }): any => {

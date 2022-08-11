@@ -1,5 +1,8 @@
 <template>
 	<input :value="value" @input="handleChange($event.target.value)" />
+	<!-- TODO: create interface -->
+	<!-- TODO: share button stuff with display -->
+	<!-- TODO: add input for different types, add readonly support -->
 </template>
 
 <script lang="ts">

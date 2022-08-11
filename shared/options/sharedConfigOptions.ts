@@ -107,7 +107,7 @@ function getClickActionChoices(isString: boolean) {
 			text: 'Copy to clipboard',
 			value: 'copy',
 		},{
-			text: 'Open element (default)',
+			text: 'Default click action',
 			value: 'default',
 		},
 	];
