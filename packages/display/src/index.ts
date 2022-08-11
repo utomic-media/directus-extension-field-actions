@@ -8,13 +8,11 @@ export default defineDisplay({
 	icon: 'ads_click',
 	description: 'Display content with actions line linking or copy to clipboard. (By clicking on the content (only at readonly) and seperate buttons)!',
 	component: DisplayComponent,
-	types: ['string', 'text', 'bigInteger', 'integer'],	// TODO: add decimal and float support!
-	options: ({ field }): any => {
+	types: ['string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
+	options: ({ field  }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
-		
-		
+
 		const options: DisplayConfig['options'] = [
-			// TODO: add other choices than 'other' only when isString===true, or phone if is numeric
 			{
 				field: 'contentType',
 				name: 'Fields content type',
@@ -23,31 +21,13 @@ export default defineDisplay({
 					width: 'full',
 					interface: 'select-dropdown',
 					options: {
-						choices: [
-							{
-								text: 'Other',
-								value: 'other',
-							},
-							{
-								text: 'URL',
-								value: 'url',
-							},{
-								text: 'Phone',
-								value: 'phone',
-							},
-							{
-								text: 'E-Mail',
-								value: 'email',
-							},
-						],
+						choices: getContentTypeChoices(isString),
 					}
 				},
 				schema: {
 					default_value: 'other',
 				},
-			},
-			// TODO: allow "link" only if is string!
-			{
+			},{
 				field: 'clickAction',
 				name: 'Click Action (when clicking on the value)',
 				type: 'string',
@@ -55,19 +35,7 @@ export default defineDisplay({
 					width: 'full',
 					interface: 'select-dropdown',
 					options: {
-						choices: [
-							{
-								text: 'Open element (default)',
-								value: 'default',
-							},
-							{
-								text: 'Open link',
-								value: 'link',
-							},{
-								text: 'Copy to clipboard',
-								value: 'copy',
-							},
-						],
+						choices: getClickActionChoices(isString),
 					}
 				},
 				schema: {
@@ -89,7 +57,7 @@ export default defineDisplay({
 					default_value: false,
 				},
 			},
-			// TODO: allow option only when "contentType" is one of "phone, url or email"
+			// TODO: allow option only when "contentType" is one of "phone, url or email" --> and set true in this cases
 			{
 				field: 'showLink',
 				name: 'Display link icon',
@@ -110,3 +78,60 @@ export default defineDisplay({
 		return options;
 	},
 });
+
+
+
+function getContentTypeChoices(isString: boolean) {
+	const selectChoices = [
+		{
+			text: 'Other',
+			value: 'other',
+		},
+		{
+			text: 'Phone',
+			value: 'phone',
+		},
+	];
+
+	if (isString) {
+		selectChoices.push(
+			{
+				text: 'URL',
+				value: 'url',
+			},
+			{
+				text: 'E-Mail',
+				value: 'email',
+			},
+		);
+	}
+
+	return selectChoices;
+}
+
+
+
+// dynamically build push Options
+// TODO: allow link only if phone, url or mail is selected
+function getClickActionChoices(isString: boolean) {
+	const selectChoices = [
+		{
+			text: 'Copy to clipboard',
+			value: 'copy',
+		},{
+			text: 'Open element (default)',
+			value: 'default',
+		},
+	];
+
+	if (isString) {
+		selectChoices.push(
+			{
+				text: 'Open link',
+				value: 'link',
+			},
+		);
+	}
+
+	return selectChoices;
+}
