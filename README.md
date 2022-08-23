@@ -3,6 +3,8 @@ A directus interface + display allowing custom actions like copy to clipboard an
 
 
 # Install
-```
-// TODO: write install guide
-```
+1. Download the `display-index.js` and `interface-index.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)
+2. Create a folder named `field-actions` in your displays- as well as interfaces-extension folder (e.g  `/extensions/displays/fields-action` and `/extensions/interfaces/fields-action`)
+3. Move the downloaded release files each to the folder and rename each of them into `index.js`
+4. Restart directus
+
