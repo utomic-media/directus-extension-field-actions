@@ -28,12 +28,11 @@
 
 		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
 		<v-button
-			v-if="showCopy && isCopySupported"
+			v-if="showLink"
 			icon
 			secondary
 		>
 			<a 
-				v-if="showLink"
 				:href="computedLink"
 				target="_blank"
 				rel="noopener noreferrer"
