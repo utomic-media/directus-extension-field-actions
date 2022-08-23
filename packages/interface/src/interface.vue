@@ -13,29 +13,38 @@
 			<template v-if="iconLeft" #prepend><v-icon :name="iconLeft" /></template>
 		</v-input>
 
-		<!-- TODO: add tooltips -->
-		<v-icon 
+		<v-button
 			v-if="showCopy && isCopySupported"
-			name="content_copy"
-			right
-			@click.stop="copyValue"
-			v-tooltip="`Copy to clipboard: ${value}`"
-		/>
+			icon
+			secondary
+		>
+			<v-icon
+				name="content_copy"
+				v-tooltip="`Copy to clipboard: ${value}`"
+				@click.stop="copyValue"
+			/>
+		</v-button>
 		
 
-		<a 
-			v-if="showLink"
-			:href="computedLink"
-			target="_blank"
-			rel="noopener noreferrer"
-			@click.stop
+		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
+		<v-button
+			v-if="showCopy && isCopySupported"
+			icon
+			secondary
 		>
-			<v-icon 
-				name="open_in_new"
-				right
-				v-tooltip="`Follow link: ${computedLink}`"
-			/>
-		</a>
+			<a 
+				v-if="showLink"
+				:href="computedLink"
+				target="_blank"
+				rel="noopener noreferrer"
+				@click.stop
+			>
+				<v-icon 
+					name="open_in_new"
+					v-tooltip="`Follow link: ${computedLink}`"
+				/>
+			</a>
+		</v-button>
 	</div>
 	
 	<!-- TODO: create interface -->
@@ -145,5 +154,10 @@ const actionTooltip = computed(() => {
 .action-interface {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+
+	.v-button {
+		margin-left: 1rem;
+	}
 }
 </style>
