@@ -1,45 +1,43 @@
 <template>
 	<value-null v-if="!value" />
 	<div v-else class="display-action-display">
-		<v-hover v-slot="{ hover }" class="hover-test">
-
-			<component
-				:is="(clickAction === 'link') ? 'a' : 'span'" 
-				class="dynamic-wrapper"
-				:href="computedLink"
+		<component
+			:is="(clickAction === 'link') ? 'a' : 'span'" 
+			class="dynamic-wrapper"
+			:href="computedLink"
+			v-tooltip="actionTooltip"
+		>
+			<span 
+				:class="hasValueClickAction ? 'action-background' : ''"
+				@click="valueClickAction"
 			>
-				<span 
-					:class="hasValueClickAction ? 'action-background' : ''"
-					@click="valueClickAction"
-				>
-					{{ value }}
-				</span>
-			</component>
-			
+				{{ value }}
+			</span>
+		</component>
+		
 
+		<v-icon 
+			v-if="showCopy && isCopySupported"
+			name="content_copy"
+			right
+			v-tooltip="`Copy to clipboard: ${value}`"
+			@click.stop="copyValue"
+		/>
+		
+
+		<a 
+			v-if="showLink"
+			:href="computedLink"
+			target="_blank"
+			rel="noopener noreferrer"
+			v-tooltip="`Follow link: ${computedLink}`"
+			@click.stop
+		>
 			<v-icon 
-				v-if="showCopy && isCopySupported"
-				name="content_copy"
+				name="open_in_new"
 				right
-				@click.stop="copyValue"
-				v-tooltip="`Copy to clipboard: ${value}`"
 			/>
-			
-
-			<a 
-				v-if="showLink"
-				:href="computedLink"
-				target="_blank"
-				rel="noopener noreferrer"
-				@click.stop
-			>
-				<v-icon 
-					name="open_in_new"
-					right
-				/>
-			</a>
-
-		</v-hover>
+		</a>
 	</div>
 </template>
 
@@ -95,7 +93,7 @@ async function copyValue() {
 	await copyToClipboard(props.value, notificationStore);
 };
 
-
+// TODO: move in composable (together with display)
 function valueClickAction(e: Event) {
 	if (props.clickAction === 'copy') {
 		e.stopPropagation();
@@ -115,6 +113,13 @@ const hasValueClickAction = computed(() => {
 
 
 const { computedLink } = useLink(props);
+
+// TODO: move in composable (together with display)
+const actionTooltip = computed(() => {
+	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
+	if (props.clickAction === 'link') return 'Open link';
+});
+
 
 </script>
 

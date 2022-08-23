@@ -1,6 +1,5 @@
 import { computed } from 'vue';
 
-
 export function useLink(props: any) {
   const computedLink = computed(() => {
     // TODO: compute web, mail or phone link

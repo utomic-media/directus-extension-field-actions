@@ -6,7 +6,9 @@
 			:model-value="value" 
 			:disabled="disabled"
 			:type="inputType"
+			v-tooltip="actionTooltip"
 			@update:model-value="$emit('input', $event)"
+			@click="valueClickAction"
 		>
 			<template v-if="iconLeft" #prepend><v-icon :name="iconLeft" /></template>
 		</v-input>
@@ -108,8 +110,9 @@ const inputType = computed(() => {
 	return 'text';
 });
 
-const { isCopySupported, copyToClipboard } = useClipboard();
+const { computedLink } = useLink(props);
 
+const { isCopySupported, copyToClipboard } = useClipboard();
 const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	
 
@@ -117,10 +120,25 @@ async function copyValue() {
 	await copyToClipboard( (inputType.value === 'number') ? props.value.toString() : props.value as string, notificationStore);
 };
 
+// TODO: move in composable (together with display)
+function valueClickAction(e: Event) {
+	if (props.clickAction === 'copy' && props.disabled) {
+		e.stopPropagation();
+		copyValue();
+	} 
+	// else go on with the default events
+}
 
-const { computedLink } = useLink(props);
+// TODO: move in composable (together with display)
+const actionTooltip = computed(() => {
+	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
+	if (props.clickAction === 'link') return 'Open link';
+});
+
 
 </script>
+
+
 
 
 <style scoped lang="scss">
