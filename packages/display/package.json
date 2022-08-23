@@ -9,7 +9,7 @@
   ],
   "directus:extension": {
     "type": "display",
-    "path": "dist/index.js",
+    "path": "dist/display-index.js",
     "source": "src/index.ts",
     "host": "^9.15.1"
   },

@@ -34,5 +34,5 @@ jobs:
       - name: Add release to Github 💾 
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "packages/display/dist/index.js,packages/interface/dist/index.js"
+          artifacts: "packages/display/dist/display-index.js,packages/interface/dist/interface-index.js"
           token: ${{ secrets.GITHUB_TOKEN }}

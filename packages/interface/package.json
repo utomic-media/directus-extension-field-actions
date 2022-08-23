@@ -9,7 +9,7 @@
   ],
   "directus:extension": {
     "type": "interface",
-    "path": "dist/index.js",
+    "path": "dist/interface-index.js",
     "source": "src/index.ts",
     "host": "^9.15.1"
   },
