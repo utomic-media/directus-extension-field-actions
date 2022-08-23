@@ -1,12 +1,12 @@
 {
-  "name": "directus-extension-text-action-display-interface",
+  "name": "directus-extension-field-actions",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "npm run test --workspaces",
     "build": "npm run build --workspaces",
-    "dev": "echo \\\"Dev process run untin you stop them, so they need to be started from the specific package\\\" && exit 0"
+    "dev": "echo \\\"Dev process run until you stop them, so they need to be started from the specific package\\\" && exit 0"
   },
   "repository": {
     "type": "git",
