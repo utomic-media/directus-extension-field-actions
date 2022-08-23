@@ -4,7 +4,8 @@
   "keywords": [
     "directus",
     "directus-extension",
-    "directus-custom-display"
+    "directus-custom-display",
+    "directus-field-action-display"
   ],
   "directus:extension": {
     "type": "display",

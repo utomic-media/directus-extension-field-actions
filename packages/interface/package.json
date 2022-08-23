@@ -4,7 +4,8 @@
   "keywords": [
     "directus",
     "directus-extension",
-    "directus-custom-interface"
+    "directus-custom-interface",
+    "directus-field-action-interface"
   ],
   "directus:extension": {
     "type": "interface",

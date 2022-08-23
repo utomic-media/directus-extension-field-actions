@@ -17,7 +17,7 @@
     "directus-extension",
     "directus-interface",
     "directus-display",
-    "directus-text-action",
+    "directus-field-action",
     "directus-copy-to-clipboard",
     "directus-link"
   ],
