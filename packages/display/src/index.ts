@@ -1,6 +1,6 @@
 import { defineDisplay, } from '@directus/extensions-sdk';
 import DisplayComponent from './display.vue';
-import { getSharedConfigOptions } from '../../../shared/options/sharedConfigOptions';
+import { getSharedConfigOptions, getClickActionChoices } from '../../../shared/options/sharedConfigOptions';
 
 export default defineDisplay({
 	id: 'custom',
@@ -12,10 +12,27 @@ export default defineDisplay({
 	options: ({ field  }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
 
-		const options = getSharedConfigOptions(isString);
+		const sharedOptions = getSharedConfigOptions(isString);
 
-		return options;
+		const customOptions = [
+			{
+				field: 'clickAction',
+				name: 'Click Action (when clicking on the value)',
+				type: 'string',
+				meta: {
+					width: 'full',
+					interface: 'select-dropdown',
+					options: {
+						choices: getClickActionChoices(isString),
+					}
+				},
+				schema: {
+					default_value: 'default',
+				},
+			},
+		];
+
+		return [...sharedOptions, ...customOptions ];
 	},
 });
-
 

@@ -17,20 +17,6 @@ export function getSharedConfigOptions(isString: boolean) {
       schema: {
         default_value: 'other',
       },
-    }, {
-      field: 'clickAction',
-      name: 'Click Action (when clicking on the value)',
-      type: 'string',
-      meta: {
-        width: 'full',
-        interface: 'select-dropdown',
-        options: {
-          choices: getClickActionChoices(isString),
-        }
-      },
-      schema: {
-        default_value: 'default',
-      },
     },
     {
       field: 'showCopy',
@@ -101,7 +87,7 @@ function getContentTypeChoices(isString: boolean) {
 
 // dynamically build push Options
 // TODO: allow link only if phone, url or mail is selected
-function getClickActionChoices(isString: boolean) {
+export function getClickActionChoices(isString: boolean) {
 	const selectChoices = [
 		{
 			text: 'Copy to clipboard',

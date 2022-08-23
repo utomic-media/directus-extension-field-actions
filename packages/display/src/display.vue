@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import {computed } from 'vue';
 import { useClipboard } from '../../../shared/composable/use-clipboard';
+import { useLink } from '../../../shared/composable/use-link';
 import { useStores } from '@directus/extensions-sdk';
 
 const props = defineProps({
@@ -113,14 +114,7 @@ const hasValueClickAction = computed(() => {
 });
 
 
-const computedLink = computed(() => {
-	// TODO: compute web, mail or phone link
-	if (props.contentType === 'url') { return props.value}	// TODO: make sure it's really a link 
-	if (props.contentType === 'email') { return `mailto:${props.value}`}
-	if (props.contentType === 'phone') { return `tel:${props.value}`}
-
-	return props.value;
-});
+const { computedLink } = useLink(props);
 
 </script>
 
