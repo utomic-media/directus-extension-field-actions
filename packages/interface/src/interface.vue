@@ -6,11 +6,21 @@
 			:model-value="value" 
 			:disabled="disabled"
 			:type="inputType"
+			:placeholder="placeholder"
+			:min="min"
+			:max="max"
+			:step="step"
 			v-tooltip="actionTooltip"
 			@update:model-value="$emit('input', $event)"
 			@click="valueClickAction"
 		>
-			<template v-if="iconLeft" #prepend><v-icon :name="iconLeft" /></template>
+			<template v-if="iconLeft" #prepend>
+				<v-icon :name="iconLeft" />
+			</template>
+
+			<template v-if="iconRight" #append>
+				<v-icon :name="iconRight" />
+			</template>
 		</v-input>
 
 		<v-button
