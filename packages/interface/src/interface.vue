@@ -72,7 +72,7 @@ const props = defineProps({
 		type: String,
 		default: 'other',
 	},
-	clickAction: {	// TODO add action
+	clickAction: {
 		type: String,
 		default: 'default',
 	},

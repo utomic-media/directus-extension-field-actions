@@ -14,7 +14,7 @@ export default defineInterface({
 		
 
 		const sharedOptions = getSharedConfigOptions(isString);
-		// TODO: add custom options:  iconLeft, iconRight, softLength, clear, font
+		// TODO: add custom options: softLength, clear, font
 		
 		const interfaceOptions = [
 			{
