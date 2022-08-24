@@ -45,10 +45,6 @@
 			</a>
 		</v-button>
 	</div>
-	
-	<!-- TODO: create interface -->
-	<!-- TODO: share button stuff with display -->
-	<!-- TODO: add input for different types, add readonly support -->
 </template>
 
 <script setup lang="ts">
