@@ -25,12 +25,13 @@
 
 		<v-button
 			v-if="showCopy && isCopySupported"
+			:disabled="!value"
+			v-tooltip="value ? `Copy to clipboard: ${value}` : `Can't copy empty value`"
 			icon
 			secondary
 		>
 			<v-icon
 				name="content_copy"
-				v-tooltip="`Copy to clipboard: ${value}`"
 				@click.stop="copyValue"
 			/>
 		</v-button>
@@ -39,6 +40,8 @@
 		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
 		<v-button
 			v-if="showLink"
+			:disabled="!value"
+			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
 			icon
 			secondary
 		>
@@ -50,7 +53,6 @@
 			>
 				<v-icon 
 					name="open_in_new"
-					v-tooltip="`Follow link: ${computedLink}`"
 				/>
 			</a>
 		</v-button>
@@ -119,9 +121,17 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits(['input'])
+
 const inputType = computed(() => {
 	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) return 'number';
 	return 'text';
+});
+
+// TODO: move in composable (together with display)
+const actionTooltip = computed(() => {
+	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
+	if (props.clickAction === 'link') return 'Open link';
 });
 
 const { computedLink } = useLink(props);
@@ -136,19 +146,12 @@ async function copyValue() {
 
 // TODO: move in composable (together with display)
 function valueClickAction(e: Event) {
-	if (props.clickAction === 'copy' && props.disabled) {
+	if (props.clickAction === 'copy' && props.disabled && props.value) {
 		e.stopPropagation();
 		copyValue();
 	} 
 	// else go on with the default events
 }
-
-// TODO: move in composable (together with display)
-const actionTooltip = computed(() => {
-	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
-	if (props.clickAction === 'link') return 'Open link';
-});
-
 
 </script>
 
