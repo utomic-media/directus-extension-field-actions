@@ -3,8 +3,10 @@
 > 
 > The actions can be performed by a button next to the items or by clicking on the value.
 
+<br />
+
 ![](./docs/screenshots/display-copy.png)
-*Add copy-to-clipboard and link functions to your data*
+*↑ Add copy-to-clipboard and link functions to your data*
 
 <br />
 
@@ -34,24 +36,28 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 <br />
 
 ## 🖼 Screenshots
-<img 
-  src="./docs/screenshots/display-copy.png"
-  alt="Webdevelopment"
-  max-width="200px"
-/>
 ![](./docs/screenshots/display-copy.png)
-*Copy values from table views directly by clicking on them or an icon (configurable)*
+*↑ Copy values from table views directly by clicking on them or an icon (configurable)*
+
+---
 
 ![](./docs/screenshots/item-copy-hover.png)
-*Copy field-values by clicking on it (only for readonly-fields and displays)*
+*↑ Copy field-values by clicking on it (only for readonly-fields and displays)*
 
+---
 
 ![](./docs/screenshots/item-copy-button.png)
-*Add link- and copy-to-clipboard buttons to each field*
+*↑ Add link- and copy-to-clipboard buttons to each field*
 
-![](./docs/screenshots/interface-config.png)
-*Interfaces settings*
+---
+
+![](./docs/screenshots/interface-config-png.png)
+*↑ Interfaces settings*
+
+---
 
 ![](./docs/screenshots/display-config.png)
-*Displays settings*
+*↑ Displays settings*
+
+---
 
