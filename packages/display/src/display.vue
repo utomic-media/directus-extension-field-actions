@@ -1,6 +1,6 @@
 <template>
 	<value-null v-if="!value" />
-	<div v-else class="display-action-display">
+	<span v-else class="action-display">
 		<component
 			:is="(clickAction === 'link') ? 'a' : 'span'" 
 			class="dynamic-wrapper"
@@ -38,7 +38,7 @@
 				right
 			/>
 		</a>
-	</div>
+	</span>
 </template>
 
 
@@ -127,7 +127,7 @@ const actionTooltip = computed(() => {
 
 
 <style lang="scss" scoped>
-	.display-action-display {
+	.action-display {
 		:deep(.v-icon) {
 			--v-icon-size: 18px;
 			--v-icon-color: var(--border-normal-alt);
