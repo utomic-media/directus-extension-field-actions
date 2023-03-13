@@ -63,6 +63,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add release to npm 💾 
-        run: pnpm publish
+        run: pnpm publish --no-git-checks # --no-git-checks as we're not on a branch but a tag!
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
