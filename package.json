@@ -1,16 +1,36 @@
 {
   "name": "directus-extension-field-actions",
   "version": "1.2.0",
-  "description": "",
-  "main": "index.js",
+  "directus:extension": {
+		"host": "^9.23.1",
+		"type": "bundle",
+		"path": {
+			"app": "dist/app.js",
+			"api": "dist/api.js"
+		},
+		"entries": [
+			{
+				"type": "interface",
+				"name": "interface",
+				"source": "src/interface/index.ts"
+			},
+			{
+				"type": "display",
+				"name": "display",
+				"source": "src/display/index.ts"
+			}
+		]
+	},
+  "description": "A directus interface + display allowing custom actions like copy to clipboard and open URL's while clicking on appended / prepended buttons or the value itself (if readonly))",
   "scripts": {
-    "test": "npm run test --workspaces",
-    "build": "npm run build --workspaces",
-    "dev": "echo \\\"Dev process run until you stop them, so they need to be started from the specific package\\\" && exit 0"
+    "build": "directus-extension build",
+		"dev": "directus-extension build -w --no-minify",
+		"link": "directus-extension link",
+		"add": "directus-extension add"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/utomic-media/directus-extension-text-action-display-interface.git"
+    "url": "https://github.com/utomic-media/directus-extension-field-actions.git"
   },
   "keywords": [
     "directus",
@@ -19,20 +39,17 @@
     "directus-display",
     "directus-field-action",
     "directus-copy-to-clipboard",
-    "directus-link"
+    "directus-link",
+    "directus-custom-bundle"
   ],
   "author": "Dominic Marcelino | Utomic Media",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/utomic-media/directus-extension-text-action-display-interface/issues"
+    "url": "https://github.com/utomic-media/directus-extension-field-actions/issues"
   },
-  "homepage": "https://github.com/utomic-media/directus-extension-text-action-display-interface#readme",
-  "workspaces": [
-    "packages/interface",
-    "packages/display"
-  ],
+  "homepage": "https://github.com/utomic-media/directus-extension-field-actions.git#readme",
   "devDependencies": {
-    "@directus/extensions-sdk": "^9.15.1",
+    "@directus/extensions-sdk": "^9.23.1",
     "node-sass": "^7.0.1",
     "sass": "^1.54.3",
     "sass-loader": "^13.0.2",

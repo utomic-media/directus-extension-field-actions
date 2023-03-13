@@ -22,8 +22,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"allowSyntheticDefaultImports": true,
 		"isolatedModules": true,
-		// "rootDir": "./src",	// with this enabled we can't import from outside (utomic-shared)
-		"sourceMap": true
+		"rootDir": "./src"
 	},
-	"include": ["./src/**/*.ts", "../../shared/**/*.ts"]
+	"include": ["./src/**/*.ts"]
 }
