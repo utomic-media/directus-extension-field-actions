@@ -1,6 +1,6 @@
 import { defineInterface } from '@directus/extensions-sdk';
 import InterfaceComponent from './interface.vue';
-import { getSharedConfigOptions, getClickActionChoices } from '../../../shared/options/sharedConfigOptions';
+import { getSharedConfigOptions, getClickActionChoices } from '../shared/options/sharedConfigOptions';
 
 export default defineInterface({
 	id: 'custom',

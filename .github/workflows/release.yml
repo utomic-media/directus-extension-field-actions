@@ -6,7 +6,7 @@ name: Release
 on:
   push:
    tags:
-    - '*'
+    - 'v*'
 
   # Allows you to run this workflow manually from the Actions tab
   #workflow_dispatch:
@@ -19,20 +19,50 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout 🛎
         uses: actions/checkout@v3
+      
+      - name: Setup node 👷🏽‍♂️
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
 
+      - name: Install pnpm 👷🏽‍♂️
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
 
-      - name: Install dependencies 👨🏻‍💻
-        run: npm ci
+      - name: Get pnpm store directory 👷🏽‍♂️
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache 👷🏽‍♂️
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
         
+      - name: Install dependencies 👨🏻‍💻
+        run: pnpm install
         
       - name: Run tests 🧪
-        run: npm run test
+        run: pnpm test
 
       - name: Build files 🔨
-        run: npm run build
+        run: pnpm build
         
       - name: Add release to Github 💾 
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "packages/display/dist/display-index.js,packages/interface/dist/interface-index.js"
+          artifacts: "dist/app.js"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add release to npm 💾 
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

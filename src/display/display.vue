@@ -46,8 +46,8 @@
 
 <script setup lang="ts">
 import {computed } from 'vue';
-import { useClipboard } from '../../../shared/composable/use-clipboard';
-import { useLink } from '../../../shared/composable/use-link';
+import { useClipboard } from '../shared/composable/use-clipboard';
+import { useLink } from '../shared/composable/use-link';
 import { useStores } from '@directus/extensions-sdk';
 
 const props = defineProps({

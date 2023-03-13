@@ -1,6 +1,6 @@
 import { defineDisplay, } from '@directus/extensions-sdk';
 import DisplayComponent from './display.vue';
-import { getSharedConfigOptions, getClickActionChoices } from '../../../shared/options/sharedConfigOptions';
+import { getSharedConfigOptions, getClickActionChoices } from '../shared/options/sharedConfigOptions';
 
 export default defineDisplay({
 	id: 'custom',
