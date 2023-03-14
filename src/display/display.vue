@@ -5,7 +5,7 @@
 			:is="(clickAction === 'link') ? 'a' : 'span'" 
 			class="dynamic-wrapper"
 			:href="computedLink"
-			v-tooltip="actionTooltip"
+			v-tooltip.left="actionTooltip"
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
