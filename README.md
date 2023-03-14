@@ -27,11 +27,30 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 
 <br />
 
-## ⚙️ Installation
-1. Download the `display-index.js` and `interface-index.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)
-2. Create a folder named `field-actions` in your displays- as well as interfaces-extension folder (e.g  `/extensions/displays/field-actions` and `/extensions/interfaces/field-actions`)
-3. Move the downloaded release files each to the folder and rename each of them into `index.js`
-4. Restart directus
+## ⚙️ Installation (npm)
+```
+npm i directus-extension-field-actions
+```
+
+or
+
+```
+pnpm i directus-extension-field-actions
+```
+
+## ⚙️ Installation (manually)
+>
+> **NOTE:** With version 1.3 we switched to a directus extension bundle. This way the display and interface are included in one extension.
+> 
+> Unfortunately this is only supported for installations via npm. We're looking for a solution to support an installation via local files again.
+>
+~~1. Download the `app.js` and `server.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)~~
+
+~~2. Create a folder named `field-actions` in your displays- as well as interfaces-extension folder (e.g  `/extensions/displays/field-actions` and `/extensions/interfaces/field-actions`)~~
+
+~~3. Move the downloaded release files each to the folder and rename each of them into `index.js`~~
+
+~~4. Restart directus~~
 
 <br />
 
