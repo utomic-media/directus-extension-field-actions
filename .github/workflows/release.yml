@@ -32,20 +32,6 @@ jobs:
         with:
           version: 7
           run_install: false
-
-      - name: Get pnpm store directory 👷🏽‍♂️
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache 👷🏽‍♂️
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
         
       - name: Install dependencies 👨🏻‍💻
         run: pnpm install
@@ -63,6 +49,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add release to npm 💾 
-        run: pnpm publish
+        run: pnpm publish --no-git-checks # --no-git-checks as we're not on a branch but a tag!
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
