@@ -25,6 +25,9 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 * Copy-action (copied the value)
 * Link-action (openes the link in a new tab)
 
+### ⚙ Settings
+The icons can be placed before or after the content. This setting can be set for the interface and display, as well as the copy and link button indipendently.
+
 <br />
 
 ## ⚙️ Installation (npm)
