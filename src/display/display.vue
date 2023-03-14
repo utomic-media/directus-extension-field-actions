@@ -139,6 +139,7 @@ const actionTooltip = computed(() => {
 
 		.action-background {
 			background-color: var(--primary-10);
+			color: var(--primary);
 			padding: 0.5rem 1rem;
     	border-radius: 5rem; // aritary value for a nice smooth rounding
 
