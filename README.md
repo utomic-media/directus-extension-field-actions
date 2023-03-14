@@ -1,3 +1,6 @@
+![](./docs/Directus-Extension-Field-Actions.png)
+
+
 # 🐰 Directus extension: Text action display & interface
 > 💡 A directus interface + display adding `copy to clipboard` and `link` actions to your values.
 > 
