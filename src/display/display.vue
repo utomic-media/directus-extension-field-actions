@@ -19,9 +19,9 @@
 		<v-icon 
 			v-if="showCopy && isCopySupported"
 			name="content_copy"
-			right
 			v-tooltip="`Copy to clipboard: ${value}`"
 			@click.stop="copyValue"
+			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		/>
 		
 
@@ -32,10 +32,10 @@
 			rel="noopener noreferrer"
 			v-tooltip="`Follow link: ${computedLink}`"
 			@click.stop
+			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-icon 
 				name="open_in_new"
-				right
 			/>
 		</a>
 	</span>
@@ -75,9 +75,17 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	copyPosition: {
+		type: String,
+		default: 'end',
+	},
 	showLink: {
 		type: Boolean,
 		default: false,
+	},
+	linkPosition: {
+		type: String,
+		default: 'end',
 	},
 });
 
@@ -128,6 +136,25 @@ const actionTooltip = computed(() => {
 
 <style lang="scss" scoped>
 	.action-display {
+		display: flex;
+    flex-direction: row;
+    align-items: center;
+
+		span,
+		a {
+			display: inherit;
+
+			&.order-1 {
+				order: 1;
+				margin-left: 8px;
+			}
+
+			&.-order-1 {
+				order: -1;
+				margin-right: 8px;
+			}
+		}
+
 		:deep(.v-icon) {
 			--v-icon-size: 18px;
 			--v-icon-color: var(--border-normal-alt);
