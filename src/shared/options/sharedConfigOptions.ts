@@ -33,6 +33,24 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: false,
       },
     },
+    {
+      field: 'copyPosition',
+      name: 'Copy icon position',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-radio',
+        options: {
+          choices: [
+            { text: 'Start', value: 'start' },
+            { text: 'End', value: 'end' }
+          ],
+        },
+      },
+      schema: {
+        default_value: 'end',
+      },
+    },
     // TODO: allow option only when "contentType" is one of "phone, url or email" --> and set true in this cases
     {
       field: 'showLink',
@@ -47,6 +65,24 @@ export function getSharedConfigOptions(isString: boolean) {
       },
       schema: {
         default_value: false,
+      },
+    },
+    {
+      field: 'linkPosition',
+      name: 'Link icon position',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-radio',
+        options: {
+          choices: [
+            { text: 'Start', value: 'start' },
+            { text: 'End', value: 'end' }
+          ],
+        },
+      },
+      schema: {
+        default_value: 'end',
       },
     },
   ];

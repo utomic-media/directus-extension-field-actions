@@ -29,6 +29,8 @@
 			v-tooltip="value ? `Copy to clipboard: ${value}` : `Can't copy empty value`"
 			icon
 			secondary
+			xLarge
+			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-icon
 				name="content_copy"
@@ -44,6 +46,8 @@
 			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
 			icon
 			secondary
+			xLarge
+			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<a 
 				:href="computedLink"
@@ -82,9 +86,17 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	copyPosition: {
+		type: String,
+		default: 'end',
+	},
 	showLink: {
 		type: Boolean,
 		default: false,
+	},
+	linkPosition: {
+		type: String,
+		default: 'end',
 	},
 	placeholder: {
 		type: String,
@@ -164,8 +176,18 @@ function valueClickAction(e: Event) {
 	flex-direction: row;
 	align-items: center;
 
-	.v-button {
-		margin-left: 1rem;
+	>div {
+		display: inherit;
+
+		&.order-1 {
+			order: 1;
+			margin-left: 8px;
+		}
+
+		&.-order-1 {
+			order: -1;
+			margin-right: 8px;
+		}
 	}
 }
 </style>
