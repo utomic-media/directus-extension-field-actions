@@ -45,7 +45,7 @@ jobs:
       - name: Add release to Github 💾 
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "dist/app.js"
+          artifacts: "dist/app.js,dist/api.js"
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add release to npm 💾 

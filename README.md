@@ -44,7 +44,7 @@ pnpm i directus-extension-field-actions
 > 
 > Unfortunately this is only supported for installations via npm. We're looking for a solution to support an installation via local files again.
 >
-~~1. Download the `app.js` and `server.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)~~
+~~1. Download the `app.js` and `api.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)~~
 
 ~~2. Create a folder named `field-actions` in your displays- as well as interfaces-extension folder (e.g  `/extensions/displays/field-actions` and `/extensions/interfaces/field-actions`)~~
 
