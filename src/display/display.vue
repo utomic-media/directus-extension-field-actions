@@ -132,7 +132,21 @@ const actionTooltip = computed(() => {
 </script>
 
 
+<style lang="scss">
+	// NOTE: GLOBAL STYLES
+	// use scoped styles for the component whenever possible!
 
+	.header-bar .title-container {
+		// if the display is in the header bar title we need extra styling, as it has a fixed height
+		.action-display {
+			.action-background {
+				line-height: 2rem;
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+</style>
 
 <style lang="scss" scoped>
 	.action-display {
