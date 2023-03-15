@@ -150,7 +150,7 @@ const actionTooltip = computed(() => {
 
 <style lang="scss" scoped>
 	.action-display {
-		display: flex;
+		display: inline-flex;
     flex-direction: row;
     align-items: center;
 
