@@ -85,12 +85,12 @@ pnpm i directus-extension-field-actions
 
 ---
 
-![](./docs/screenshots/interface-config.png)
+![](./docs/screenshots/interface-config-2023-03.png)
 *↑ Interfaces settings*
 
 ---
 
-![](./docs/screenshots/display-config.png)
+![](./docs/screenshots/display-config-2023-03.png)
 *↑ Displays settings*
 
 ---
