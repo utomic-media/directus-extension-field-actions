@@ -2,8 +2,8 @@
 
 <template>
 	<div class="action-interface">
-		<v-input 
-			:model-value="value" 
+		<v-input
+			:model-value="value"
 			:disabled="disabled"
 			:type="inputType"
 			:placeholder="placeholder"
@@ -37,7 +37,7 @@
 				@click.stop="copyValue"
 			/>
 		</v-button>
-		
+
 
 		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
 		<v-button
@@ -49,13 +49,13 @@
 			xLarge
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
-			<a 
+			<a
 				:href="computedLink"
 				target="_blank"
 				rel="noopener noreferrer"
 				@click.stop
 			>
-				<v-icon 
+				<v-icon
 					name="open_in_new"
 				/>
 			</a>
@@ -122,6 +122,10 @@ const props = defineProps({
 		type: Number,
 		default: 1,
 	},
+	prependProjectUrl: {
+		type: Boolean,
+		default: false,
+	},
 	// global optiopns (independend from this interface)
 	type: {
 		type: String,
@@ -150,7 +154,7 @@ const { computedLink } = useLink(props);
 
 const { isCopySupported, copyToClipboard } = useClipboard();
 const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
+const notificationStore = useNotificationsStore();
 
 async function copyValue() {
 	await copyToClipboard( (inputType.value === 'number') ? props.value.toString() : props.value as string, notificationStore);
@@ -161,7 +165,7 @@ function valueClickAction(e: Event) {
 	if (props.clickAction === 'copy' && props.disabled && props.value) {
 		e.stopPropagation();
 		copyValue();
-	} 
+	}
 	// else go on with the default events
 }
 

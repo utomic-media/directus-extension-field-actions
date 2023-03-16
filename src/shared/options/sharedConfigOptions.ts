@@ -85,6 +85,18 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: 'end',
       },
     },
+    {
+        field: 'prependProjectUrl',
+        name: 'Prepend project URL to relative links',
+        type: 'boolean',
+        meta: {
+            width: 'full',
+            interface: 'boolean',
+        },
+        schema: {
+            default_value: false,
+        },
+    },
   ];
 
   return options;

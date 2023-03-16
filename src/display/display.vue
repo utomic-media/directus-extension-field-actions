@@ -2,30 +2,30 @@
 	<value-null v-if="!value" />
 	<span v-else class="action-display">
 		<component
-			:is="(clickAction === 'link') ? 'a' : 'span'" 
+			:is="(clickAction === 'link') ? 'a' : 'span'"
 			class="dynamic-wrapper"
 			:href="computedLink"
 			v-tooltip.left="actionTooltip"
 		>
-			<span 
+			<span
 				:class="hasValueClickAction ? 'action-background' : ''"
 				@click="valueClickAction"
 			>
 				{{ value }}
 			</span>
 		</component>
-		
 
-		<v-icon 
+
+		<v-icon
 			v-if="showCopy && isCopySupported"
 			name="content_copy"
 			v-tooltip="`Copy to clipboard: ${value}`"
 			@click.stop="copyValue"
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		/>
-		
 
-		<a 
+
+		<a
 			v-if="showLink"
 			:href="computedLink"
 			target="_blank"
@@ -34,7 +34,7 @@
 			@click.stop
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
-			<v-icon 
+			<v-icon
 				name="open_in_new"
 			/>
 		</a>
@@ -87,6 +87,10 @@ const props = defineProps({
 		type: String,
 		default: 'end',
 	},
+	prependProjectUrl: {
+		type: Boolean,
+		default: false,
+	}
 });
 
 
@@ -94,7 +98,7 @@ const { isCopySupported, copyToClipboard } = useClipboard();
 
 
 const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
+const notificationStore = useNotificationsStore();
 
 
 async function copyValue() {
@@ -106,7 +110,7 @@ function valueClickAction(e: Event) {
 	if (props.clickAction === 'copy') {
 		e.stopPropagation();
 		copyValue();
-	} 
+	}
 	// else go on with the default events
 }
 
@@ -189,5 +193,5 @@ const actionTooltip = computed(() => {
 			}
 		}
 	}
-	
+
 </style>
