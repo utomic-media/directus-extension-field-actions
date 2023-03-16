@@ -4,21 +4,6 @@ import { DisplayConfig } from '@directus/shared/types';
 export function getSharedConfigOptions(isString: boolean) {
   const options: DisplayConfig['options'] = [
     {
-      field: 'contentType',
-      name: 'Fields content type',
-      type: 'string',
-      meta: {
-        width: 'full',
-        interface: 'select-dropdown',
-        options: {
-          choices: getContentTypeChoices(isString),
-        }
-      },
-      schema: {
-        default_value: 'other',
-      },
-    },
-    {
       field: 'showCopy',
       name: 'Display copy icon',
       type: 'boolean',
@@ -53,7 +38,7 @@ export function getSharedConfigOptions(isString: boolean) {
     },
     {
       field: 'copyPrefix',
-      name: 'Link value prefix',
+      name: 'Copy value prefix',
       type: 'string',
       meta: {
         width: 'half',
@@ -73,7 +58,6 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: '',
       },
     },
-    // TODO: allow option only when "contentType" is one of "phone, url or email" --> and set true in this cases
     {
       field: 'showLink',
       name: 'Display link icon',
@@ -109,7 +93,7 @@ export function getSharedConfigOptions(isString: boolean) {
     },
     {
       field: 'linkPrefix',
-      name: 'Copy value prefix',
+      name: 'Link value prefix',
       type: 'string',
       meta: {
         width: 'half',
@@ -118,6 +102,8 @@ export function getSharedConfigOptions(isString: boolean) {
           placeholder: 'Enter prefix or select variable',
           choices: [
             { text: '$project_url', value: '$project_url' },
+            { text: 'Mail-Link (mailto:)', value: 'mailto:' },
+            { text: 'Phole-Link (tel:)', value: 'tel:' },
             { text: 'https://', value: 'https://' }
           ],
           allowOther: true,
@@ -133,36 +119,6 @@ export function getSharedConfigOptions(isString: boolean) {
 
   return options;
 }
-
-
-function getContentTypeChoices(isString: boolean) {
-	const selectChoices = [
-		{
-			text: 'Other',
-			value: 'other',
-		},
-		{
-			text: 'Phone',
-			value: 'phone',
-		},
-	];
-
-	if (isString) {
-		selectChoices.push(
-			{
-				text: 'URL',
-				value: 'url',
-			},
-			{
-				text: 'E-Mail',
-				value: 'email',
-			},
-		);
-	}
-
-	return selectChoices;
-}
-
 
 
 // dynamically build push Options
