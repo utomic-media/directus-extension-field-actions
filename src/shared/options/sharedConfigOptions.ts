@@ -51,6 +51,28 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: 'end',
       },
     },
+    {
+      field: 'copyPrefix',
+      name: 'Link value prefix',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          placeholder: 'Enter prefix or select variable',
+          choices: [
+            { text: '$project_url', value: '$project_url' },
+            { text: 'https://', value: 'https://' }
+          ],
+          allowOther: true,
+          allowNone: true,
+        },
+
+      },
+      schema: {
+        default_value: '',
+      },
+    },
     // TODO: allow option only when "contentType" is one of "phone, url or email" --> and set true in this cases
     {
       field: 'showLink',
@@ -83,6 +105,28 @@ export function getSharedConfigOptions(isString: boolean) {
       },
       schema: {
         default_value: 'end',
+      },
+    },
+    {
+      field: 'linkPrefix',
+      name: 'Copy value prefix',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          placeholder: 'Enter prefix or select variable',
+          choices: [
+            { text: '$project_url', value: '$project_url' },
+            { text: 'https://', value: 'https://' }
+          ],
+          allowOther: true,
+          allowNone: true,
+        },
+
+      },
+      schema: {
+        default_value: '',
       },
     },
   ];
