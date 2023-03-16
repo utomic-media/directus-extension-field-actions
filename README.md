@@ -20,7 +20,7 @@ Each value can be copied by a custom button. If enabled it's also possible to co
 ### ➡️ Links
 When using the link-option it supports ➡️ HTTP-, 📧 mail-, and 📞 phone- links. Each link can be opened by the custom button. If enabled it's also possible to open the link by just clicking on the value (click-action).
 
-*Note: For links your value must match the selected format. The extensions currently won't parse invalid links into valid ones!*
+*Note: The extensions currently won't parse invalid links into valid ones!*
 
 ### 🖱 Click-Action
 Displays and disabled interfaces (== readonly) support a custom click-action. This can be one of:
@@ -29,7 +29,16 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 * Link-action (openes the link in a new tab)
 
 ### ⚙ Settings
-The icons can be placed before or after the content. This setting can be set for the interface and display, as well as the copy and link button indipendently.
+#### Icon position
+- The icons can be placed before or after the content
+- The setting can be set for the interface and display, as well as the copy and link button indipendently
+- Example in the screenshots below
+
+#### Custom prefix
+- You can set custom prefixes for copy-/ and link-actions.
+- Prefixes can be entered manually or use a defined variable ([Project URL setting](https://docs.directus.io/configuration/project-settings.html#general))
+- The setting can be set for the interface and display, as well as the copy and link button indipendently
+- Example in the screenshots below
 
 <br />
 
@@ -76,7 +85,7 @@ pnpm i directus-extension-field-actions
 
 ---
 
-![](./docs/screenshots/interface-config-png.png)
+![](./docs/screenshots/interface-config.png)
 *↑ Interfaces settings*
 
 ---
