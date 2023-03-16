@@ -26,7 +26,7 @@
 		<v-button
 			v-if="showCopy && isCopySupported"
 			:disabled="!value"
-			v-tooltip="value ? `Copy to clipboard: ${value}` : `Can't copy empty value`"
+			v-tooltip="value ? `Copy: ${prefix}${value}` : `Can't copy empty value`"
 			icon
 			secondary
 			xLarge
@@ -43,7 +43,7 @@
 		<v-button
 			v-if="showLink"
 			:disabled="!value"
-			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
+			v-tooltip="value ? `Follow link: ${prefix}${computedLink}` : `Can't follow empty link`"
 			icon
 			secondary
 			xLarge
@@ -68,15 +68,12 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { useLink } from '../shared/composable/use-link';
 import { useStores } from '@directus/extensions-sdk';
+import { usePrefix } from '../shared/composable/use-prefix';
 
 const props = defineProps({
 	value: {
 		type: [String, Number],
 		default: null,
-	},
-	contentType: { // TODO: use content type for action
-		type: String,
-		default: 'other',
 	},
 	clickAction: {
 		type: String,
@@ -90,6 +87,10 @@ const props = defineProps({
 		type: String,
 		default: 'end',
 	},
+	copyPrefix: {
+		type: String,
+		default: '',
+	},
 	showLink: {
 		type: Boolean,
 		default: false,
@@ -97,6 +98,10 @@ const props = defineProps({
 	linkPosition: {
 		type: String,
 		default: 'end',
+	},
+	linkPrefix: {
+		type: String,
+		default: '',
 	},
 	placeholder: {
 		type: String,
@@ -133,28 +138,27 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['input'])
+const emit = defineEmits(['input']);
+
+const { isCopySupported, copyToClipboard } = useClipboard();
+
+const { useNotificationsStore } = useStores();
+const notificationStore = useNotificationsStore();	
+
+const { computedLink } = useLink(props);
+const prefix = usePrefix(props.copyPrefix);
+
 
 const inputType = computed(() => {
 	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) return 'number';
 	return 'text';
 });
 
-// TODO: move in composable (together with display)
-const actionTooltip = computed(() => {
-	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
-	if (props.clickAction === 'link') return 'Open link';
-});
-
-const { computedLink } = useLink(props);
-
-const { isCopySupported, copyToClipboard } = useClipboard();
-const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
 
 async function copyValue() {
-	await copyToClipboard( (inputType.value === 'number') ? props.value.toString() : props.value as string, notificationStore);
+	await copyToClipboard(`${prefix.value}${props.value}`, notificationStore);
 };
+
 
 // TODO: move in composable (together with display)
 function valueClickAction(e: Event) {
@@ -164,6 +168,13 @@ function valueClickAction(e: Event) {
 	} 
 	// else go on with the default events
 }
+
+
+// TODO: move in composable (together with display)
+const actionTooltip = computed(() => {
+	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
+	if (props.clickAction === 'link') return 'Open link';
+});
 
 </script>
 

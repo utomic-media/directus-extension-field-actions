@@ -19,7 +19,7 @@
 		<v-icon 
 			v-if="showCopy && isCopySupported"
 			name="content_copy"
-			v-tooltip="`Copy to clipboard: ${value}`"
+			v-tooltip="`Copy: ${prefix}${value}`"
 			@click.stop="copyValue"
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		/>
@@ -30,7 +30,7 @@
 			:href="computedLink"
 			target="_blank"
 			rel="noopener noreferrer"
-			v-tooltip="`Follow link: ${computedLink}`"
+			v-tooltip="`Follow link: ${prefix}${computedLink}`"
 			@click.stop
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
@@ -48,6 +48,7 @@
 import {computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { useLink } from '../shared/composable/use-link';
+import { usePrefix } from '../shared/composable/use-prefix';
 import { useStores } from '@directus/extensions-sdk';
 
 const props = defineProps({
@@ -63,10 +64,6 @@ const props = defineProps({
 		type: Object,
 		default: {},	// TODO: type to options!
 	},
-	contentType: {
-		type: String,
-		default: 'other',
-	},
 	clickAction: {
 		type: String,
 		default: 'default',
@@ -79,6 +76,10 @@ const props = defineProps({
 		type: String,
 		default: 'end',
 	},
+	copyPrefix: {
+		type: String,
+		default: '',
+	},
 	showLink: {
 		type: Boolean,
 		default: false,
@@ -87,19 +88,26 @@ const props = defineProps({
 		type: String,
 		default: 'end',
 	},
+	linkPrefix: {
+		type: String,
+		default: '',
+	},
 });
 
 
 const { isCopySupported, copyToClipboard } = useClipboard();
 
-
 const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	
 
+const { computedLink } = useLink(props);
+const prefix = usePrefix(props.copyPrefix);
+
 
 async function copyValue() {
-	await copyToClipboard(props.value, notificationStore);
+	await copyToClipboard(`${prefix.value}${props.value}`, notificationStore);
 };
+
 
 // TODO: move in composable (together with display)
 function valueClickAction(e: Event) {
@@ -120,14 +128,11 @@ const hasValueClickAction = computed(() => {
 });
 
 
-const { computedLink } = useLink(props);
-
 // TODO: move in composable (together with display)
 const actionTooltip = computed(() => {
 	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
 	if (props.clickAction === 'link') return 'Open link';
 });
-
 
 </script>
 

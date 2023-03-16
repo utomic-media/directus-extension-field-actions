@@ -1,13 +1,13 @@
 import { computed } from 'vue';
+import { usePrefix } from './use-prefix';
 
 export function useLink(props: any) {
+
+  // TODO: make sure it's always a valid link (absolute + relative)
+
   const computedLink = computed(() => {
-    // TODO: compute web, mail or phone link
-    if (props.contentType === 'url') { return props.value}	// TODO: make sure it's really a link 
-    if (props.contentType === 'email') { return `mailto:${props.value}`}
-    if (props.contentType === 'phone') { return `tel:${props.value}`}
-  
-    return props.value;
+    const prefix = usePrefix(props.linkPrefix);
+    return prefix.value + props.value;
   });
 
   return { computedLink };
