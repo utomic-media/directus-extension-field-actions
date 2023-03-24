@@ -166,6 +166,12 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
+
+	if (props.clickAction === 'link' && props.disabled && props.value) {
+		e.stopPropagation();
+		window.open(computedLink.value, '_blank', 'noopener, noreferrer');
+	}
+	
 	// else go on with the default events
 }
 

@@ -6,6 +6,8 @@
 			class="dynamic-wrapper"
 			:href="computedLink"
 			v-tooltip.left="actionTooltip"
+			target="_blank"
+			rel="noopener noreferrer"
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
@@ -115,6 +117,11 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
+
+	if (props.clickAction === 'link') {
+		// We opened a link in a new tab and don't want to get into the details view of the item
+		e.stopPropagation();
+	}
 	// else go on with the default events
 }
 
