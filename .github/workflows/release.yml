@@ -47,6 +47,7 @@ jobs:
         with:
           artifacts: "dist/app.js,dist/api.js"
           token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
 
       - name: Add release to npm 💾 
         run: pnpm publish --no-git-checks # --no-git-checks as we're not on a branch but a tag!
