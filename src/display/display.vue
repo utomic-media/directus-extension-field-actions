@@ -158,6 +158,13 @@ const actionTooltip = computed(() => {
 			}
 		}
 	}
+
+	.render-template:has(.action-display) {
+		// if the display is in the render template we need to use flex on it
+		// NOTE: this could be optimized, as this way the default "text-overflow: ellapsis" is not working, but it should be fine for 98% of the use-cases
+		display: flex;
+		align-items: center;
+	}
 </style>
 
 <style lang="scss" scoped>
