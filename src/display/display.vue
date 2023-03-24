@@ -6,6 +6,8 @@
 			class="dynamic-wrapper"
 			:href="computedLink"
 			v-tooltip.left="actionTooltip"
+			target="_blank"
+			rel="noopener noreferrer"
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
