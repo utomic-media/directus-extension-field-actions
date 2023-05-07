@@ -6,7 +6,7 @@
 			class="dynamic-wrapper"
 			:href="computedLink"
 			v-tooltip.left="actionTooltip"
-			target="_blank"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			rel="noopener noreferrer"
 		>
 			<span 
@@ -30,7 +30,7 @@
 		<a 
 			v-if="showLink"
 			:href="computedLink"
-			target="_blank"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			rel="noopener noreferrer"
 			v-tooltip="`Follow link: ${prefix}${computedLink}`"
 			@click.stop
@@ -94,6 +94,10 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+  openLinkAsNewTab: {
+    type: Boolean,
+    default: true
+  }
 });
 
 
