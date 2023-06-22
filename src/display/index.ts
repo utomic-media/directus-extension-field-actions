@@ -16,6 +16,19 @@ export default defineDisplay({
 
 		const customOptionsBeforeShared = [
 			{
+				field: 'hideFieldValue',
+				name: 'Hide field value',
+				type: 'boolean',
+				meta: {
+					width: 'full',
+					interface: 'v-checkbox',
+					note: 'When enabled the field value will be hidden. Can be used to only show the actions',
+				},
+				schema: {
+					default_value: false,
+				},
+			},
+			{
 				field: 'clickAction',
 				name: 'Click Action (when clicking on the value)',
 				type: 'string',

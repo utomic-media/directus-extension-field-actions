@@ -2,6 +2,7 @@
 	<value-null v-if="!value" />
 	<span v-else class="action-display">
 		<component
+			v-if="!hideFieldValue"
 			:is="(clickAction === 'link') ? 'a' : 'span'" 
 			class="dynamic-wrapper"
 			:href="computedLink"
@@ -78,6 +79,10 @@ const props = defineProps({
 	interfaceOptions: {
 		type: Object,
 		default: {},	// TODO: type to options!
+	},
+	hideFieldValue: {
+		type: Boolean,
+		default: false,
 	},
 	clickAction: {
 		type: String,
