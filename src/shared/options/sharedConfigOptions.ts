@@ -115,6 +115,24 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: '',
       },
     },
+    {
+      field: 'openLinkAsNewTab',
+      name: 'Open Link',
+      type: 'boolean',
+      meta: {
+        width: 'full',
+        interface: 'select-radio',
+        options: {
+          choices: [
+            { text: 'As New Tab', value: true },
+            { text: 'On Current Tab', value: false }
+          ],
+        },
+      },
+      schema: {
+        default_value: true,
+      },
+    },
   ];
 
   return options;

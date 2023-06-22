@@ -51,7 +51,7 @@
 		>
 			<a 
 				:href="computedLink"
-				target="_blank"
+				:target="openLinkAsNewTab ? '_blank' : '_self'"
 				rel="noopener noreferrer"
 				@click.stop
 			>
@@ -136,6 +136,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+  openLinkAsNewTab: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const emit = defineEmits(['input']);
