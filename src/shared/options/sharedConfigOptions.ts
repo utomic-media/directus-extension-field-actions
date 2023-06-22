@@ -82,6 +82,7 @@ export function getSharedConfigOptions(isString: boolean) {
           allowOther: true,
           allowNone: true,
         },
+        note: 'Copies the field value with the given prefix',
         group: 'groupCopySettings',
       },
       schema: {
@@ -141,6 +142,7 @@ export function getSharedConfigOptions(isString: boolean) {
           allowOther: true,
           allowNone: true,
         },
+        note: 'Links to the field value with the given prefix',
         group: 'groupLinkSettings',
       },
       schema: {
