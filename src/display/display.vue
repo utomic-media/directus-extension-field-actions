@@ -17,18 +17,29 @@
 			</span>
 		</component>
 		
-
-		<v-icon 
+		<component
 			v-if="showCopy && isCopySupported"
-			name="content_copy"
+			:is="(copyButtonLabel) ? 'v-button' : 'span'" 
+			outlined
+			small
+			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 			v-tooltip="`Copy: ${prefix}${value}`"
 			@click.stop="copyValue"
-			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
-		/>
+		>
+			<v-icon 
+				name="content_copy"
+				:color="copyButtonLabel ? 'primary' : ''"
+			/>
+
+			<span v-if="copyButtonLabel" class="ml-2">{{ copyButtonLabel }}</span>
+		</component>
 		
 
-		<a 
+		<component
 			v-if="showLink"
+			:is="(linkButtonLabel) ? 'v-button' : 'a'" 
+			outlined
+			small
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			rel="noopener noreferrer"
@@ -38,8 +49,10 @@
 		>
 			<v-icon 
 				name="open_in_new"
+				:color="linkButtonLabel ? 'primary' : ''"
 			/>
-		</a>
+			<span v-if="copyButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
+		</component>
 	</span>
 </template>
 
@@ -82,6 +95,10 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	copyButtonLabel: {
+		type: String,
+		default: '',
+	},
 	showLink: {
 		type: Boolean,
 		default: false,
@@ -91,6 +108,10 @@ const props = defineProps({
 		default: 'end',
 	},
 	linkPrefix: {
+		type: String,
+		default: '',
+	},
+	linkButtonLabel: {
 		type: String,
 		default: '',
 	},
@@ -178,7 +199,8 @@ const actionTooltip = computed(() => {
     align-items: center;
 
 		span,
-		a {
+		a,
+		.v-button {
 			display: inherit;
 
 			&.order-1 {
@@ -190,6 +212,10 @@ const actionTooltip = computed(() => {
 				order: -1;
 				margin-right: 8px;
 			}
+		}
+
+		.ml-2 {
+			margin-left: 0.5rem;
 		}
 
 		:deep(.v-icon) {

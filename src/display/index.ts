@@ -14,7 +14,7 @@ export default defineDisplay({
 
 		const sharedOptions = getSharedConfigOptions(isString);
 
-		const customOptions = [
+		const customOptionsBeforeShared = [
 			{
 				field: 'clickAction',
 				name: 'Click Action (when clicking on the value)',
@@ -32,7 +32,38 @@ export default defineDisplay({
 			},
 		];
 
-		return [ ...customOptions, ...sharedOptions ];
+		const customOptionsAfterShared = [
+			{
+				field: 'copyButtonLabel',
+				name: 'Copy button lable',
+				type: 'string',
+				meta: {
+					width: 'half',
+					interface: 'system-input-translated-string',
+					group: 'groupCopySettings',
+					note: 'When used the copy icon will be shown as button with the given label',
+				},
+				schema: {
+					default_value: '',
+				},
+			},
+			{
+				field: 'linkButtonLabel',
+				name: 'Link button lable',
+				type: 'string',
+				meta: {
+					width: 'half',
+					interface: 'system-input-translated-string',
+					group: 'groupLinkSettings',
+					note: 'When used the link icon will be shown as button with the given label',
+				},
+				schema: {
+					default_value: '',
+				},
+			},
+		];
+
+		return [ ...customOptionsBeforeShared, ...sharedOptions, ...customOptionsAfterShared ];
 	},
 });
 
