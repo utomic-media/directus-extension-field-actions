@@ -10,10 +10,10 @@ export default defineInterface({
 	component: InterfaceComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
 	options: ({ field  }): any => {
-		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
-		
+		const isStringField 	= ['string', 'text'].includes(field.type ?? 'unknown');
+		const isNumericField 	= ['bigInteger', 'integer', 'float', 'decimal'].includes(field.type ?? 'unknown');
 
-		const sharedOptions = getSharedConfigOptions(isString);
+		const sharedOptions = getSharedConfigOptions(isStringField);
 		// TODO: add custom options: softLength, clear, font
 		
 		const interfaceOptions = [
@@ -58,7 +58,7 @@ export default defineInterface({
 					width: 'full',
 					interface: 'select-dropdown',
 					options: {
-						choices: getClickActionChoices(isString),
+						choices: getClickActionChoices(isStringField),
 					}
 				},
 				schema: {
@@ -99,19 +99,13 @@ export default defineInterface({
 				},
 			}
 		];
-
-
-		if (field.type && ['bigInteger', 'integer', 'float', 'decimal'].includes(field.type)) {
-			const allOptions = [...interfaceOptions, ...numberOptions, ...sharedOptions ];
-			if (field.meta?.readonly) allOptions.push(...readOnlyOptions);
-			
-			return allOptions;
-		}
 	
-
-		const allOptions = [...interfaceOptions, ...sharedOptions];
-		if (field.meta?.readonly) allOptions.push(...readOnlyOptions);
-		
-		return allOptions;
+	
+		return [
+			...interfaceOptions,
+			...(isNumericField ? numberOptions : []),
+			...(field.meta?.readonly ? readOnlyOptions : []),
+			...sharedOptions,
+		];
 	},
 });

@@ -32,7 +32,7 @@ export default defineDisplay({
 			},
 		];
 
-		return [...sharedOptions, ...customOptions ];
+		return [ ...customOptions, ...sharedOptions ];
 	},
 });
 
