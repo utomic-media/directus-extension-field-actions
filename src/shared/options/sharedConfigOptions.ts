@@ -13,6 +13,7 @@ export function getSharedConfigOptions(isString: boolean) {
         special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
         options: {
           start: "closed",
+          headerIcon: "content_copy",
         },
       },
     },
@@ -26,6 +27,7 @@ export function getSharedConfigOptions(isString: boolean) {
         special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
         options: {
           start: "closed",
+          headerIcon: "open_in_new",
         },
       },
     },
