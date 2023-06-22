@@ -3,7 +3,7 @@ import InterfaceComponent from './interface.vue';
 import { getSharedConfigOptions, getClickActionChoices } from '../shared/options/sharedConfigOptions';
 
 export default defineInterface({
-	id: 'custom',
+	id: 'field-actions',
 	name: 'Action interface',
 	icon: 'ads_click',
 	description: 'Display content with actions like linking or copy to clipboard. (By clicking on the content (only at readonly) and seperate buttons)! NOTE: the content needs to match the schema',
