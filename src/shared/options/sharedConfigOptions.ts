@@ -4,6 +4,26 @@ import { DisplayConfig } from '@directus/shared/types';
 export function getSharedConfigOptions(isString: boolean) {
   const options: DisplayConfig['options'] = [
     {
+      field: 'groupCopySettings',
+      name: 'Copy item settings',
+      type: 'alias',
+      meta: {
+        field: 'groupCopySettings', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-detail',
+        special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
+      },
+    },
+    {
+      field: 'groupLinkSettings',
+      name: 'Link item settings',
+      type: 'alias',
+      meta: {
+        field: 'groupLinkSettings', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-detail',
+        special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
+      },
+    },
+    {
       field: 'showCopy',
       name: 'Display copy icon',
       type: 'boolean',
@@ -13,6 +33,7 @@ export function getSharedConfigOptions(isString: boolean) {
         options: {
           label: 'Display a copy button next to the item',
         },
+        group: 'groupCopySettings',
       },
       schema: {
         default_value: false,
@@ -31,6 +52,7 @@ export function getSharedConfigOptions(isString: boolean) {
             { text: 'End', value: 'end' }
           ],
         },
+        group: 'groupCopySettings',
       },
       schema: {
         default_value: 'end',
@@ -52,7 +74,7 @@ export function getSharedConfigOptions(isString: boolean) {
           allowOther: true,
           allowNone: true,
         },
-
+        group: 'groupCopySettings',
       },
       schema: {
         default_value: '',
@@ -68,6 +90,7 @@ export function getSharedConfigOptions(isString: boolean) {
         options: {
           label: 'Display a link button next to the item',
         },
+        group: 'groupLinkSettings',
       },
       schema: {
         default_value: false,
@@ -86,6 +109,7 @@ export function getSharedConfigOptions(isString: boolean) {
             { text: 'End', value: 'end' }
           ],
         },
+        group: 'groupLinkSettings',
       },
       schema: {
         default_value: 'end',
@@ -109,7 +133,7 @@ export function getSharedConfigOptions(isString: boolean) {
           allowOther: true,
           allowNone: true,
         },
-
+        group: 'groupLinkSettings',
       },
       schema: {
         default_value: '',
@@ -128,6 +152,7 @@ export function getSharedConfigOptions(isString: boolean) {
             { text: 'On Current Tab', value: false }
           ],
         },
+        group: 'groupLinkSettings',
       },
       schema: {
         default_value: true,
