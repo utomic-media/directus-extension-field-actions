@@ -11,6 +11,9 @@ export function getSharedConfigOptions(isString: boolean) {
         field: 'groupCopySettings', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
         interface: 'group-detail',
         special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
+        options: {
+          start: "closed",
+        },
       },
     },
     {
@@ -21,6 +24,9 @@ export function getSharedConfigOptions(isString: boolean) {
         field: 'groupLinkSettings', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
         interface: 'group-detail',
         special: ['alias', 'no-data', 'group'], // NOTE: NEEDED FOR ALIAS!
+        options: {
+          start: "closed",
+        },
       },
     },
     {
