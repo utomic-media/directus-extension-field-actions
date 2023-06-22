@@ -47,7 +47,7 @@
 
 
 <script setup lang="ts">
-import {computed } from 'vue';
+import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { useLink } from '../shared/composable/use-link';
 import { usePrefix } from '../shared/composable/use-prefix';
@@ -159,15 +159,15 @@ const actionTooltip = computed(() => {
 		}
 	}
 
+	// if the display is in the render template we need to use flex on it
+	// NOTE: this could be optimized, as this way the default "text-overflow: ellapsis" from directus is not working, but it should be fine for 98% of the use-cases
 	.render-template:has(.action-display) {
-		// if the display is in the render template we need to use flex on it
-		// NOTE: this could be optimized, as this way the default "text-overflow: ellapsis" is not working, but it should be fine for 98% of the use-cases
 		display: flex;
 		align-items: center;
 	}
 </style>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 	.action-display {
 		display: inline-flex;
     flex-direction: row;
@@ -201,7 +201,7 @@ const actionTooltip = computed(() => {
 			background-color: var(--primary-10);
 			color: var(--primary);
 			padding: 0.5rem 1rem;
-    	border-radius: 5rem; // aritary value for a nice smooth rounding
+    	border-radius: 5rem; /* arbitrary value for a nice smooth rounding */
 
 			&:hover {
 				background-color: var(--primary-25);
