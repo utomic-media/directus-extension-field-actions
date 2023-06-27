@@ -43,7 +43,7 @@
 		<v-button
 			v-if="showLink"
 			:disabled="!value"
-			v-tooltip="value ? `Follow link: ${prefix}${computedLink}` : `Can't follow empty link`"
+			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
 			icon
 			secondary
 			xLarge
