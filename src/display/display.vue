@@ -44,7 +44,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			rel="noopener noreferrer"
-			v-tooltip="`Follow link: ${prefix}${computedLink}`"
+			v-tooltip="`Follow link: ${computedLink}`"
 			@click.stop
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
