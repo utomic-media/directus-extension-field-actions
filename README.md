@@ -65,18 +65,24 @@ pnpm i directus-extension-field-actions
 ```
 
 ## ⚙️ Installation (manually)
->
-> **NOTE:** With version 1.3 we switched to a directus extension bundle. This way the display and interface are included in one extension.
-> 
-> Unfortunately this is only supported for installations via npm. We're looking for a solution to support an installation via local files again.
->
-~~1. Download the `app.js` and `api.js` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)~~
+1. Download the `app.js`, `api.js` and `package.json` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)
 
-~~2. Create a folder named `field-actions` in your displays- as well as interfaces-extension folder (e.g  `/extensions/displays/field-actions` and `/extensions/interfaces/field-actions`)~~
+2. Create a folder named `directus-extension-field-actions` in your extension folder (e.g  `/extensions/directus-extension-field-actions`) and a `/dist` folder inside.
+   
+3. Move the `package.json` to the created extension folder and the `app.js` and `api.js` into the `/dist` folder.
 
-~~3. Move the downloaded release files each to the folder and rename each of them into `index.js`~~
+4. Restart directus
 
-~~4. Restart directus~~
+**The result should look like this:**
+```
+├── extensions
+│   ├── directus-extension-field-actions
+│   │   ├── dist
+│   │   │   ├── app.js
+│   │   │   ├── api.js
+│   │   ├── package.json
+```
+
 
 <br />
 
