@@ -26,7 +26,7 @@
 		<v-button
 			v-if="showCopy && isCopySupported"
 			:disabled="!value"
-			v-tooltip="value ? `Copy: ${prefix}${value}` : `Can't copy empty value`"
+			v-tooltip="value ? `Copy: ${computedLink}` : `Can't copy empty value`"
 			icon
 			secondary
 			xLarge
@@ -68,7 +68,6 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { useLink } from '../shared/composable/use-link';
 import { useStores } from '@directus/extensions-sdk';
-import { usePrefix } from '../shared/composable/use-prefix';
 
 const props = defineProps({
 	value: {
@@ -150,7 +149,6 @@ const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	
 
 const { computedLink } = useLink(props);
-const prefix = usePrefix(props.copyPrefix);
 
 
 const inputType = computed(() => {
@@ -160,7 +158,7 @@ const inputType = computed(() => {
 
 
 async function copyValue() {
-	await copyToClipboard(`${prefix.value}${props.value}`, notificationStore);
+	await copyToClipboard(`${computedLink.value}`, notificationStore);
 };
 
 

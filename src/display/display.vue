@@ -24,7 +24,7 @@
 			outlined
 			small
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
-			v-tooltip="`Copy: ${prefix}${value}`"
+			v-tooltip="`Copy: ${computedLink}`"
 			@click.stop="copyValue"
 		>
 			<v-icon 
@@ -64,7 +64,6 @@
 import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { useLink } from '../shared/composable/use-link';
-import { usePrefix } from '../shared/composable/use-prefix';
 import { useStores } from '@directus/extensions-sdk';
 
 const props = defineProps({
@@ -133,11 +132,10 @@ const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	
 
 const { computedLink } = useLink(props);
-const prefix = usePrefix(props.copyPrefix);
 
 
 async function copyValue() {
-	await copyToClipboard(`${prefix.value}${props.value}`, notificationStore);
+	await copyToClipboard(computedLink.value, notificationStore);
 };
 
 
