@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 import { usePrefix } from './use-prefix';
 
-export function useLink(props: any) {
+export function usePrefixedValues(props: any) {
 
   // TODO: make sure it's always a valid link (absolute + relative)
 
@@ -10,5 +10,10 @@ export function useLink(props: any) {
     return prefix.value + props.value;
   });
 
-  return { computedLink };
+  const computedCopyValue = computed(() => { 
+    const prefix = usePrefix(props.copyPrefix);
+    return prefix.value + props.value;
+  });
+
+  return { computedLink, computedCopyValue };
 }
