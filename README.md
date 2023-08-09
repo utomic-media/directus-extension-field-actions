@@ -45,10 +45,10 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 
 #### Hide field value (_display only_)
 - Hides the field value for a button only mode
-- Mostly to be used in combinaiton with button lables
+- Mostly to be used in combinaiton with button labels
 
-#### Button lables (_display only_)
-- Add custom lables to the copy-/ and link icons for the display
+#### Button labels (_display only_)
+- Add custom labels to the copy-/ and link icons for the display
 - Mostly to be used in combinaiton with the "Hide field value" option for a button only mode
 
 <br />

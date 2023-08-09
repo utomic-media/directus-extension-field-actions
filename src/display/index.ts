@@ -48,7 +48,7 @@ export default defineDisplay({
 		const customOptionsAfterShared = [
 			{
 				field: 'copyButtonLabel',
-				name: 'Copy button lable',
+				name: 'Copy button label',
 				type: 'string',
 				meta: {
 					width: 'half',
@@ -62,7 +62,7 @@ export default defineDisplay({
 			},
 			{
 				field: 'linkButtonLabel',
-				name: 'Link button lable',
+				name: 'Link button label',
 				type: 'string',
 				meta: {
 					width: 'half',
