@@ -52,7 +52,7 @@
 				name="open_in_new"
 				:color="linkButtonLabel ? 'primary' : ''"
 			/>
-			<span v-if="copyButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
+			<span v-if="linkButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
 		</component>
 	</span>
 </template>
