@@ -1,6 +1,7 @@
 {
   "name": "directus-extension-field-actions",
   "version": "1.6.3",
+  "type": "module",
   "directus:extension": {
     "host": "^9.23.1",
     "type": "bundle",
@@ -50,10 +51,10 @@
   },
   "homepage": "https://github.com/utomic-media/directus-extension-field-actions.git#readme",
   "devDependencies": {
-    "@directus/extensions-sdk": "^10.1.7",
-    "sass": "^1.64.1",
+    "@directus/extensions-sdk": "^10.1.10",
+    "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "vue": "^3.3.4"
   },
   "files": [
