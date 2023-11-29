@@ -1,6 +1,6 @@
 {
   "name": "directus-extension-field-actions",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "type": "module",
   "directus:extension": {
     "host": "^9.23.1",
