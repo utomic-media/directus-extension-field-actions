@@ -40,7 +40,7 @@
 			v-if="showLink"
 			:is="(linkButtonLabel) ? 'v-button' : 'a'" 
 			outlined
-			small
+			xSmall
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			rel="noopener noreferrer"
