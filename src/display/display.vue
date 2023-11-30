@@ -22,7 +22,7 @@
 			v-if="showCopy && isCopySupported"
 			:is="(copyButtonLabel) ? 'v-button' : 'span'" 
 			outlined
-			small
+			xSmall
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 			v-tooltip="`Copy: ${computedCopyValue}`"
 			@click.stop="copyValue"
