@@ -5,6 +5,8 @@ name: Release
 # Controls when the workflow will run
 on:
   push:
+   branches:
+      - main
    tags:
     - 'v*'
 
