@@ -1,4 +1,4 @@
-![](./docs/Directus-Extension-Field-Actions.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/Directus-Extension-Field-Actions.png)
 
 
 # 🐰 Directus extension: Text action display & interface
@@ -8,7 +8,7 @@
 
 <br />
 
-![](./docs/screenshots/display-copy.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-copy.png)
 *↑ Add copy-to-clipboard and link functions to your data*
 
 <br />
@@ -87,27 +87,27 @@ pnpm i directus-extension-field-actions
 <br />
 
 ## 🖼 Screenshots
-![](./docs/screenshots/display-copy.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-copy.png)
 *↑ Copy values from table views directly by clicking on them or an icon (configurable)*
 
 ---
 
-![](./docs/screenshots/item-copy-hover.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/item-copy-hover.png)
 *↑ Copy field-values by clicking on it (only for readonly-fields and displays)*
 
 ---
 
-![](./docs/screenshots/item-copy-button.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/item-copy-button.png)
 *↑ Add link- and copy-to-clipboard buttons to each field*
 
 ---
 
-![](./docs/screenshots/interface-config-2023-03.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/interface-config-2023-03.png)
 *↑ Interfaces settings*
 
 ---
 
-![](./docs/screenshots/display-config-2023-03.png)
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-config-2023-03.png)
 *↑ Displays settings*
 
 ---
