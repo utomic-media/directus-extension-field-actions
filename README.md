@@ -51,6 +51,10 @@ The click action defines what should happen when you click on the value. This is
 
 <br />
 
+## ⚙️ Installation (marketplace)
+The extension can easily be installed through the in-build directus marketplace.
+Just go to `settings -> marketplace` and search for `field-actions`.
+
 ## ⚙️ Installation (npm)
 ```
 npm i directus-extension-field-actions
