@@ -151,15 +151,15 @@ export function getSharedConfigOptions(isString: boolean) {
     },
     {
       field: 'openLinkAsNewTab',
-      name: 'Open Link',
+      name: 'Link target',
       type: 'boolean',
       meta: {
         width: 'full',
         interface: 'select-radio',
         options: {
           choices: [
-            { text: 'As New Tab', value: true },
-            { text: 'On Current Tab', value: false }
+            { text: 'New Tab', value: true },
+            { text: 'Current Tab', value: false }
           ],
         },
         group: 'groupLinkSettings',
