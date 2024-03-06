@@ -179,7 +179,6 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
-	
 	// else go on with the default events
 }
 
@@ -222,8 +221,7 @@ const actionTooltip = computed(() => {
 		width: 100%;
 	}
 
-	>div, 
-	>span {
+	>div {
 		display: inherit;
 
 		&.order-1 {

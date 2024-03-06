@@ -1,5 +1,5 @@
 <template>
-  <span 
+  <div 
     class="defa-link-wrapper"
     @click="handleClick"
   >
@@ -24,13 +24,14 @@
           <v-button
             :href="href"
             :target="target"
+            @click="activeDialog=false"
           >
             Open Link
           </v-button >
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </span>
+  </div>
 </template>
 
 
