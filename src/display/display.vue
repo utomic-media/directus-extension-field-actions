@@ -200,20 +200,19 @@ const actionTooltip = computed(() => {
 		display: inline-flex;
     flex-direction: row;
     align-items: center;
+		gap: 8px;
 
 		span,
 		a,
-		.v-button {
+		div {
 			display: inherit;
 
 			&.order-1 {
 				order: 1;
-				margin-left: 8px;
 			}
 
 			&.-order-1 {
 				order: -1;
-				margin-right: 8px;
 			}
 		}
 
