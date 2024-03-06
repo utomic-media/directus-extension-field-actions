@@ -39,7 +39,6 @@
 		</v-button>
 		
 
-		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
 		<v-button
 			v-if="showLink"
 			:disabled="!value"
@@ -48,17 +47,12 @@
 			secondary
 			xLarge
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			:href="computedLink"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
 		>
-			<a 
-				:href="computedLink"
-				:target="openLinkAsNewTab ? '_blank' : '_self'"
-				rel="noopener noreferrer"
-				@click.stop
-			>
-				<v-icon 
-					name="open_in_new"
-				/>
-			</a>
+			<v-icon 
+				name="open_in_new"
+			/>
 		</v-button>
 	</div>
 </template>
