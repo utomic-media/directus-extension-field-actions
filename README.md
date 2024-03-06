@@ -1,4 +1,4 @@
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/Directus-Extension-Field-Actions.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/Directus-Extension-Field-Actions.png)
 
 
 # 🐰 Directus extension: Text action display & interface
@@ -8,7 +8,7 @@
 
 <br />
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-copy.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-copy.png)
 *↑ Add copy-to-clipboard and link functions to your data*
 
 <br />
@@ -69,7 +69,7 @@ pnpm i directus-extension-field-actions
 ```
 
 ## ⚙️ Installation (manually)
-1. Download the `app.js`, `api.js` and `package.json` from the [latest release](https://github.com/utomic-media/directus-extension-field-actions/releases)
+1. Download the `app.js`, `api.js` and `package.json` from the [latest release](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/releases)
 
 2. Create a folder named `directus-extension-field-actions` in your extension folder (e.g  `/extensions/directus-extension-field-actions`) and a `/dist` folder inside.
    
@@ -91,32 +91,33 @@ pnpm i directus-extension-field-actions
 <br />
 
 ## 🖼 Screenshots
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-copy.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-copy.png)
 *↑ Copy values from table views directly by clicking on them or an icon (configurable)*
 
 ---
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/item-copy-hover.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/item-copy-hover.png)
 *↑ Copy field-values by clicking on it (only for readonly-fields and displays)*
 
 ---
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/item-copy-button.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/item-copy-button.png)
 *↑ Add link- and copy-to-clipboard buttons to each field*
 
 ---
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/follow-link-confirmation-detail.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/follow-link-confirmation-detail.png)
+
 *↑ Link preview and verification on external links (optionally)*
 
 ---
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/interface-config-2023-03.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/interface-config-2023-03.png)
 *↑ Interfaces settings*
 
 ---
 
-![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/display-config-2023-03.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-config-2023-03.png)
 *↑ Displays settings*
 
 ---
