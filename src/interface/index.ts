@@ -6,7 +6,7 @@ export default defineInterface({
 	id: 'field-actions',
 	name: 'Action interface',
 	icon: 'ads_click',
-	description: 'Display content with actions like linking or copy to clipboard. (By clicking on the content (only at readonly) and seperate buttons)! NOTE: the content needs to match the schema',
+	description: 'Display content with linking and copy to clipboard options',
 	component: InterfaceComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
 	options: ({ field  }): any => {
