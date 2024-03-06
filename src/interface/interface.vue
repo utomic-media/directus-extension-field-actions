@@ -39,21 +39,25 @@
 		</v-button>
 		
 
-		<v-button
-			v-if="showLink"
-			:disabled="!value"
-			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
-			icon
-			secondary
-			xLarge
-			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+		<link-wrapper 
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
+			:safeMode="openLinkSafeMode === 'always'"
 		>
-			<v-icon 
-				name="open_in_new"
-			/>
-		</v-button>
+			<v-button
+				v-if="showLink"
+				:disabled="!value"
+				v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
+				icon
+				secondary
+				xLarge
+				:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			>
+				<v-icon 
+					name="open_in_new"
+				/>
+			</v-button>
+		</link-wrapper>
 	</div>
 </template>
 
@@ -62,6 +66,7 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
+import linkWrapper from '../shared/components/linkWrapper.vue';
 
 const props = defineProps({
 	value: {
@@ -132,7 +137,11 @@ const props = defineProps({
   openLinkAsNewTab: {
     type: Boolean,
     default: true
-  }
+	},
+	openLinkSafeMode: {
+		type: String,
+		default: 'never',
+	},
 });
 
 const emit = defineEmits(['input']);
