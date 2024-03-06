@@ -168,6 +168,25 @@ export function getSharedConfigOptions(isString: boolean) {
         default_value: true,
       },
     },
+    {
+      field: 'openLinkSafeMode',
+      name: 'Warn before following external links',
+      type: 'string',
+      meta: {
+        width: 'full',
+        interface: 'select-radio',
+        options: {
+          choices: [
+            { text: 'Never', value: 'never' },
+            { text: 'Always', value: 'always' }
+          ],
+        },
+        group: 'groupLinkSettings',
+      },
+      schema: {
+        default_value: 'never',
+      },
+    },
   ];
 
   return options;
