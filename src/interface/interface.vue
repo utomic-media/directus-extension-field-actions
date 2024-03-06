@@ -198,9 +198,11 @@ const actionTooltip = computed(() => {
 	// !NOTE: GLOBAL STYLES - use scoped styles for the component whenever possible!
 	.action-interface {
 		.v-input {
+			
 			input:disabled {
-				// disable click events on disabled inputs, so that the click event can be handled by the parent div
-				// For some reason we can't go with a normal :deep() selector in the scoped stye
+				/* disable click events on disabled inputs, so that the click event can be handled by the parent div
+			 	 * For some reason we can't go with a normal :deep() selector in the scoped stye
+				*/
 				pointer-events: none;
 			}
 		}
