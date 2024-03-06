@@ -27,7 +27,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install pnpm 👷🏽‍♂️
-        uses: pnpm/action-setup@@v3
+        uses: pnpm/action-setup@v3
         id: pnpm-install
         with:
           version: 8
