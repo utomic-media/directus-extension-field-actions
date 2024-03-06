@@ -2,26 +2,34 @@
 
 <template>
 	<div class="action-interface">
-		<v-input 
-			:model-value="value" 
-			:disabled="disabled"
-			:type="inputType"
-			:placeholder="placeholder"
-			:min="min"
-			:max="max"
-			:step="step"
-			v-tooltip="actionTooltip"
-			@update:model-value="$emit('input', $event)"
-			@click="valueClickAction"
+		<component 
+			:is="(clickAction === 'link') ? linkWrapper : 'div'" 
+			:href="computedLink"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
+			:safeMode="openLinkSafeMode === 'always'"
+			class="dynamic-input-wrapper"
 		>
-			<template v-if="iconLeft" #prepend>
-				<v-icon :name="iconLeft" />
-			</template>
+			<v-input 
+				:model-value="value" 
+				:disabled="disabled"
+				:type="inputType"
+				:placeholder="placeholder"
+				:min="min"
+				:max="max"
+				:step="step"
+				v-tooltip="actionTooltip"
+				@update:model-value="$emit('input', $event)"
+				@click="valueClickAction"
+			>
+				<template v-if="iconLeft" #prepend>
+					<v-icon :name="iconLeft" />
+				</template>
 
-			<template v-if="iconRight" #append>
-				<v-icon :name="iconRight" />
-			</template>
-		</v-input>
+				<template v-if="iconRight" #append>
+					<v-icon :name="iconRight" />
+				</template>
+			</v-input>
+		</component>
 
 		<v-button
 			v-if="showCopy && isCopySupported"
@@ -39,27 +47,25 @@
 		</v-button>
 		
 
-		<!-- TODO: button supports :to=routerLink and :href=custom link. Switch from custom a-tag to those. Use condition: href for full url and "to" for internal links (incomplete url)  -->
-		<v-button
-			v-if="showLink"
-			:disabled="!value"
-			v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
-			icon
-			secondary
-			xLarge
+		<link-wrapper 
+			:href="computedLink"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
+			:safeMode="openLinkSafeMode === 'always'"
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
-			<a 
-				:href="computedLink"
-				:target="openLinkAsNewTab ? '_blank' : '_self'"
-				rel="noopener noreferrer"
-				@click.stop
+			<v-button
+				v-if="showLink"
+				:disabled="!value"
+				v-tooltip="value ? `Follow link: ${computedLink}` : `Can't follow empty link`"
+				icon
+				secondary
+				xLarge
 			>
 				<v-icon 
 					name="open_in_new"
 				/>
-			</a>
-		</v-button>
+			</v-button>
+		</link-wrapper>
 	</div>
 </template>
 
@@ -68,6 +74,7 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
+import linkWrapper from '../shared/components/linkWrapper.vue';
 
 const props = defineProps({
 	value: {
@@ -138,7 +145,11 @@ const props = defineProps({
   openLinkAsNewTab: {
     type: Boolean,
     default: true
-  }
+	},
+	openLinkSafeMode: {
+		type: String,
+		default: 'never',
+	},
 });
 
 const emit = defineEmits(['input']);
@@ -168,12 +179,6 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
-
-	if (props.clickAction === 'link' && props.disabled && props.value) {
-		e.stopPropagation();
-		window.open(computedLink.value, '_blank', 'noopener, noreferrer');
-	}
-	
 	// else go on with the default events
 }
 
@@ -189,23 +194,42 @@ const actionTooltip = computed(() => {
 
 
 
+<style lang="scss">
+	// !NOTE: GLOBAL STYLES - use scoped styles for the component whenever possible!
+	.action-interface {
+		.v-input {
+			
+			input:disabled {
+				/* disable click events on disabled inputs, so that the click event can be handled by the parent div
+			 	 * For some reason we can't go with a normal :deep() selector in the scoped stye
+				*/
+				pointer-events: none;
+			}
+		}
+	}
+</style>
+
+
 <style scoped lang="scss">
 .action-interface {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	gap:8px;
+
+	.dynamic-input-wrapper {
+		width: 100%;
+	}
 
 	>div {
 		display: inherit;
 
 		&.order-1 {
 			order: 1;
-			margin-left: 8px;
 		}
 
 		&.-order-1 {
 			order: -1;
-			margin-right: 8px;
 		}
 	}
 }

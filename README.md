@@ -43,6 +43,10 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 #### Link target
 - Set the link-target to the same, or a new tab
 
+#### Warn before following external links
+- Enabling this setting prompts users with a confirmation popup displaying the full link when clicking on external links
+- If disabled, external links open directly.
+
 #### Hide field value (_display only_)
 - Hides the field value for a button only mode
 - Mostly to be used in combinaiton with button labels
@@ -99,6 +103,11 @@ pnpm i directus-extension-field-actions
 
 ![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/item-copy-button.png)
 *↑ Add link- and copy-to-clipboard buttons to each field*
+
+---
+
+![](https://github.com/utomic-media/directus-extension-field-actions/raw/main/docs/screenshots/follow-link-confirmation-detail.png)
+*↑ Link preview and verification on external links (optionally)*
 
 ---
 
