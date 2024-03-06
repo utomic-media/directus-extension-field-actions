@@ -20,9 +20,10 @@
         "name": "display",
         "source": "src/display/index.ts"
       }
-    ]
+    ],
+    "icon": "web_traffic" 
   },
-  "description": "A directus interface + display allowing custom actions like copy to clipboard and open URL's while clicking on appended / prepended buttons or the value itself (if readonly))",
+  "description": "Add advanced link & copy functionalities to your directus fields. Supports interfaces as well as displays.",
   "scripts": {
     "build": "directus-extension build",
     "dev": "directus-extension build -w --no-minify",
