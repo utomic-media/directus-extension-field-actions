@@ -2,28 +2,22 @@
 
 
 # 🐰 Directus extension: Text action display & interface
-> 💡 A directus interface + display adding `copy to clipboard` and `link` actions to your values.
+> 💡 Add `link` & `copy to clipboard` functionalities to your directus fields. Supports interfaces as well as displays.
 > 
-> The actions can be performed by a button next to the items or by clicking on the value.
-
-<br />
-
-![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-copy.png)
-*↑ Add copy-to-clipboard and link functions to your data*
+> The actions can be performed by a button next to the items or by clicking on the value. The settings allow customisations for a bunch of different use-cases.
 
 <br />
 
 ## ✨ Supports
 ### 📋 Copy action
-Each value can be copied by a custom button. If enabled it's also possible to copy a value by just clickung on it (click-action)
+Each value can be copied by a custom button. It's also possible to copy a value by just clickung on it (setting: *click-action*)
 
 ### ➡️ Links
-When using the link-option it supports ➡️ HTTP-, 📧 mail-, and 📞 phone- links. Each link can be opened by the custom button. If enabled it's also possible to open the link by just clicking on the value (click-action).
+When using the link-option it supports ➡️ HTTP-, 📧 mail-, and 📞 phone- links. Each link can be opened by the custom button. If enabled it's also possible to open the link by just clicking on the value (setting: *click-action*).
 
-*Note: The extensions currently won't parse invalid links into valid ones!*
 
 ### 🖱 Click-Action
-Displays and disabled interfaces (== readonly) support a custom click-action. This can be one of:
+The click action defines what should happen when you click on the value. This is supported for displays as well as readonly interfaces.Actions can be:
 * default action (does nothing custom)
 * Copy-action (copied the value)
 * Link-action (openes the link in a new tab)
@@ -37,7 +31,7 @@ Displays and disabled interfaces (== readonly) support a custom click-action. Th
 #### Custom prefix
 - You can set custom prefixes for copy-/ and link-actions.
 - Prefixes can be entered manually or use a defined variable ([Project URL setting](https://docs.directus.io/configuration/project-settings.html#general))
-- The setting can be set for the interface and display, as well as the copy and link button indipendently
+- The setting can be set for the copy and link button indipendently, each for the interface and the display
 - Example in the screenshots below
 
 #### Link target
