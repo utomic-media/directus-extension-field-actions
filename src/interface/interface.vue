@@ -2,26 +2,33 @@
 
 <template>
 	<div class="action-interface">
-		<v-input 
-			:model-value="value" 
-			:disabled="disabled"
-			:type="inputType"
-			:placeholder="placeholder"
-			:min="min"
-			:max="max"
-			:step="step"
-			v-tooltip="actionTooltip"
-			@update:model-value="$emit('input', $event)"
-			@click="valueClickAction"
+		<component 
+			:is="(clickAction === 'link') ? linkWrapper : 'div'" 
+			:href="computedLink"
+			:target="openLinkAsNewTab ? '_blank' : '_self'"
+			:safeMode="openLinkSafeMode === 'always'"
 		>
-			<template v-if="iconLeft" #prepend>
-				<v-icon :name="iconLeft" />
-			</template>
+			<v-input 
+				:model-value="value" 
+				:disabled="disabled"
+				:type="inputType"
+				:placeholder="placeholder"
+				:min="min"
+				:max="max"
+				:step="step"
+				v-tooltip="actionTooltip"
+				@update:model-value="$emit('input', $event)"
+				@click="valueClickAction"
+			>
+				<template v-if="iconLeft" #prepend>
+					<v-icon :name="iconLeft" />
+				</template>
 
-			<template v-if="iconRight" #append>
-				<v-icon :name="iconRight" />
-			</template>
-		</v-input>
+				<template v-if="iconRight" #append>
+					<v-icon :name="iconRight" />
+				</template>
+			</v-input>
+		</component>
 
 		<v-button
 			v-if="showCopy && isCopySupported"
@@ -171,11 +178,6 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
-
-	if (props.clickAction === 'link' && props.disabled && props.value) {
-		e.stopPropagation();
-		window.open(computedLink.value, '_blank', 'noopener, noreferrer');
-	}
 	
 	// else go on with the default events
 }
