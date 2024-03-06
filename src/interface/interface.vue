@@ -7,6 +7,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
+			class="dynamic-input-wrapper"
 		>
 			<v-input 
 				:model-value="value" 
@@ -50,6 +51,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
+			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-button
 				v-if="showLink"
@@ -58,7 +60,6 @@
 				icon
 				secondary
 				xLarge
-				:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 			>
 				<v-icon 
 					name="open_in_new"
@@ -217,7 +218,12 @@ const actionTooltip = computed(() => {
 	align-items: center;
 	gap:8px;
 
-	>div {
+	.dynamic-input-wrapper {
+		width: 100%;
+	}
+
+	>div, 
+	>span {
 		display: inherit;
 
 		&.order-1 {
