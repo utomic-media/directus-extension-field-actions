@@ -1,14 +1,15 @@
 <template>
 	<value-null v-if="!value" />
 	<span v-else class="action-display">
+		<!-- NOTE: @click.stop to prevent the opening of item page -->
 		<component
 			v-if="!hideFieldValue"
-			:is="(clickAction === 'link') ? 'a' : 'span'" 
-			class="dynamic-wrapper"
-			:href="computedLink"
+			:is="(clickAction === 'link') ? linkWrapper : 'span'" 
 			v-tooltip.left="actionTooltip"
+			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			rel="noopener noreferrer"
+			:safeMode="openLinkSafeMode === 'always'"
+			@click.stop
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
@@ -36,24 +37,28 @@
 		</component>
 		
 
-		<component
+		<!-- NOTE: @click.stop to prevent the opening of item page -->
+		<link-wrapper
 			v-if="showLink"
-			:is="(linkButtonLabel) ? 'v-button' : 'a'" 
-			outlined
-			xSmall
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			rel="noopener noreferrer"
-			v-tooltip="`Follow link: ${computedLink}`"
-			@click.stop
+			:safeMode="openLinkSafeMode === 'always'"
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			@click.stop
 		>
-			<v-icon 
-				name="open_in_new"
-				:color="linkButtonLabel ? 'primary' : ''"
-			/>
-			<span v-if="linkButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
-		</component>
+			<component
+				:is="(linkButtonLabel) ? 'v-button' : 'div'" 
+				outlined
+				xSmall
+				v-tooltip="`Follow link: ${computedLink}`"
+			>
+				<v-icon 
+					name="open_in_new"
+					:color="linkButtonLabel ? 'primary' : ''"
+				/>
+				<span v-if="linkButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
+			</component>
+		</link-wrapper>
 	</span>
 </template>
 
@@ -65,6 +70,7 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
+import linkWrapper from '../shared/components/linkWrapper.vue';
 
 const props = defineProps({
 	value: {
@@ -122,7 +128,11 @@ const props = defineProps({
   openLinkAsNewTab: {
     type: Boolean,
     default: true
-  }
+	},
+	openLinkSafeMode: {
+		type: String,
+		default: 'never',
+	},
 });
 
 
@@ -145,11 +155,6 @@ function valueClickAction(e: Event) {
 		e.stopPropagation();
 		copyValue();
 	} 
-
-	if (props.clickAction === 'link') {
-		// We opened a link in a new tab and don't want to get into the details view of the item
-		e.stopPropagation();
-	}
 	// else go on with the default events
 }
 
