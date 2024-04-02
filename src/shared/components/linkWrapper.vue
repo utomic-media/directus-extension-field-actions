@@ -61,7 +61,7 @@ const activeDialog = ref(false);
 
 
 function handleClick(e: MouseEvent) {
-  const isExternal = new URL(props.href).origin !== window.location.origin;
+  const isExternal = !props.href.startsWith('/') && new URL(props.href).origin !== window.location.origin;
 
   if (props.safeMode && isExternal) {
     activeDialog.value = true;
