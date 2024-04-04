@@ -21,7 +21,7 @@
         "source": "src/display/index.ts"
       }
     ],
-    "icon": "web_traffic" 
+    "icon": "web_traffic"
   },
   "description": "Add advanced link & copy functionalities to your directus fields. Supports interfaces as well as displays.",
   "scripts": {
@@ -52,10 +52,10 @@
   },
   "homepage": "https://github.com/utomic-media/directus-extension-field-actions.git#readme",
   "devDependencies": {
-    "@directus/extensions-sdk": "^11.0.0",
-    "sass": "^1.71.1",
+    "@directus/extensions-sdk": "^11.0.2",
+    "sass": "^1.74.1",
     "sass-loader": "^14.1.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.3",
     "vue": "^3.4.21"
   },
   "files": [
