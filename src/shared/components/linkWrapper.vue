@@ -7,8 +7,8 @@
 
     <v-dialog 
       :model-value="activeDialog"
-      @esc="activeDialog = null"
-      @update:model-value="activeDialog = null"
+      @esc="activeDialog = false"
+      @update:model-value="activeDialog = false"
     >
       <v-card>
         <v-card-title>Are you sure you want to open this link?</v-card-title>
@@ -20,7 +20,7 @@
           <em>Note: You can permanently disable this warning in the display / interface settings</em>
         </v-card-text>
         <v-card-actions>
-          <v-button secondary @click="activeDialog = null">{{ t('cancel') }}</v-button>
+          <v-button secondary @click="activeDialog = false">{{ t('cancel') }}</v-button>
           <v-button
             :href="href"
             :target="target"
@@ -61,7 +61,7 @@ const activeDialog = ref(false);
 
 
 function handleClick(e: MouseEvent) {
-  const isExternal = new URL(props.href).origin !== window.location.origin;
+  const isExternal = new URL(props.href, window.location.origin).origin !== window.location.origin;
 
   if (props.safeMode && isExternal) {
     activeDialog.value = true;
