@@ -241,7 +241,7 @@ const actionTooltip = computed(() => {
     	border-radius: 5rem; /* arbitrary value for a nice smooth rounding */
 
 			&:hover {
-				background-color: color-mix(in srgb, var(--theme--background), var(--theme--primary) 25%); // like --theme--primary-background but with 25%
+				background-color: color-mix(in srgb, var(--theme--background), var(--theme--primary) 25%); /* like --theme--primary-background but with 25% */
 			}
 		}
 	}
