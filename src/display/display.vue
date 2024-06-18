@@ -227,21 +227,21 @@ const actionTooltip = computed(() => {
 
 		:deep(.v-icon) {
 			--v-icon-size: 18px;
-			--v-icon-color: var(--border-normal-alt);
+			--v-icon-color: var(--theme--foreground-subdued);
 
 			&:hover {
-				--v-icon-color: var(--primary);
+				--v-icon-color: var(--theme--primary);
 			}
 		}
 
 		.action-background {
-			background-color: var(--primary-10);
-			color: var(--primary);
+			background-color: var(--theme--primary-background);
+			color: var(--theme--primary);
 			padding: 0.5rem 1rem;
     	border-radius: 5rem; /* arbitrary value for a nice smooth rounding */
 
 			&:hover {
-				background-color: var(--primary-25);
+				background-color: color-mix(in srgb, var(--theme--background), var(--theme--primary) 25%); // like --theme--primary-background but with 25%
 			}
 		}
 	}
