@@ -2,6 +2,7 @@
   "name": "directus-extension-field-actions",
   "version": "1.8.4",
   "type": "module",
+  "icon": "web_traffic",
   "directus:extension": {
     "host": "^10.10.0",
     "type": "bundle",
@@ -20,8 +21,7 @@
         "name": "display",
         "source": "src/display/index.ts"
       }
-    ],
-    "icon": "web_traffic"
+    ]
   },
   "description": "Add advanced link & copy functionalities to your directus fields. Supports interfaces as well as displays.",
   "scripts": {
