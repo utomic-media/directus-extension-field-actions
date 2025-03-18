@@ -43,7 +43,7 @@ jobs:
         run: pnpm build
         
       - name: Add release to Github 💾 
-        uses: ncipollo/release-action@v1
+        uses: utomic-media/release-action@main
         with:
           artifacts: "dist/app.js,dist/api.js,package.json"
           token: ${{ secrets.GITHUB_TOKEN }}
