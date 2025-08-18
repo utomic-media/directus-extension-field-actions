@@ -52,7 +52,7 @@
 				:is="(linkButtonLabel) ? 'v-button' : 'div'" 
 				outlined
 				xSmall
-				v-tooltip="openLinkTooltipLabel || `Follow link: ${computedLink}`"
+				v-tooltip="linkTooltipLabel || `Follow link: ${computedLink}`"
 			>
 				<v-icon 
 					name="open_in_new"
@@ -131,7 +131,7 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	openLinkTooltipLabel: {
+	linkTooltipLabel: {
 		type: String,
 		default: '',
 	},
@@ -181,7 +181,7 @@ const hasValueClickAction = computed(() => {
 // TODO: move in composable (together with display)
 const actionTooltip = computed(() => {
 	if (props.clickAction === 'copy' && isCopySupported) return props.copyTooltipLabel || 'Copy value';
-	if (props.clickAction === 'link') return props.openLinkTooltipLabel || 'Open link';
+	if (props.clickAction === 'link') return props.linkTooltipLabel || 'Open link';
 });
 
 </script>

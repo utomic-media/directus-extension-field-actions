@@ -75,6 +75,20 @@ export default defineDisplay({
 				},
 			},
 			{
+				field: 'linkTooltipLabel',
+				name: 'Link tooltip label',
+				type: 'string',
+				meta: {
+					width: 'half',
+					interface: 'system-input-translated-string',
+					group: 'groupLinkSettings',
+					note: 'When used the message when hovering the link will be the given label',
+				},
+				schema: {
+					default_value: 'Open link',
+				},
+			},
+			{
 				field: 'linkButtonLabel',
 				name: 'Link button label',
 				type: 'string',
@@ -86,20 +100,6 @@ export default defineDisplay({
 				},
 				schema: {
 					default_value: '',
-				},
-			},
-			{
-				field: 'openLinkTooltipLabel',
-				name: 'Open link tooltip label',
-				type: 'string',
-				meta: {
-					width: 'half',
-					interface: 'system-input-translated-string',
-					group: 'groupLinkSettings',
-					note: 'When used the message when hovering the link will be the given label',
-				},
-				schema: {
-					default_value: 'Open link',
 				},
 			},
 		];
