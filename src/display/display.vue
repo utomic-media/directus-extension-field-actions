@@ -18,8 +18,6 @@
 				{{ value }}
 			</span>
 		</component>
-
-		
 		
 		<component
 			v-if="showCopy && isCopySupported"
