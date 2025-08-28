@@ -1,0 +1,23 @@
+## NOTE:  This is just a dev-instance, do not use in production!
+
+services:
+  directus:
+    image: directus/directus:11.5.1
+    ports:
+      - 8055:8055
+    volumes:
+      - ./directus/database:/directus/database
+      - ./directus/uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+      - ../:/directus/extensions/directus-extension-field-actions
+    environment:
+      #dev
+      EXTENSIONS_AUTO_RELOAD: true
+
+      # General
+      SECRET: "08f0c482-c2a1-4f5d-96aa-0450eeb8b17a"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "devPass"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: "true"
