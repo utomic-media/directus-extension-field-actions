@@ -17,7 +17,7 @@ Before you begin, make sure you have the following installed:
 ### Download the Project
 
 ```bash
-git clone [<repository-url>](https://github.com/utomic-media/directus-extension-field-actions.git)
+git clone https://github.com/utomic-media/directus-extension-field-actions.git
 cd directus-extension-field-actions
 pnpm install
 ```
