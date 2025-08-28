@@ -15,6 +15,7 @@ services:
       EXTENSIONS_AUTO_RELOAD: true
 
       # General
+      TELEMETRY: false
       SECRET: "08f0c482-c2a1-4f5d-96aa-0450eeb8b17a"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "devPass"
