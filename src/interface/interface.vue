@@ -1,5 +1,3 @@
-<!-- @see https://github.com/directus/directus/blob/main/app/src/interfaces/input/input.vue -->
-
 <template>
 	<div class="action-interface">
 		<component 
