@@ -120,3 +120,8 @@ pnpm i directus-extension-field-actions
 
 ---
 
+## ❤️ Contributing
+
+Please read the [Contributing Guide](./docs/CONTRIBUTING.md) for this project before submitting Pull Requests or Issues.
+
+All security vulnerabilities should be reported through Github security advisories.
