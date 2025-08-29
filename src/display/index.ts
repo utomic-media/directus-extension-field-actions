@@ -9,10 +9,10 @@ export default defineDisplay({
 	description: 'Display content with linking and copy to clipboard options',
 	component: DisplayComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
-	options: ({ field  }): any => {
+	options: ({ field }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
 
-		const sharedOptions = getSharedConfigOptions(isString);
+		const sharedOptions = getSharedConfigOptions(field);
 
 		const customOptionsBeforeShared = [
 			{

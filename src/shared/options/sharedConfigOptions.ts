@@ -1,7 +1,7 @@
 import { DisplayConfig } from '@directus/shared/types';
+import type {ExtensionOptionsContext} from '@directus/types';
 
-
-export function getSharedConfigOptions(isString: boolean) {
+export function getSharedConfigOptions(field: ExtensionOptionsContext['field']) {
   const options: DisplayConfig['options'] = [
     {
       field: 'groupCopySettings',
@@ -90,6 +90,38 @@ export function getSharedConfigOptions(isString: boolean) {
       },
     },
     {
+      field: 'useCustomCopyTooltip',
+      name: 'Custom Tooltip',
+      type: 'boolean',
+      meta: {
+        width: 'half',
+        interface: 'boolean',
+        options: {
+          label: 'Enable',
+        },
+        note: 'Use a custom tooltip for the copy button',
+        group: 'groupCopySettings',
+      },
+      schema: {
+        default_value: false,
+      },
+    },
+    {
+      field: 'copyTooltip',
+      name: 'Tooltip content',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'system-input-translated-string',
+        group: 'groupCopySettings',
+        note: 'Available placeholder: {{value}}',
+        hidden: !field.meta?.options?.useCustomCopyTooltip,
+      },
+      schema: {
+        default_value: 'Copy value',
+      },
+    },
+    {
       field: 'showLink',
       name: 'Display link icon',
       type: 'boolean',
@@ -147,6 +179,38 @@ export function getSharedConfigOptions(isString: boolean) {
       },
       schema: {
         default_value: '',
+      },
+    },
+    {
+      field: 'useCustomLinkTooltip',
+      name: 'Custom Tooltip',
+      type: 'boolean',
+      meta: {
+        width: 'half',
+        interface: 'boolean',
+        options: {
+          label: 'Enable',
+        },
+        note: 'Use a custom tooltip for the link button',
+        group: 'groupLinkSettings',
+      },
+      schema: {
+        default_value: false,
+      },
+    },
+    {
+      field: 'linkTooltip',
+      name: 'Tooltip content',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'system-input-translated-string',
+        group: 'groupLinkSettings',
+        note: 'Available placeholder: {{value}}',
+        hidden: !field.meta?.options?.useCustomLinkTooltip,
+      },
+      schema: {
+        default_value: 'Copy link',
       },
     },
     {

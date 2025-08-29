@@ -53,10 +53,12 @@
   "homepage": "https://github.com/utomic-media/directus-extension-field-actions.git#readme",
   "devDependencies": {
     "@directus/extensions-sdk": "^16.0.1",
+    "@directus/types": "^13.2.2",
     "sass": "^1.91.0",
     "sass-loader": "^16.0.5",
     "typescript": "^5.9.2",
-    "vue": "^3.5.20"
+    "vue": "^3.5.20",
+    "vue-i18n": "^11.1.11"
   },
   "files": [
     "dist/**/*"
