@@ -114,7 +114,6 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field']) 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'groupCopySettings',
-        note: 'Available placeholder: {{value}}',
         hidden: !field.meta?.options?.useCustomCopyTooltip,
       },
       schema: {
@@ -206,7 +205,6 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field']) 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'groupLinkSettings',
-        note: 'Available placeholder: {{value}}',
         hidden: !field.meta?.options?.useCustomLinkTooltip,
       },
       schema: {
