@@ -13,7 +13,7 @@ export default defineInterface({
 		const isStringField 	= ['string', 'text'].includes(field.type ?? 'unknown');
 		const isNumericField 	= ['bigInteger', 'integer', 'float', 'decimal'].includes(field.type ?? 'unknown');
 
-		const sharedOptions = getSharedConfigOptions(field);
+		const sharedOptions = getSharedConfigOptions(field, 'interface');
 		// TODO: add custom options: softLength, clear, font
 		
 		const interfaceOptions = [

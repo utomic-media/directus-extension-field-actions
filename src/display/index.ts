@@ -12,7 +12,7 @@ export default defineDisplay({
 	options: ({ field }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
 
-		const sharedOptions = getSharedConfigOptions(field);
+		const sharedOptions = getSharedConfigOptions(field, 'display');
 
 		const customOptionsBeforeShared = [
 			{
