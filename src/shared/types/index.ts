@@ -1,0 +1,1 @@
+export type ClickAction = 'copy' | 'link' | 'default';
