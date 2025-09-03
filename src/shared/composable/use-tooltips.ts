@@ -32,7 +32,7 @@ export function useTooltips(options: Options) {
       return options.customLinkTooltip;
     }
 
-    return 'Open Link';
+    return 'Open link';
   });
 
 
