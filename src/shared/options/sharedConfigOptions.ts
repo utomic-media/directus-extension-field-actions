@@ -210,7 +210,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         hidden: hideBasedOnOtherField(field, configTarget, 'useCustomLinkTooltip', true),
       },
       schema: {
-        default_value: 'Copy link',
+        default_value: 'Open link',
       },
     },
     {
