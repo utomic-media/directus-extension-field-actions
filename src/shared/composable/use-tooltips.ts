@@ -5,9 +5,9 @@ import type { ClickAction } from '../types';
 type Options = {
   clickAction: ClickAction;
   useCustomCopyTooltip: boolean | null;
-  copyTooltip: string | null;
+  customCopyTooltip: string | null;
   useCustomLinkTooltip: boolean | null;
-  linkTooltip: string | null;
+  customLinkTooltip: string | null;
 };
 
 
@@ -20,7 +20,7 @@ export function useTooltips(options: Options) {
     }
 
     if (options.useCustomCopyTooltip) {
-      return options.copyTooltip;
+      return options.customCopyTooltip;
     }
 
     return 'Copy value';
@@ -29,7 +29,7 @@ export function useTooltips(options: Options) {
 
   const linkTooltip = computed(() => {
     if (options.useCustomLinkTooltip) {
-      return options.linkTooltip;
+      return options.customLinkTooltip;
     }
 
     return 'Open Link';

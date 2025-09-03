@@ -111,7 +111,7 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	copyTooltip: {
+	customCopyTooltip: {
 		type: String,
 		default: null,
 	},
@@ -135,7 +135,7 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	linkTooltip: {
+	customLinkTooltip: {
 		type: String,
 		default: null,
 	},
@@ -164,9 +164,9 @@ const { computedLink, computedCopyValue } = usePrefixedValues(props);
 const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	clickAction: props.clickAction,
 	useCustomCopyTooltip: props.useCustomCopyTooltip,
-	copyTooltip: props.copyTooltip,
+	customCopyTooltip: props.customCopyTooltip,
 	useCustomLinkTooltip: props.useCustomLinkTooltip,
-	linkTooltip: props.linkTooltip,
+	customLinkTooltip: props.customLinkTooltip,
 });
 
 

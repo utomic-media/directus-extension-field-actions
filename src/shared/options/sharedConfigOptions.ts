@@ -109,7 +109,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       },
     },
     {
-      field: 'copyTooltip',
+      field: 'customCopyTooltip',
       name: 'Tooltip content',
       type: 'string',
       meta: {
@@ -200,7 +200,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       },
     },
     {
-      field: 'linkTooltip',
+      field: 'customLinkTooltip',
       name: 'Tooltip content',
       type: 'string',
       meta: {
