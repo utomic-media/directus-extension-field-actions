@@ -105,7 +105,6 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	
 	copyButtonLabel: {
 		type: String,
 		default: '',
