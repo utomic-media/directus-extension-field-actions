@@ -163,8 +163,10 @@ const { computedLink, computedCopyValue } = usePrefixedValues(props);
 
 const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	clickAction: props.clickAction,
-	useCustomTooltip: props.useCustomCopyTooltip,
-	customTooltip: props.copyTooltip,
+	useCustomCopyTooltip: props.useCustomCopyTooltip,
+	copyTooltip: props.copyTooltip,
+	useCustomLinkTooltip: props.useCustomLinkTooltip,
+	linkTooltip: props.linkTooltip,
 });
 
 

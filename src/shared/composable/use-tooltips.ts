@@ -3,9 +3,11 @@ import { useClipboard } from './use-clipboard';
 import type { ClickAction } from '../types';
 
 type Options = {
-  useCustomTooltip: boolean | null;
-  customTooltip: string | null;
   clickAction: ClickAction;
+  useCustomCopyTooltip: boolean | null;
+  copyTooltip: string | null;
+  useCustomLinkTooltip: boolean | null;
+  linkTooltip: string | null;
 };
 
 
@@ -17,11 +19,19 @@ export function useTooltips(options: Options) {
       return 'Copying not supported';
     }
 
+    if (options.useCustomCopyTooltip) {
+      return options.copyTooltip;
+    }
+
     return 'Copy value';
   });
 
 
   const linkTooltip = computed(() => {
+    if (options.useCustomLinkTooltip) {
+      return options.linkTooltip;
+    }
+
     return 'Open Link';
   });
 
