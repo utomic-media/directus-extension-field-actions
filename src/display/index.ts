@@ -47,20 +47,6 @@ export default defineDisplay({
 
 		const customOptionsAfterShared = [
 			{
-				field: 'copyTooltipLabel',
-				name: 'Copy tooltip label',
-				type: 'string',
-				meta: {
-					width: 'half',
-					interface: 'system-input-translated-string',
-					group: 'groupCopySettings',
-					note: 'When used the message when hovering the field will be the given label',
-				},
-				schema: {
-					default_value: 'Copy value',
-				},
-			},
-			{
 				field: 'copyButtonLabel',
 				name: 'Copy button label',
 				type: 'string',
@@ -72,20 +58,6 @@ export default defineDisplay({
 				},
 				schema: {
 					default_value: '',
-				},
-			},
-			{
-				field: 'linkTooltipLabel',
-				name: 'Link tooltip label',
-				type: 'string',
-				meta: {
-					width: 'half',
-					interface: 'system-input-translated-string',
-					group: 'groupLinkSettings',
-					note: 'When used the message when hovering the link will be the given label',
-				},
-				schema: {
-					default_value: 'Open link',
 				},
 			},
 			{
