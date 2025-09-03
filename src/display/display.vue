@@ -25,7 +25,7 @@
 			outlined
 			xSmall
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
-			v-tooltip="copyTooltipLabel || `Copy: ${computedCopyValue}`"
+			v-tooltip="`Copy: ${computedCopyValue}`"
 			@click.stop="copyValue"
 		>
 			<v-icon 
@@ -50,7 +50,7 @@
 				:is="(linkButtonLabel) ? 'v-button' : 'div'" 
 				outlined
 				xSmall
-				v-tooltip="linkTooltipLabel || `Follow link: ${computedLink}`"
+				v-tooltip="`Follow link: ${computedLink}`"
 			>
 				<v-icon 
 					name="open_in_new"
@@ -105,10 +105,7 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	copyTooltipLabel: {
-		type: String,
-		default: '',
-	},
+	
 	copyButtonLabel: {
 		type: String,
 		default: '',
@@ -126,10 +123,6 @@ const props = defineProps({
 		default: '',
 	},
 	linkButtonLabel: {
-		type: String,
-		default: '',
-	},
-	linkTooltipLabel: {
 		type: String,
 		default: '',
 	},
@@ -178,8 +171,8 @@ const hasValueClickAction = computed(() => {
 
 // TODO: move in composable (together with display)
 const actionTooltip = computed(() => {
-	if (props.clickAction === 'copy' && isCopySupported) return props.copyTooltipLabel || 'Copy value';
-	if (props.clickAction === 'link') return props.linkTooltipLabel || 'Open link';
+	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
+	if (props.clickAction === 'link') return 'Open link';
 });
 
 </script>
