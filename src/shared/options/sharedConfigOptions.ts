@@ -1,7 +1,9 @@
 import { DisplayConfig } from '@directus/shared/types';
+import type {ExtensionOptionsContext} from '@directus/types';
 
+type ConfigTarget = 'display' | 'interface';
 
-export function getSharedConfigOptions(isString: boolean) {
+export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget) {
   const options: DisplayConfig['options'] = [
     {
       field: 'groupCopySettings',
@@ -90,6 +92,37 @@ export function getSharedConfigOptions(isString: boolean) {
       },
     },
     {
+      field: 'useCustomCopyTooltip',
+      name: 'Custom Tooltip',
+      type: 'boolean',
+      meta: {
+        width: 'half',
+        interface: 'boolean',
+        options: {
+          label: 'Enable',
+        },
+        note: 'Use a custom tooltip for the copy button',
+        group: 'groupCopySettings',
+      },
+      schema: {
+        default_value: false,
+      },
+    },
+    {
+      field: 'customCopyTooltip',
+      name: 'Tooltip content',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'system-input-translated-string',
+        group: 'groupCopySettings',
+        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomCopyTooltip', true),
+      },
+      schema: {
+        default_value: 'Copy value',
+      },
+    },
+    {
       field: 'showLink',
       name: 'Display link icon',
       type: 'boolean',
@@ -147,6 +180,37 @@ export function getSharedConfigOptions(isString: boolean) {
       },
       schema: {
         default_value: '',
+      },
+    },
+    {
+      field: 'useCustomLinkTooltip',
+      name: 'Custom Tooltip',
+      type: 'boolean',
+      meta: {
+        width: 'half',
+        interface: 'boolean',
+        options: {
+          label: 'Enable',
+        },
+        note: 'Use a custom tooltip for the link button',
+        group: 'groupLinkSettings',
+      },
+      schema: {
+        default_value: false,
+      },
+    },
+    {
+      field: 'customLinkTooltip',
+      name: 'Tooltip content',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'system-input-translated-string',
+        group: 'groupLinkSettings',
+        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomLinkTooltip', true),
+      },
+      schema: {
+        default_value: 'Open link',
       },
     },
     {
@@ -216,4 +280,25 @@ export function getClickActionChoices(isString: boolean) {
 	}
 
 	return selectChoices;
+}
+
+
+/**
+ * Conditionally show/hide a field based on another field's value
+ * 
+ * @param field The field contextOptions
+ * @param configTarget Switch between 'display' and 'interface' config options
+ * @param targetField The field to watch
+ * @param showIfValue The expected value of the target field to show the current field
+ * 
+ * @returns true, if the target field equals the expected value, else false
+ */
+function hideBasedOnOtherField(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, targetField: string, showIfValue: any) {
+  const options = configTarget === 'display' ? field.meta?.display_options : field.meta?.options;
+
+  if (options?.[targetField] === showIfValue) {
+    return false; // don't hide field
+  }
+
+  return true; // hide field
 }

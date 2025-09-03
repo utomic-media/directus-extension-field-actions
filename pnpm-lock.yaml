@@ -11,6 +11,9 @@ importers:
       '@directus/extensions-sdk':
         specifier: ^16.0.1
         version: 16.0.1(@types/node@24.3.0)(@unhead/vue@1.9.4(vue@3.5.20(typescript@5.9.2)))(knex@3.1.0)(pinia@2.1.7(typescript@5.9.2)(vue@3.5.20(typescript@5.9.2)))(sass@1.91.0)(terser@5.43.1)(typescript@5.9.2)
+      '@directus/types':
+        specifier: ^13.2.2
+        version: 13.2.2(knex@3.1.0)(vue@3.5.20(typescript@5.9.2))
       sass:
         specifier: ^1.91.0
         version: 1.91.0
@@ -23,6 +26,9 @@ importers:
       vue:
         specifier: ^3.5.20
         version: 3.5.20(typescript@5.9.2)
+      vue-i18n:
+        specifier: ^11.1.11
+        version: 11.1.11(vue@3.5.20(typescript@5.9.2))
 
 packages:
 
@@ -427,6 +433,18 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@intlify/core-base@11.1.11':
+    resolution: {integrity: sha512-1Z0N8jTfkcD2Luq9HNZt+GmjpFe4/4PpZF3AOzoO1u5PTtSuXZcfhwBatywbfE2ieB/B5QHIoOFmCXY2jqVKEQ==}
+    engines: {node: '>= 16'}
+
+  '@intlify/message-compiler@11.1.11':
+    resolution: {integrity: sha512-7PC6neomoc/z7a8JRjPBbu0T2TzR2MQuY5kn2e049MP7+o32Ve7O8husylkA7K9fQRe4iNXZWTPnDJ6vZdtS1Q==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@11.1.11':
+    resolution: {integrity: sha512-RIBFTIqxZSsxUqlcyoR7iiC632bq7kkOwYvZlvcVObHfrF4NhuKc4FKvu8iPCrEO+e3XsY7/UVpfgzg+M7ETzA==}
+    engines: {node: '>= 16'}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2023,6 +2041,12 @@ packages:
       '@vue/composition-api':
         optional: true
 
+  vue-i18n@11.1.11:
+    resolution: {integrity: sha512-LvyteQoXeQiuILbzqv13LbyBna/TEv2Ha+4ZWK2AwGHUzZ8+IBaZS0TJkCgn5izSPLcgZwXy9yyTrewCb2u/MA==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      vue: ^3.0.0
+
   vue@3.5.18:
     resolution: {integrity: sha512-7W4Y4ZbMiQ3SEo+m9lnoNpV9xG7QVMLa+/0RFwwiAVkeYoyGXqWE85jabU4pllJNUzqfLShJ5YLptewhCWUgNA==}
     peerDependencies:
@@ -2225,6 +2249,28 @@ snapshots:
     optionalDependencies:
       knex: 3.1.0
       vue: 3.5.18(typescript@5.9.2)
+    transitivePeerDependencies:
+      - better-sqlite3
+      - mysql
+      - mysql2
+      - pg
+      - pg-native
+      - sqlite3
+      - supports-color
+      - tedious
+
+  '@directus/types@13.2.2(knex@3.1.0)(vue@3.5.20(typescript@5.9.2))':
+    dependencies:
+      '@directus/constants': 13.0.2
+      '@directus/schema': 13.0.2
+      '@sinclair/typebox': 0.34.38
+      '@types/express': 4.17.21
+      '@types/geojson': 7946.0.16
+      '@types/nodemailer': 6.4.17
+      '@types/ws': 8.18.1
+    optionalDependencies:
+      knex: 3.1.0
+      vue: 3.5.20(typescript@5.9.2)
     transitivePeerDependencies:
       - better-sqlite3
       - mysql
@@ -2454,6 +2500,18 @@ snapshots:
   '@inquirer/type@3.0.8(@types/node@24.3.0)':
     optionalDependencies:
       '@types/node': 24.3.0
+
+  '@intlify/core-base@11.1.11':
+    dependencies:
+      '@intlify/message-compiler': 11.1.11
+      '@intlify/shared': 11.1.11
+
+  '@intlify/message-compiler@11.1.11':
+    dependencies:
+      '@intlify/shared': 11.1.11
+      source-map-js: 1.2.1
+
+  '@intlify/shared@11.1.11': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -3956,6 +4014,13 @@ snapshots:
 
   vue-demi@0.14.10(vue@3.5.20(typescript@5.9.2)):
     dependencies:
+      vue: 3.5.20(typescript@5.9.2)
+
+  vue-i18n@11.1.11(vue@3.5.20(typescript@5.9.2)):
+    dependencies:
+      '@intlify/core-base': 11.1.11
+      '@intlify/shared': 11.1.11
+      '@vue/devtools-api': 6.6.4
       vue: 3.5.20(typescript@5.9.2)
 
   vue@3.5.18(typescript@5.9.2):

@@ -9,10 +9,10 @@ export default defineDisplay({
 	description: 'Display content with linking and copy to clipboard options',
 	component: DisplayComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
-	options: ({ field  }): any => {
+	options: ({ field }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
 
-		const sharedOptions = getSharedConfigOptions(isString);
+		const sharedOptions = getSharedConfigOptions(field, 'display');
 
 		const customOptionsBeforeShared = [
 			{
@@ -51,7 +51,7 @@ export default defineDisplay({
 				name: 'Copy button label',
 				type: 'string',
 				meta: {
-					width: 'half',
+					width: 'full',
 					interface: 'system-input-translated-string',
 					group: 'groupCopySettings',
 					note: 'When used the copy icon will be shown as button with the given label',
@@ -65,7 +65,7 @@ export default defineDisplay({
 				name: 'Link button label',
 				type: 'string',
 				meta: {
-					width: 'half',
+					width: 'full',
 					interface: 'system-input-translated-string',
 					group: 'groupLinkSettings',
 					note: 'When used the link icon will be shown as button with the given label',

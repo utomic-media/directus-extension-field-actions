@@ -25,7 +25,7 @@
 			outlined
 			xSmall
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
-			v-tooltip="`Copy: ${computedCopyValue}`"
+			v-tooltip="copyTooltip"
 			@click.stop="copyValue"
 		>
 			<v-icon 
@@ -50,7 +50,7 @@
 				:is="(linkButtonLabel) ? 'v-button' : 'div'" 
 				outlined
 				xSmall
-				v-tooltip="`Follow link: ${computedLink}`"
+				v-tooltip="linkTooltip"
 			>
 				<v-icon 
 					name="open_in_new"
@@ -66,11 +66,13 @@
 
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, PropType } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
 import linkWrapper from '../shared/components/linkWrapper.vue';
+import { useTooltips } from '../shared/composable/use-tooltips';
+import type { ClickAction } from '../shared/types';
 
 const props = defineProps({
 	value: {
@@ -90,7 +92,7 @@ const props = defineProps({
 		default: false,
 	},
 	clickAction: {
-		type: String,
+		type: String as PropType<ClickAction>,
 		default: 'default',
 	},
 	showCopy: {
@@ -104,6 +106,14 @@ const props = defineProps({
 	copyPrefix: {
 		type: String,
 		default: '',
+	},
+	useCustomCopyTooltip: {
+		type: Boolean,
+		default: false,
+	},
+	customCopyTooltip: {
+		type: String,
+		default: null,
 	},
 	copyButtonLabel: {
 		type: String,
@@ -120,6 +130,14 @@ const props = defineProps({
 	linkPrefix: {
 		type: String,
 		default: '',
+	},
+	useCustomLinkTooltip: {
+		type: Boolean,
+		default: false,
+	},
+	customLinkTooltip: {
+		type: String,
+		default: null,
 	},
 	linkButtonLabel: {
 		type: String,
@@ -142,6 +160,14 @@ const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	
 
 const { computedLink, computedCopyValue } = usePrefixedValues(props);
+
+const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
+	clickAction: props.clickAction,
+	useCustomCopyTooltip: props.useCustomCopyTooltip,
+	customCopyTooltip: props.customCopyTooltip,
+	useCustomLinkTooltip: props.useCustomLinkTooltip,
+	customLinkTooltip: props.customLinkTooltip,
+});
 
 
 async function copyValue() {
@@ -166,14 +192,6 @@ const hasValueClickAction = computed(() => {
 
 	return false;
 });
-
-
-// TODO: move in composable (together with display)
-const actionTooltip = computed(() => {
-	if (props.clickAction === 'copy' && isCopySupported) return 'Copy value';
-	if (props.clickAction === 'link') return 'Open link';
-});
-
 </script>
 
 

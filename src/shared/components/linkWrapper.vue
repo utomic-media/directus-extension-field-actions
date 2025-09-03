@@ -26,7 +26,7 @@
             :target="target"
             @click="activeDialog=false"
           >
-            Open Link
+            Open link
           </v-button >
         </v-card-actions>
       </v-card>
