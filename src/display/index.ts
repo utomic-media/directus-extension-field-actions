@@ -51,7 +51,7 @@ export default defineDisplay({
 				name: 'Copy button label',
 				type: 'string',
 				meta: {
-					width: 'half',
+					width: 'full',
 					interface: 'system-input-translated-string',
 					group: 'groupCopySettings',
 					note: 'When used the copy icon will be shown as button with the given label',
@@ -65,7 +65,7 @@ export default defineDisplay({
 				name: 'Link button label',
 				type: 'string',
 				meta: {
-					width: 'half',
+					width: 'full',
 					interface: 'system-input-translated-string',
 					group: 'groupLinkSettings',
 					note: 'When used the link icon will be shown as button with the given label',
