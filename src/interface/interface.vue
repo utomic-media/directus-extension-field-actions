@@ -74,6 +74,7 @@ import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
 import linkWrapper from '../shared/components/linkWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
+import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';
 
 const props = defineProps({
@@ -171,6 +172,7 @@ const props = defineProps({
 const emit = defineEmits(['input']);
 
 const { isCopySupported, copyToClipboard } = useClipboard();
+useAppTranslations().loadLocaleMessages();
 
 const { useNotificationsStore } = useStores();
 const notificationStore = useNotificationsStore();	

@@ -11,13 +11,13 @@
       @update:model-value="activeDialog = false"
     >
       <v-card>
-        <v-card-title>Are you sure you want to open this link?</v-card-title>
+        <v-card-title>{{ t('field_actions.open_link_confirm') }}</v-card-title>
         <v-card-text>
           <div class="defa-link-preview">
             <code>{{ props.href }}</code>
           </div>
           
-          <em>Note: You can permanently disable this warning in the display / interface settings</em>
+          <em>{{ t('field_actions.note') }}: {{ t('field_actions.open_link_confirm_disable_note') }}</em>
         </v-card-text>
         <v-card-actions>
           <v-button secondary @click="activeDialog = false">{{ t('cancel') }}</v-button>
