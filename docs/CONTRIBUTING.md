@@ -38,11 +38,21 @@ This will watch for changes and automatically rebuild the extension during devel
 
 A playground Directus instance is available for testing the extension. It automatically loads and reloads the extension when changes are detected. However there's no HMR in the browser. This means you manually need to reload the page, in order to get the latest changes.
 
-To start the playground environment:
+##### Build the container
+
+Run this only before the first 'docker compose up' or when the Dockerfile or dependencies change:
 
 ```bash
 cd playground
 docker compose build
+```
+
+##### Start the container
+
+To start the playground environment:
+
+```bash
+cd playground
 docker compose up
 ```
 
