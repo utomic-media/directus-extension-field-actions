@@ -31,7 +31,7 @@ export function useAppTranslations() {
       loadedLocales.add('en-US');
     }
 
-     // Load the current locale if not already loaded
+    // Load the current locale if not already loaded
     if (localeMessages[locale.value] && !loadedLocales.has(locale.value)) {
       mergeLocaleMessage(locale.value, localeMessages[locale.value]);
       loadedLocales.add(locale.value);
