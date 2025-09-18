@@ -9,6 +9,7 @@ export default defineInterface({
 	description: 'Display content with linking and copy to clipboard options',
 	component: InterfaceComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
+	recommendedDisplays: ['field-actions'],
 	options: ({ field }): any => {
 		const isStringField 	= ['string', 'text'].includes(field.type ?? 'unknown');
 		const isNumericField 	= ['bigInteger', 'integer', 'float', 'decimal'].includes(field.type ?? 'unknown');
