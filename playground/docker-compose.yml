@@ -3,7 +3,7 @@
 services:
   directus:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - 8055:8055
