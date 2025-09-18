@@ -2,7 +2,9 @@
 
 services:
   directus:
-    image: directus/directus:11.11.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 8055:8055
     volumes:

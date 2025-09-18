@@ -1,0 +1,65 @@
+{
+  "collection": "demo_collection",
+  "field": "demo_4",
+  "type": "string",
+  "meta": {
+    "collection": "demo_collection",
+    "conditions": null,
+    "display": "field-actions",
+    "display_options": {
+      "clickAction": "copy",
+      "copyButtonLabel": null,
+      "customCopyTooltip": "$t:custom_copy_tooltip",
+      "customLinkTooltip": "$t:custom_link_tooltip",
+      "openLinkSafeMode": "always",
+      "showCopy": true,
+      "showLink": true,
+      "useCustomCopyTooltip": true,
+      "useCustomLinkTooltip": true
+    },
+    "field": "demo_4",
+    "group": null,
+    "hidden": false,
+    "interface": "field-actions",
+    "note": null,
+    "options": {
+      "customCopyTooltip": "CUSTOM - Copy Value",
+      "customLinkTooltip": "CUSTOM - Copy link",
+      "showCopy": true,
+      "showLink": true,
+      "useCustomCopyTooltip": true,
+      "useCustomLinkTooltip": true
+    },
+    "readonly": false,
+    "required": false,
+    "sort": 10,
+    "special": null,
+    "translations": [
+      {
+        "language": "en-US",
+        "translation": "Demo 4 - Custom Tooltips"
+      }
+    ],
+    "validation": null,
+    "validation_message": null,
+    "width": "full"
+  },
+  "schema": {
+    "name": "demo_4",
+    "table": "demo_collection",
+    "data_type": "varchar",
+    "default_value": null,
+    "max_length": 255,
+    "numeric_precision": null,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

@@ -38,6 +38,17 @@ This will watch for changes and automatically rebuild the extension during devel
 
 A playground Directus instance is available for testing the extension. It automatically loads and reloads the extension when changes are detected. However there's no HMR in the browser. This means you manually need to reload the page, in order to get the latest changes.
 
+##### Build the container
+
+Run this only before the first 'docker compose up' or when the Dockerfile or dependencies change:
+
+```bash
+cd playground
+docker compose build
+```
+
+##### Start the container
+
 To start the playground environment:
 
 ```bash
@@ -50,7 +61,25 @@ The playground will be available at the configured URL with the demo credentials
 ### Database
 
 The playground database contains a basic demo instance with sample data for testing purposes.
+You can import / export the schema using [directus-sync](https://github.com/tractr/directus-sync)
 
+To pull the config run
+
+```shell
+npx directus-sync pull -u <url> -e <admin_user_mail> -p <user_pw>
+```
+
+To compare the local config files with your database:
+
+```shell
+npx directus-sync diff -u <url> -e <admin_user_mail> -p <user_pw>
+```
+
+To push the changes from your config files to your db:
+
+```shell
+npx directus-sync push -u <url> -e <admin_user_mail> -p <user_pw>
+```
 
 **Important**: Only commit relevant changes that are necessary for test cases to the git repository. Avoid pushing unnecessary database changes or temporary test data.
 
