@@ -30,8 +30,8 @@
 		</component>
 
 		<v-button
-			v-if="showCopy && isCopySupported"
-			:disabled="!value"
+			v-if="showCopy"
+			:disabled="!value || !isCopySupported"
 			v-tooltip="copyTooltip"
 			icon
 			secondary

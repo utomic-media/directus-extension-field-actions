@@ -20,7 +20,8 @@
 		</component>
 		
 		<component
-			v-if="showCopy && isCopySupported"
+			v-if="showCopy"
+			:disabled="!value || !isCopySupported"
 			:is="(copyButtonLabel) ? 'v-button' : 'span'" 
 			outlined
 			xSmall
