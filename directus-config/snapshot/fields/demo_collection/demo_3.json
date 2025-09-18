@@ -1,0 +1,59 @@
+{
+  "collection": "demo_collection",
+  "field": "demo_3",
+  "type": "string",
+  "meta": {
+    "collection": "demo_collection",
+    "conditions": null,
+    "display": "field-actions",
+    "display_options": {
+      "clickAction": "copy",
+      "copyButtonLabel": "Copy",
+      "hideFieldValue": true,
+      "linkButtonLabel": "Open Link",
+      "showCopy": true,
+      "showLink": true
+    },
+    "field": "demo_3",
+    "group": null,
+    "hidden": false,
+    "interface": "field-actions",
+    "note": null,
+    "options": {
+      "clickAction": "copy",
+      "showCopy": true,
+      "showLink": true
+    },
+    "readonly": true,
+    "required": false,
+    "sort": 9,
+    "special": null,
+    "translations": [
+      {
+        "language": "en-US",
+        "translation": "Demo 3 - Disabled Field"
+      }
+    ],
+    "validation": null,
+    "validation_message": null,
+    "width": "full"
+  },
+  "schema": {
+    "name": "demo_3",
+    "table": "demo_collection",
+    "data_type": "varchar",
+    "default_value": null,
+    "max_length": 255,
+    "numeric_precision": null,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

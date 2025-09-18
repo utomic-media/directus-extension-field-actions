@@ -1,0 +1,14 @@
+[
+  {
+    "language": "en-US",
+    "key": "custom_copy_tooltip",
+    "value": "A translated copy tooltip",
+    "_syncId": "3fdae485-486f-4ce6-abd1-f54b939a9728"
+  },
+  {
+    "language": "en-US",
+    "key": "custom_link_tooltip",
+    "value": "A translated link tooltip",
+    "_syncId": "e045e3e6-b4f6-4a47-b711-9be1dddd0fe9"
+  }
+]
