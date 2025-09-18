@@ -38,5 +38,5 @@ export function useAppTranslations() {
     }
   }
 
-  return {loadLocaleMessages}
+  return {loadLocaleMessages};
 }
