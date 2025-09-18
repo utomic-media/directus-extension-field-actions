@@ -42,6 +42,7 @@ To start the playground environment:
 
 ```bash
 cd playground
+docker compose build
 docker compose up
 ```
 
@@ -50,7 +51,25 @@ The playground will be available at the configured URL with the demo credentials
 ### Database
 
 The playground database contains a basic demo instance with sample data for testing purposes.
+You can import / export the schema using [directus-sync](https://github.com/tractr/directus-sync)
 
+To pull the config run
+
+```shell
+npx directus-sync pull -u <url> -e <admin_user_mail> -p <user_pw>
+```
+
+To compare the local config files with your database:
+
+```shell
+npx directus-sync diff -u <url> -e <admin_user_mail> -p <user_pw>
+```
+
+To push the changes from your config files to your db:
+
+```shell
+npx directus-sync push -u <url> -e <admin_user_mail> -p <user_pw>
+```
 
 **Important**: Only commit relevant changes that are necessary for test cases to the git repository. Avoid pushing unnecessary database changes or temporary test data.
 
