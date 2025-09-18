@@ -1,5 +1,6 @@
 import { computed } from 'vue';
 import { useClipboard } from './use-clipboard';
+import { useI18n } from 'vue-i18n';
 import type { ClickAction } from '../types';
 
 type Options = {
@@ -13,17 +14,18 @@ type Options = {
 
 export function useTooltips(options: Options) { 
   const { isCopySupported } = useClipboard();
+  const { t } = useI18n();
 
   const copyTooltip = computed(() => {
     if (isCopySupported.value === false) {
-      return 'Copying not supported';
+      return t('field_actions.copy_not_supported');
     }
 
     if (options.useCustomCopyTooltip) {
       return options.customCopyTooltip;
     }
 
-    return 'Copy value';
+    return t('field_actions.copy_value');
   });
 
 
@@ -32,7 +34,7 @@ export function useTooltips(options: Options) {
       return options.customLinkTooltip;
     }
 
-    return 'Open link';
+    return t('field_actions.open_link');
   });
 
 
