@@ -46,14 +46,14 @@
 		</v-button>
 		
 
-		<link-wrapper 
+		<link-wrapper
+			v-if="showLink"
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-button
-				v-if="showLink"
 				:disabled="!value"
 				v-tooltip="linkTooltip"
 				icon
