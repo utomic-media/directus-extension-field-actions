@@ -36,6 +36,7 @@
 			icon
 			secondary
 			xLarge
+			data-testid="copy-button"
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-icon
@@ -58,6 +59,7 @@
 				icon
 				secondary
 				xLarge
+				data-testid="link-button"
 			>
 				<v-icon 
 					name="open_in_new"

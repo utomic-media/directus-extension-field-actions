@@ -3,12 +3,54 @@ import Interface from './interface.vue';
 import { mount } from '@vue/test-utils'
 
 
-describe('Interface.vue', () => {
-  test('Component renders with default options', () => {
+describe('Interface.vue - Default', () => {
+  const componentWrapper = mount(Interface, {
+    // props: {
+    // }
+  })
 
-    const mountedComponent = mount(Interface, {})
+  // Debugging output
+  // console.log(componentWrapper.html())
 
-    console.log(mountedComponent)
-    expect(mountedComponent.exists()).toBe(true)
+  test('Component renders', () => {
+    expect(componentWrapper.exists()).toBe(true);
+  });
+  
+  test('Component renders without any buttons', () => {
+    expect(componentWrapper.findComponent('v-button').exists()).toBe(false);
+  });
+});
+
+
+describe('Interface.vue - Enabled Buttons', () => {
+  const componentWrapper = mount(Interface, {
+    props: {
+      showCopy: true,
+      showLink: true
+    }
+  });
+  
+  test('Component renders', () => {
+    expect(componentWrapper.exists()).toBe(true);
+  });
+
+  test('Contain copy-button', () => {
+    expect(componentWrapper.find('[data-testid="copy-button"]').exists()).toBe(true);
+  });
+
+  test('Contain link-button', () => {
+    expect(componentWrapper.find('[data-testid="link-button"]').exists()).toBe(true);
+  });
+});
+
+describe('Interface.vue - Click-Action: copy', () => { 
+  const componentWrapper = mount(Interface, {
+    props: {
+      clickAction: "link"
+    }
+  });
+
+  test('Input-wrapper should be a LinkWrapper', () => {
+    expect(componentWrapper.findComponent('.defa-link-wrapper.dynamic-input-wrapper').exists()).toBe(true);
   });
 });
