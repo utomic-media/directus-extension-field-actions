@@ -86,21 +86,19 @@ const globalDirectusComponents: string[] = [
   "v-error-boundary"
 ];
 
-// Function to create a stub component
-const createStubComponent = (name: string, tag: string = 'div') => {
-  return defineComponent({
-    name,
-    setup(_, { slots, attrs }) {
-      // return () => h(tag, { ...attrs, class: name.toLowerCase() }, slots.default?.());
-      // return () => h(tag, { ...attrs, 'data-test-component': name.toLowerCase() }, slots.default?.());
-      return () => h(name, attrs, slots.default?.());
-    }
-  });
-};
+const globalDirectusPrivateComponents: string[] = [
+  "value-null",
+];
+
+
+const allGlobalComponents = [
+  ...globalDirectusComponents,
+  ...globalDirectusPrivateComponents,
+];
 
 // Register global stubs
-config.global.components = {
-  ...Object.fromEntries(globalDirectusComponents.map(name => [name, createStubComponent(name)])),
+config.global.stubs = {
+  ...Object.fromEntries(allGlobalComponents.map(component => [component, true])),
 };
 
 

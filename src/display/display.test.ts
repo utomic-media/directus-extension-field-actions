@@ -1,13 +1,14 @@
 import { describe, test, expect } from 'vitest';
-import Interface from './interface.vue';
+import Display from './display.vue';
 import { mount } from '@vue/test-utils'
 
+const value = "Hello world";
 
-describe('Interface.vue - Default', () => {
-  const componentWrapper = mount(Interface, {
+describe('Display.vue - Default', () => {
+  const componentWrapper = mount(Display, {
     // props: {
     // }
-  });
+  })
 
   // Debugging output
   // console.log(componentWrapper.html())
@@ -21,29 +22,26 @@ describe('Interface.vue - Default', () => {
   });
 });
 
-describe('Interface.vue - With value', () => {
-  const value = "Hello world";
-
-  const componentWrapper = mount(Interface, {
+describe('Display.vue - With value', () => {
+  const componentWrapper = mount(Display, {
     props: {
       value: value,
     },
   });
 
-  test('Input contains value', () => {
-    const vInput = componentWrapper.getComponent('v-input-stub');
-
-    expect(componentWrapper.props('value')).toBe(value);
-    expect(vInput.attributes('model-value')).toBe(value);
+  test('Contains value', () => {
+    expect(componentWrapper.html()).toContain(value);
   });
 });
 
 
-describe('Interface.vue - Enabled Buttons', () => {
-  const componentWrapper = mount(Interface, {
+describe('Display.vue - Enabled Buttons', () => {
+  
+  const componentWrapper = mount(Display, {
     props: {
+      value: value,
       showCopy: true,
-      showLink: true
+      showLink: true,
     }
   });
   
@@ -60,9 +58,10 @@ describe('Interface.vue - Enabled Buttons', () => {
   });
 });
 
-describe('Interface.vue - Click-Action: copy', () => { 
-  const componentWrapper = mount(Interface, {
+describe('Display.vue - Click-Action: copy', () => { 
+  const componentWrapper = mount(Display, {
     props: {
+      value: value,
       clickAction: "link"
     }
   });
