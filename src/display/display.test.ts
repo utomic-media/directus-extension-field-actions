@@ -70,3 +70,19 @@ describe('Display.vue - Click-Action: copy', () => {
     expect(componentWrapper.findComponent('.defa-link-wrapper.dynamic-input-wrapper').exists()).toBe(true);
   });
 });
+
+describe('Display.vue - Hide field value', () => {
+  const componentWrapper = mount(Display, {
+    props: {
+      value: value,
+      clickAction: "link",
+      hideFieldValue: true,
+    }
+  });
+
+  console.log(componentWrapper.html());
+
+  test('Display doesn\'t contain field', () => {
+    expect(componentWrapper.html()).not.toContain(value);
+  });
+});
