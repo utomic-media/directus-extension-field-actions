@@ -9,6 +9,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
+			class="dynamic-input-wrapper"
 			@click.stop
 		>
 			<span 
@@ -28,6 +29,7 @@
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 			v-tooltip="copyTooltip"
 			@click.stop="copyValue"
+			data-testid="copy-button"
 		>
 			<v-icon 
 				name="content_copy"
@@ -52,6 +54,7 @@
 				outlined
 				xSmall
 				v-tooltip="linkTooltip"
+				data-testid="link-button"
 			>
 				<v-icon 
 					name="open_in_new"
@@ -83,7 +86,7 @@ const props = defineProps({
 	},
 	type: {
 		type: String,
-		required: true,
+		default: null,
 	},
 	interfaceOptions: {
 		type: Object,

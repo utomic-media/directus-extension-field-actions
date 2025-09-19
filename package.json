@@ -29,7 +29,7 @@
     "dev": "directus-extension build -w --no-minify",
     "link": "directus-extension link",
     "add": "directus-extension add",
-    "test": "echo \\\"No test specified\\\" && exit 0"
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -54,9 +54,13 @@
   "devDependencies": {
     "@directus/extensions-sdk": "^16.0.1",
     "@directus/types": "^13.2.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^27.0.0",
     "sass": "^1.91.0",
     "sass-loader": "^16.0.5",
     "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
     "vue": "^3.5.20",
     "vue-i18n": "^11.1.11"
   },

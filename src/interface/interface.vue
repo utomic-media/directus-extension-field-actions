@@ -36,6 +36,7 @@
 			icon
 			secondary
 			xLarge
+			data-testid="copy-button"
 			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-icon
@@ -45,19 +46,20 @@
 		</v-button>
 		
 
-		<link-wrapper 
+		<link-wrapper
+			v-if="showLink"
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
 			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
 		>
 			<v-button
-				v-if="showLink"
 				:disabled="!value"
 				v-tooltip="linkTooltip"
 				icon
 				secondary
 				xLarge
+				data-testid="link-button"
 			>
 				<v-icon 
 					name="open_in_new"
