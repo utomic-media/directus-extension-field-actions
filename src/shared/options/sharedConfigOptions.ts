@@ -46,6 +46,7 @@ export const sharedOptionsPropsDefaults: SharedCopyOptionsProps = {
   ...linkOptionsPropsDefaults,
 };
 
+
 export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget): DeepPartial<AppField>[] {
   const groups: DeepPartial<AppField>[] = [
     {
@@ -78,7 +79,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
     },
   ];
 
-  const copyOptions: DeepPartial<AppField>[] = [
+  const copyOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof CopyOptionsProps }>[] = [
     {
       field: 'showCopy',
       name: 'Display copy icon',
@@ -170,7 +171,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
     },
   ];
   
-  const linkOptions: DeepPartial<AppField>[] = [
+  const linkOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof LinkOptionsProps }>[] = [
     {
       field: 'showLink',
       name: 'Display link icon',
