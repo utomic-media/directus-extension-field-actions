@@ -84,7 +84,7 @@ import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptio
 const props = withDefaults(defineProps<{
 	// Directus default props
 	value: string | number | null;
-	type: string | null;
+	type: string;
 	disabled: boolean;
 
 	// interfaceOptions
@@ -102,7 +102,6 @@ const props = withDefaults(defineProps<{
 } & SharedCopyOptionsProps>(), {
 	// Directus default props
 	value: null,
-	type: null,
 	disabled: false,
 
 	// interfaceOptions
