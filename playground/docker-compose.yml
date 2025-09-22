@@ -11,7 +11,7 @@ services:
       - ./directus/database:/directus/database
       - ./directus/uploads:/directus/uploads
       - ./directus/extensions:/directus/extensions
-      - ../:/directus/extensions/directus-extension-field-actions
+      - ../.:/directus/extensions/directus-extension-field-actions
     environment:
       #dev
       EXTENSIONS_AUTO_RELOAD: true
