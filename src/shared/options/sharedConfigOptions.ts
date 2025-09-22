@@ -4,7 +4,7 @@ import type { DeepPartial, AppField } from '@directus/types';
 type ConfigTarget = 'display' | 'interface';
 
 export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget): DeepPartial<AppField>[] {
-  const options: DeepPartial<AppField>[] = [
+  const groups: DeepPartial<AppField>[] = [
     {
       field: 'groupCopySettings',
       name: 'Copy item settings',
@@ -33,6 +33,9 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         },
       },
     },
+  ];
+
+  const copyOptions: DeepPartial<AppField>[] = [
     {
       field: 'showCopy',
       name: 'Display copy icon',
@@ -122,6 +125,9 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         default_value: 'Copy value',
       },
     },
+  ];
+  
+  const linkOptions: DeepPartial<AppField>[] = [
     {
       field: 'showLink',
       name: 'Display link icon',
@@ -253,7 +259,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
     },
   ];
 
-  return options;
+  return [...groups, ...copyOptions, ...linkOptions];
 }
 
 
