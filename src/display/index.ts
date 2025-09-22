@@ -1,6 +1,7 @@
 import { defineDisplay, } from '@directus/extensions-sdk';
 import DisplayComponent from './display.vue';
 import { getSharedConfigOptions, getClickActionChoices } from '../shared/options/sharedConfigOptions';
+import type { DeepPartial, AppField } from '@directus/types';
 
 export default defineDisplay({
 	id: 'field-actions',
@@ -14,7 +15,7 @@ export default defineDisplay({
 
 		const sharedOptions = getSharedConfigOptions(field, 'display');
 
-		const customOptionsBeforeShared = [
+		const customOptionsBeforeShared: DeepPartial<AppField>[] = [
 			{
 				field: 'hideFieldValue',
 				name: 'Hide field value',
@@ -45,7 +46,7 @@ export default defineDisplay({
 			},
 		];
 
-		const customOptionsAfterShared = [
+		const customOptionsAfterShared: DeepPartial<AppField>[] = [
 			{
 				field: 'copyButtonLabel',
 				name: 'Copy button label',

@@ -12,7 +12,7 @@
 
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-
+import { useStores } from '@directus/extensions-sdk';
 
 type Message = {
 	success?: string;
@@ -23,6 +23,8 @@ type Message = {
 
 export function useClipboard() {
 	const { t } = useI18n();
+	const { useNotificationsStore } = useStores();
+	const notificationStore = useNotificationsStore();	
 
 	const isCopySupported = computed(() => {
 		return !!navigator?.clipboard?.writeText;
@@ -34,7 +36,7 @@ export function useClipboard() {
 
 	return { isCopySupported, isPasteSupported, copyToClipboard, pasteFromClipboard };
 
-	async function copyToClipboard(value: string, notificationStore: any, message?: Message): Promise<boolean> {
+	async function copyToClipboard(value: string, message?: Message): Promise<boolean> {
 		try {
 			await navigator?.clipboard?.writeText(value);
 			notificationStore.add({

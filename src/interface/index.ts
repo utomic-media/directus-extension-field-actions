@@ -1,6 +1,7 @@
 import { defineInterface } from '@directus/extensions-sdk';
 import InterfaceComponent from './interface.vue';
 import { getSharedConfigOptions, getClickActionChoices } from '../shared/options/sharedConfigOptions';
+import type { DeepPartial, AppField } from '@directus/types';
 
 export default defineInterface({
 	id: 'field-actions',
@@ -17,7 +18,7 @@ export default defineInterface({
 		const sharedOptions = getSharedConfigOptions(field, 'interface');
 		// TODO: add custom options: softLength, clear, font
 		
-		const interfaceOptions = [
+		const interfaceOptions: DeepPartial<AppField>[] = [
 			{
 				field: 'placeholder',
 				name: '$t:placeholder',
@@ -50,7 +51,7 @@ export default defineInterface({
 		];
 
 
-		const readOnlyOptions = [
+		const readOnlyOptions: DeepPartial<AppField>[] = [
 			{
 				field: 'clickAction',
 				name: 'Click Action (when clicking on the value)',
@@ -68,7 +69,7 @@ export default defineInterface({
 			},
 		];
 
-		const numberOptions = [
+		const numberOptions: DeepPartial<AppField>[] = [
 			{
 				field: 'min',
 				name: '$t:interfaces.input.minimum_value',

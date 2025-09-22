@@ -1,46 +1,37 @@
 {
-  "collection": "demo_collection",
-  "field": "demo_3",
+  "collection": "testcoll",
+  "field": "test",
   "type": "string",
   "meta": {
-    "collection": "demo_collection",
+    "collection": "testcoll",
     "conditions": null,
     "display": "field-actions",
     "display_options": {
-      "clickAction": "copy",
-      "copyButtonLabel": "Copy",
+      "copyButtonLabel": "Custom Label",
       "hideFieldValue": true,
-      "linkButtonLabel": "Open Link",
-      "showCopy": true,
-      "showLink": true
+      "showCopy": true
     },
-    "field": "demo_3",
+    "field": "test",
     "group": null,
     "hidden": false,
     "interface": "field-actions",
     "note": null,
     "options": {
-      "clickAction": "link",
       "showCopy": true,
       "showLink": true
     },
-    "readonly": true,
+    "readonly": false,
     "required": false,
-    "sort": 9,
+    "sort": 2,
     "special": null,
-    "translations": [
-      {
-        "language": "en-US",
-        "translation": "Demo 3 - Disabled Field"
-      }
-    ],
+    "translations": null,
     "validation": null,
     "validation_message": null,
     "width": "full"
   },
   "schema": {
-    "name": "demo_3",
-    "table": "demo_collection",
+    "name": "test",
+    "table": "testcoll",
     "data_type": "varchar",
     "default_value": null,
     "max_length": 255,

@@ -1,24 +1,23 @@
 <template>
 	<value-null v-if="!value" />
-	<span v-else class="action-display">
-		<!-- NOTE: @click.stop to prevent the opening of item page -->
-		<component
+	
+	<span v-else class="defa-action-display">
+		<click-action-wrapper
 			v-if="!hideFieldValue"
-			:is="(clickAction === 'link') ? linkWrapper : 'span'" 
-			v-tooltip.left="actionTooltip"
-			:href="computedLink"
-			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			:safeMode="openLinkSafeMode === 'always'"
-			class="dynamic-input-wrapper"
-			@click.stop
+			:click-action="clickAction"
+			:computed-link="computedLink"
+			:open-link-as-new-tab="openLinkAsNewTab"
+			:open-link-safe-mode="openLinkSafeMode"
+			:action-tooltip="actionTooltip"
+			:disabled="true"
+			@copy="copyValue"
 		>
 			<span 
-				:class="hasValueClickAction ? 'action-background' : ''"
-				@click="valueClickAction"
+				:class="hasValueClickAction ? 'defa-action-background' : ''"
 			>
 				{{ value }}
 			</span>
-		</component>
+		</click-action-wrapper>
 		
 		<component
 			v-if="showCopy"
@@ -26,7 +25,7 @@
 			:is="(copyButtonLabel) ? 'v-button' : 'span'" 
 			outlined
 			xSmall
-			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="copyPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 			v-tooltip="copyTooltip"
 			@click.stop="copyValue"
 			data-testid="copy-button"
@@ -36,7 +35,7 @@
 				:color="copyButtonLabel ? 'primary' : ''"
 			/>
 
-			<span v-if="copyButtonLabel" class="ml-2">{{ copyButtonLabel }}</span>
+			<span v-if="copyButtonLabel" class="defa-ml-2">{{ copyButtonLabel }}</span>
 		</component>
 		
 
@@ -46,7 +45,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
-			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="linkPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 			@click.stop
 		>
 			<component
@@ -60,7 +59,7 @@
 					name="open_in_new"
 					:color="linkButtonLabel ? 'primary' : ''"
 				/>
-				<span v-if="linkButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
+				<span v-if="linkButtonLabel" class="defa-ml-2">{{ linkButtonLabel }}</span>
 			</component>
 		</link-wrapper>
 	</span>
@@ -70,101 +69,49 @@
 
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
-import { useStores } from '@directus/extensions-sdk';
-import linkWrapper from '../shared/components/linkWrapper.vue';
+import LinkWrapper from '../shared/components/LinkWrapper.vue';
+import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
+import { sharedOptionsPropsDefaults } from '../shared/options/sharedConfigOptions';
 import type { ClickAction } from '../shared/types';
+import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptions';
 
-const props = defineProps({
-	value: {
-		type: String,
-		default: null,
-	},
-	type: {
-		type: String,
-		default: null,
-	},
-	interfaceOptions: {
-		type: Object,
-		default: {},	// TODO: type to options!
-	},
-	hideFieldValue: {
-		type: Boolean,
-		default: false,
-	},
-	clickAction: {
-		type: String as PropType<ClickAction>,
-		default: 'default',
-	},
-	showCopy: {
-		type: Boolean,
-		default: false,
-	},
-	copyPosition: {
-		type: String,
-		default: 'end',
-	},
-	copyPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomCopyTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customCopyTooltip: {
-		type: String,
-		default: null,
-	},
-	copyButtonLabel: {
-		type: String,
-		default: '',
-	},
-	showLink: {
-		type: Boolean,
-		default: false,
-	},
-	linkPosition: {
-		type: String,
-		default: 'end',
-	},
-	linkPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomLinkTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customLinkTooltip: {
-		type: String,
-		default: null,
-	},
-	linkButtonLabel: {
-		type: String,
-		default: '',
-	},
-  openLinkAsNewTab: {
-    type: Boolean,
-    default: true
-	},
-	openLinkSafeMode: {
-		type: String,
-		default: 'never',
-	},
+const props = withDefaults(defineProps<{
+	// Directus default props
+	value: string | null;
+	type: string;
+
+	// customOptionsBeforeShared
+	hideFieldValue: boolean;
+	clickAction: ClickAction;
+
+	// customOptionsAfterShared
+	copyButtonLabel: string;
+	linkButtonLabel: string;
+} & SharedCopyOptionsProps>(), {
+	// Directus default props
+	value: null,
+
+	// customOptionsBeforeShared
+	hideFieldValue: false,
+	clickAction: 'default',
+	
+
+	// SharedOptions
+	...sharedOptionsPropsDefaults,
+
+	// customOptionsAfterShared
+	copyButtonLabel: '',
+	linkButtonLabel: '',
 });
 
-
-const { isCopySupported, copyToClipboard } = useClipboard();
 useAppTranslations().loadLocaleMessages();
 
-const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
-
+const { isCopySupported, copyToClipboard } = useClipboard();
 const { computedLink, computedCopyValue } = usePrefixedValues(props);
 
 const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
@@ -175,21 +122,9 @@ const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	customLinkTooltip: props.customLinkTooltip,
 });
 
-
 async function copyValue() {
-	await copyToClipboard(computedCopyValue.value, notificationStore);
+	await copyToClipboard(computedCopyValue.value);
 };
-
-
-// TODO: move in composable (together with display)
-function valueClickAction(e: Event) {
-	if (props.clickAction === 'copy') {
-		e.stopPropagation();
-		copyValue();
-	} 
-	// else go on with the default events
-}
-
 
 const hasValueClickAction = computed(() => {
 	if (props.clickAction === 'default') return false;
@@ -207,8 +142,8 @@ const hasValueClickAction = computed(() => {
 
 	.header-bar .title-container {
 		// if the display is in the header bar title we need extra styling, as it has a fixed height
-		.action-display {
-			.action-background {
+		.defa-action-display {
+			.defa-action-background {
 				line-height: 2rem;
 				padding-top: 0;
 				padding-bottom: 0;
@@ -218,14 +153,14 @@ const hasValueClickAction = computed(() => {
 
 	// if the display is in the render template we need to use flex on it
 	// NOTE: this could be optimized, as this way the default "text-overflow: ellapsis" from directus is not working, but it should be fine for 98% of the use-cases
-	.render-template:has(.action-display) {
+	.render-template:has(.defa-action-display) {
 		display: flex;
 		align-items: center;
 	}
 </style>
 
 <style scoped lang="scss">
-	.action-display {
+	.defa-action-display {
 		display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -236,16 +171,16 @@ const hasValueClickAction = computed(() => {
 		div {
 			display: inherit;
 
-			&.order-1 {
+			&.defa-order-1 {
 				order: 1;
 			}
 
-			&.-order-1 {
+			&.-defa-order-1 {
 				order: -1;
 			}
 		}
 
-		.ml-2 {
+		.defa-ml-2 {
 			margin-left: 0.5rem;
 		}
 
@@ -258,7 +193,7 @@ const hasValueClickAction = computed(() => {
 			}
 		}
 
-		.action-background {
+		.defa-action-background {
 			background-color: var(--theme--primary-background);
 			color: var(--theme--primary);
 			padding: 0.5rem 1rem;

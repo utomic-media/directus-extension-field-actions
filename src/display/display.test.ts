@@ -62,12 +62,13 @@ describe('Display.vue - Click-Action: copy', () => {
   const componentWrapper = mount(Display, {
     props: {
       value: value,
-      clickAction: "link"
+      clickAction: "link",
+      type: "string",
     }
   });
 
   test('Input-wrapper should be a LinkWrapper', () => {
-    expect(componentWrapper.findComponent('.defa-link-wrapper.dynamic-input-wrapper').exists()).toBe(true);
+    expect(componentWrapper.findComponent('.defa-click-action-wrapper .defa-link-wrapper').exists()).toBe(true);
   });
 });
 

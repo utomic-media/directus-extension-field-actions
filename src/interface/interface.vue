@@ -1,11 +1,13 @@
 <template>
-	<div class="action-interface">
-		<component 
-			:is="(clickAction === 'link') ? linkWrapper : 'div'" 
-			:href="computedLink"
-			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			:safeMode="openLinkSafeMode === 'always'"
-			class="dynamic-input-wrapper"
+	<div class="defa-action-interface">
+		<click-action-wrapper
+			:click-action="clickAction"
+			:computed-link="computedLink"
+			:open-link-as-new-tab="openLinkAsNewTab"
+			:open-link-safe-mode="openLinkSafeMode"
+			:action-tooltip="actionTooltip"
+			:disabled="disabled"
+			@copy="copyValue"
 		>
 			<v-input 
 				:model-value="value" 
@@ -15,9 +17,7 @@
 				:min="min"
 				:max="max"
 				:step="step"
-				v-tooltip="actionTooltip"
 				@update:model-value="$emit('input', $event)"
-				@click="valueClickAction"
 			>
 				<template v-if="iconLeft" #prepend>
 					<v-icon :name="iconLeft" />
@@ -27,7 +27,7 @@
 					<v-icon :name="iconRight" />
 				</template>
 			</v-input>
-		</component>
+		</click-action-wrapper>
 
 		<v-button
 			v-if="showCopy"
@@ -37,7 +37,7 @@
 			secondary
 			xLarge
 			data-testid="copy-button"
-			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="copyPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 		>
 			<v-icon
 				name="content_copy"
@@ -51,7 +51,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
-			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="linkPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 		>
 			<v-button
 				:disabled="!value"
@@ -70,115 +70,62 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
-import { useStores } from '@directus/extensions-sdk';
-import linkWrapper from '../shared/components/linkWrapper.vue';
+import LinkWrapper from '../shared/components/LinkWrapper.vue';
+import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
+import { sharedOptionsPropsDefaults } from '../shared/options/sharedConfigOptions';
 import type { ClickAction } from '../shared/types';
+import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptions';
 
-const props = defineProps({
-	value: {
-		type: [String, Number],
-		default: null,
-	},
-	clickAction: {
-		type: String as PropType<ClickAction>,
-		default: 'default',
-	},
-	showCopy: {
-		type: Boolean,
-		default: false,
-	},
-	copyPosition: {
-		type: String,
-		default: 'end',
-	},
-	copyPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomCopyTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customCopyTooltip: {
-		type: String,
-		default: null,
-	},
-	showLink: {
-		type: Boolean,
-		default: false,
-	},
-	linkPosition: {
-		type: String,
-		default: 'end',
-	},
-	linkPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomLinkTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customLinkTooltip: {
-		type: String,
-		default: null,
-	},
-	placeholder: {
-		type: String,
-		default: null,
-	},
-	iconLeft: {
-		type: String,
-		default: null,
-	},
-	iconRight: {
-		type: String,
-		default: null,
-	},
-	min: {
-		type: Number,
-		default: undefined,
-	},
-	max: {
-		type: Number,
-		default: undefined,
-	},
-	step: {
-		type: Number,
-		default: 1,
-	},
-	// global optiopns (independend from this interface)
-	type: {
-		type: String,
-		default: null,
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-  openLinkAsNewTab: {
-    type: Boolean,
-    default: true
-	},
-	openLinkSafeMode: {
-		type: String,
-		default: 'never',
-	},
+const props = withDefaults(defineProps<{
+	// Directus default props
+	value: string | number | null;
+	type: string;
+	disabled: boolean;
+
+	// interfaceOptions
+	placeholder: string | null;
+	iconLeft: string | null;
+	iconRight: string | null;
+
+	// readOnlyOptions
+	clickAction: ClickAction;
+
+	// numberOptions
+	min: number | undefined;
+	max: number | undefined;
+	step: number;
+} & SharedCopyOptionsProps>(), {
+	// Directus default props
+	value: null,
+	disabled: false,
+
+	// interfaceOptions
+	placeholder: null,
+	iconLeft: null,
+	iconRight: null,
+
+	// readOnlyOptions
+	clickAction: 'default',
+
+	// numberOptions
+	min: undefined,
+	max: undefined,
+	step: 1,
+
+	// SharedOptions
+	...sharedOptionsPropsDefaults,
 });
 
 const emit = defineEmits(['input']);
 
-const { isCopySupported, copyToClipboard } = useClipboard();
 useAppTranslations().loadLocaleMessages();
 
-const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
-
+const { isCopySupported, copyToClipboard } = useClipboard();
 const { computedLink, computedCopyValue } = usePrefixedValues(props);
 
 const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
@@ -189,26 +136,16 @@ const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	customLinkTooltip: props.customLinkTooltip,
 });
 
-
 const inputType = computed(() => {
-	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) return 'number';
+	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) {
+		return 'number';
+	}
 	return 'text';
 });
 
-
 async function copyValue() {
-	await copyToClipboard(`${computedCopyValue.value}`, notificationStore);
+	await copyToClipboard(`${computedCopyValue.value}`);
 };
-
-
-// TODO: move in composable (together with display)
-function valueClickAction(e: Event) {
-	if (props.clickAction === 'copy' && props.disabled && props.value) {
-		e.stopPropagation();
-		copyValue();
-	} 
-	// else go on with the default events
-}
 </script>
 
 
@@ -216,7 +153,7 @@ function valueClickAction(e: Event) {
 
 <style lang="scss">
 	// !NOTE: GLOBAL STYLES - use scoped styles for the component whenever possible!
-	.action-interface {
+	.defa-action-interface {
 		.v-input {
 			
 			input:disabled {
@@ -231,24 +168,24 @@ function valueClickAction(e: Event) {
 
 
 <style scoped lang="scss">
-.action-interface {
+.defa-action-interface {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap:8px;
 
-	.dynamic-input-wrapper {
+	.defa-click-action-wrapper {
 		width: 100%;
 	}
 
 	>div {
 		display: inherit;
 
-		&.order-1 {
+		&.defa-order-1 {
 			order: 1;
 		}
 
-		&.-order-1 {
+		&.-defa-order-1 {
 			order: -1;
 		}
 	}

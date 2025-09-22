@@ -1,10 +1,54 @@
-import { DisplayConfig } from '@directus/shared/types';
-import type {ExtensionOptionsContext} from '@directus/types';
+import type { ExtensionOptionsContext } from '@directus/types';
+import type { DeepPartial, AppField } from '@directus/types';
 
 type ConfigTarget = 'display' | 'interface';
 
-export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget) {
-  const options: DisplayConfig['options'] = [
+type CopyOptionsProps = {
+  showCopy: boolean;
+  copyPosition: 'start' | 'end';
+  copyPrefix: string;
+  useCustomCopyTooltip: boolean;
+  customCopyTooltip: string;
+};
+
+type LinkOptionsProps = {
+  showLink: boolean;
+  linkPosition: 'start' | 'end';
+  linkPrefix: string;
+  useCustomLinkTooltip: boolean;
+  customLinkTooltip: string;
+  openLinkAsNewTab: boolean;
+  openLinkSafeMode: 'never' | 'always';
+};
+
+export type SharedCopyOptionsProps = CopyOptionsProps & LinkOptionsProps;
+
+const copyOptionsPropsDefaults: CopyOptionsProps = {
+  showCopy: false,
+  copyPosition: 'end',
+  copyPrefix: '',
+  useCustomCopyTooltip: false,
+  customCopyTooltip: 'Copy value',
+};
+
+const linkOptionsPropsDefaults: LinkOptionsProps = {
+  showLink: false,
+  linkPosition: 'end',
+  linkPrefix: '',
+  useCustomLinkTooltip: false,
+  customLinkTooltip: 'Open link',
+  openLinkAsNewTab: true,
+  openLinkSafeMode: 'never',
+};
+
+export const sharedOptionsPropsDefaults: SharedCopyOptionsProps = {
+  ...copyOptionsPropsDefaults,
+  ...linkOptionsPropsDefaults,
+};
+
+
+export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget): DeepPartial<AppField>[] {
+  const groups: DeepPartial<AppField>[] = [
     {
       field: 'groupCopySettings',
       name: 'Copy item settings',
@@ -33,6 +77,9 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         },
       },
     },
+  ];
+
+  const copyOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof CopyOptionsProps }>[] = [
     {
       field: 'showCopy',
       name: 'Display copy icon',
@@ -122,6 +169,9 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         default_value: 'Copy value',
       },
     },
+  ];
+  
+  const linkOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof LinkOptionsProps }>[] = [
     {
       field: 'showLink',
       name: 'Display link icon',
@@ -253,7 +303,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
     },
   ];
 
-  return options;
+  return [...groups, ...copyOptions, ...linkOptions];
 }
 
 

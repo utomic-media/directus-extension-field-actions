@@ -9,8 +9,10 @@
     "display_options": {
       "clickAction": "copy",
       "copyButtonLabel": null,
+      "copyPosition": "start",
       "customCopyTooltip": "$t:custom_copy_tooltip",
       "customLinkTooltip": "$t:custom_link_tooltip",
+      "linkPosition": "start",
       "openLinkSafeMode": "always",
       "showCopy": true,
       "showLink": true,
