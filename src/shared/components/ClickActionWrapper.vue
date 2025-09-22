@@ -26,16 +26,14 @@
 import LinkWrapper from './LinkWrapper.vue';
 import type { ClickAction } from '../types';
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   clickAction: ClickAction;
   computedLink: string;
   openLinkAsNewTab?: boolean;
   openLinkSafeMode?: string;
   actionTooltip?: string | null;
   disabled: boolean;
-}>(), {
-  
-});
+}>();
 
 const emit = defineEmits<{
   copy: [];
