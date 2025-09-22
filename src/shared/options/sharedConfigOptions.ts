@@ -1,10 +1,10 @@
-import { DisplayConfig } from '@directus/shared/types';
-import type {ExtensionOptionsContext} from '@directus/types';
+import type { ExtensionOptionsContext } from '@directus/types';
+import type { DeepPartial, AppField } from '@directus/types';
 
 type ConfigTarget = 'display' | 'interface';
 
-export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget) {
-  const options: DisplayConfig['options'] = [
+export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget): DeepPartial<AppField>[] {
+  const options: DeepPartial<AppField>[] = [
     {
       field: 'groupCopySettings',
       name: 'Copy item settings',
