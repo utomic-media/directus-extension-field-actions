@@ -10,7 +10,11 @@
       <slot />
     </link-wrapper>
 
-    <div v-else>
+    <div
+      v-else
+      v-tooltip="actionTooltip"
+      @click="valueClickAction($event)"
+    >
       <slot />
     </div>
   </div>
@@ -22,15 +26,29 @@
 import LinkWrapper from './LinkWrapper.vue';
 import type { ClickAction } from '../types';
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   clickAction: ClickAction;
   computedLink: string;
   openLinkAsNewTab?: boolean;
   openLinkSafeMode?: string;
   actionTooltip?: string | null;
+  disabled: boolean;
 }>(), {
-  clickAction: 'default',
+  
 });
+
+const emit = defineEmits<{
+  copy: [];
+}>()
+
+
+function valueClickAction(e: Event) {
+  if (props.clickAction === 'copy' && props.disabled) {
+		e.stopPropagation();
+		emit('copy')
+	} 
+	// else go on with the default events
+}
 </script>
 
 

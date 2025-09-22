@@ -6,6 +6,8 @@
 			:open-link-as-new-tab="openLinkAsNewTab"
 			:open-link-safe-mode="openLinkSafeMode"
 			:action-tooltip="actionTooltip"
+			:disabled="disabled"
+			@copy="copyValue"
 		>
 			<v-input 
 				:model-value="value" 
@@ -16,7 +18,6 @@
 				:max="max"
 				:step="step"
 				@update:model-value="$emit('input', $event)"
-				@click="valueClickAction"
 			>
 				<template v-if="iconLeft" #prepend>
 					<v-icon :name="iconLeft" />
@@ -135,7 +136,6 @@ const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	customLinkTooltip: props.customLinkTooltip,
 });
 
-
 const inputType = computed(() => {
 	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) {
 		return 'number';
@@ -143,20 +143,9 @@ const inputType = computed(() => {
 	return 'text';
 });
 
-
 async function copyValue() {
 	await copyToClipboard(`${computedCopyValue.value}`);
 };
-
-
-// TODO: move in composable (together with display)
-function valueClickAction(e: Event) {
-	if (props.clickAction === 'copy' && props.disabled && props.value) {
-		e.stopPropagation();
-		copyValue();
-	} 
-	// else go on with the default events
-}
 </script>
 
 

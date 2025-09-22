@@ -8,10 +8,11 @@
 			:open-link-as-new-tab="openLinkAsNewTab"
 			:open-link-safe-mode="openLinkSafeMode"
 			:action-tooltip="actionTooltip"
+			:disabled="true"
+			@copy="copyValue"
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
-				@click="valueClickAction"
 			>
 				{{ value }}
 			</span>
@@ -120,21 +121,9 @@ const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 	customLinkTooltip: props.customLinkTooltip,
 });
 
-
 async function copyValue() {
 	await copyToClipboard(computedCopyValue.value);
 };
-
-
-// TODO: move in composable (together with display)
-function valueClickAction(e: Event) {
-	if (props.clickAction === 'copy') {
-		e.stopPropagation();
-		copyValue();
-	} 
-	// else go on with the default events
-}
-
 
 const hasValueClickAction = computed(() => {
 	if (props.clickAction === 'default') return false;
