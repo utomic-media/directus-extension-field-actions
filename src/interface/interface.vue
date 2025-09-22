@@ -1,6 +1,6 @@
 <template>
 	<div class="action-interface">
-		<ClickActionWrapper
+		<click-action-wrapper
 			:click-action="clickAction"
 			:computed-link="computedLink"
 			:open-link-as-new-tab="openLinkAsNewTab"
@@ -26,7 +26,7 @@
 					<v-icon :name="iconRight" />
 				</template>
 			</v-input>
-		</ClickActionWrapper>
+		</click-action-wrapper>
 
 		<v-button
 			v-if="showCopy"
