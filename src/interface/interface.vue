@@ -141,7 +141,9 @@ const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
 
 
 const inputType = computed(() => {
-	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) return 'number';
+	if (['bigInteger', 'integer', 'float', 'decimal'].includes(props.type)) {
+		return 'number';
+	}
 	return 'text';
 });
 
