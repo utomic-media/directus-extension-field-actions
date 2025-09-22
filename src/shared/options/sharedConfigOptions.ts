@@ -19,7 +19,7 @@ type LinkOptionsProps = {
   customLinkTooltip: string;
   openLinkAsNewTab: boolean;
   openLinkSafeMode: 'never' | 'always';
-}
+};
 
 export type SharedCopyOptionsProps = CopyOptionsProps & LinkOptionsProps;
 

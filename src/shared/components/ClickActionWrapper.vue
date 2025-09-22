@@ -26,16 +26,14 @@
 import LinkWrapper from './LinkWrapper.vue';
 import type { ClickAction } from '../types';
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   clickAction: ClickAction;
   computedLink: string;
   openLinkAsNewTab?: boolean;
   openLinkSafeMode?: string;
   actionTooltip?: string | null;
   disabled: boolean;
-}>(), {
-  
-});
+}>();
 
 const emit = defineEmits<{
   copy: [];
@@ -45,7 +43,7 @@ const emit = defineEmits<{
 function valueClickAction(e: Event) {
   if (props.clickAction === 'copy' && props.disabled) {
 		e.stopPropagation();
-		emit('copy')
+		emit('copy');
 	} 
 	// else go on with the default events
 }
