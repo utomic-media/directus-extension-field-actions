@@ -1,7 +1,7 @@
 <template>
 	<value-null v-if="!value" />
 	
-	<span v-else class="action-display">
+	<span v-else class="defa-action-display">
 		<click-action-wrapper
 			v-if="!hideFieldValue"
 			:click-action="clickAction"
@@ -13,7 +13,7 @@
 			@copy="copyValue"
 		>
 			<span 
-				:class="hasValueClickAction ? 'action-background' : ''"
+				:class="hasValueClickAction ? 'defa-action-background' : ''"
 			>
 				{{ value }}
 			</span>
@@ -25,7 +25,7 @@
 			:is="(copyButtonLabel) ? 'v-button' : 'span'" 
 			outlined
 			xSmall
-			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="copyPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 			v-tooltip="copyTooltip"
 			@click.stop="copyValue"
 			data-testid="copy-button"
@@ -35,7 +35,7 @@
 				:color="copyButtonLabel ? 'primary' : ''"
 			/>
 
-			<span v-if="copyButtonLabel" class="ml-2">{{ copyButtonLabel }}</span>
+			<span v-if="copyButtonLabel" class="defa-ml-2">{{ copyButtonLabel }}</span>
 		</component>
 		
 
@@ -45,7 +45,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
-			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="linkPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 			@click.stop
 		>
 			<component
@@ -59,7 +59,7 @@
 					name="open_in_new"
 					:color="linkButtonLabel ? 'primary' : ''"
 				/>
-				<span v-if="linkButtonLabel" class="ml-2">{{ linkButtonLabel }}</span>
+				<span v-if="linkButtonLabel" class="defa-ml-2">{{ linkButtonLabel }}</span>
 			</component>
 		</link-wrapper>
 	</span>
@@ -142,8 +142,8 @@ const hasValueClickAction = computed(() => {
 
 	.header-bar .title-container {
 		// if the display is in the header bar title we need extra styling, as it has a fixed height
-		.action-display {
-			.action-background {
+		.defa-action-display {
+			.defa-action-background {
 				line-height: 2rem;
 				padding-top: 0;
 				padding-bottom: 0;
@@ -153,14 +153,14 @@ const hasValueClickAction = computed(() => {
 
 	// if the display is in the render template we need to use flex on it
 	// NOTE: this could be optimized, as this way the default "text-overflow: ellapsis" from directus is not working, but it should be fine for 98% of the use-cases
-	.render-template:has(.action-display) {
+	.render-template:has(.defa-action-display) {
 		display: flex;
 		align-items: center;
 	}
 </style>
 
 <style scoped lang="scss">
-	.action-display {
+	.defa-action-display {
 		display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -171,16 +171,16 @@ const hasValueClickAction = computed(() => {
 		div {
 			display: inherit;
 
-			&.order-1 {
+			&.defa-order-1 {
 				order: 1;
 			}
 
-			&.-order-1 {
+			&.-defa-order-1 {
 				order: -1;
 			}
 		}
 
-		.ml-2 {
+		.defa-ml-2 {
 			margin-left: 0.5rem;
 		}
 
@@ -193,7 +193,7 @@ const hasValueClickAction = computed(() => {
 			}
 		}
 
-		.action-background {
+		.defa-action-background {
 			background-color: var(--theme--primary-background);
 			color: var(--theme--primary);
 			padding: 0.5rem 1rem;

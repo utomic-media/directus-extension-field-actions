@@ -1,5 +1,5 @@
 <template>
-	<div class="action-interface">
+	<div class="defa-action-interface">
 		<click-action-wrapper
 			:click-action="clickAction"
 			:computed-link="computedLink"
@@ -37,7 +37,7 @@
 			secondary
 			xLarge
 			data-testid="copy-button"
-			:class="copyPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="copyPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 		>
 			<v-icon
 				name="content_copy"
@@ -51,7 +51,7 @@
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
 			:safeMode="openLinkSafeMode === 'always'"
-			:class="linkPosition === 'start' ? '-order-1' : 'order-1'"
+			:class="linkPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
 		>
 			<v-button
 				:disabled="!value"
@@ -153,7 +153,7 @@ async function copyValue() {
 
 <style lang="scss">
 	// !NOTE: GLOBAL STYLES - use scoped styles for the component whenever possible!
-	.action-interface {
+	.defa-action-interface {
 		.v-input {
 			
 			input:disabled {
@@ -168,7 +168,7 @@ async function copyValue() {
 
 
 <style scoped lang="scss">
-.action-interface {
+.defa-action-interface {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -181,11 +181,11 @@ async function copyValue() {
 	>div {
 		display: inherit;
 
-		&.order-1 {
+		&.defa-order-1 {
 			order: 1;
 		}
 
-		&.-order-1 {
+		&.-defa-order-1 {
 			order: -1;
 		}
 	}
