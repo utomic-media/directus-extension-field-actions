@@ -78,6 +78,7 @@ import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';
 
 const props = defineProps({
+	// Directus default props
 	value: {
 		type: String,
 		default: null,
@@ -90,6 +91,8 @@ const props = defineProps({
 		type: Object,
 		default: {},	// TODO: type to options!
 	},
+
+	// customOptionsBeforeShared
 	hideFieldValue: {
 		type: Boolean,
 		default: false,
@@ -98,6 +101,8 @@ const props = defineProps({
 		type: String as PropType<ClickAction>,
 		default: 'default',
 	},
+
+	// SharedOptions
 	showCopy: {
 		type: Boolean,
 		default: false,
@@ -117,10 +122,6 @@ const props = defineProps({
 	customCopyTooltip: {
 		type: String,
 		default: null,
-	},
-	copyButtonLabel: {
-		type: String,
-		default: '',
 	},
 	showLink: {
 		type: Boolean,
@@ -142,10 +143,6 @@ const props = defineProps({
 		type: String,
 		default: null,
 	},
-	linkButtonLabel: {
-		type: String,
-		default: '',
-	},
   openLinkAsNewTab: {
     type: Boolean,
     default: true
@@ -153,6 +150,16 @@ const props = defineProps({
 	openLinkSafeMode: {
 		type: String,
 		default: 'never',
+	},
+
+	// customOptionsAfterShared
+	copyButtonLabel: {
+		type: String,
+		default: '',
+	},
+	linkButtonLabel: {
+		type: String,
+		default: '',
 	},
 });
 
