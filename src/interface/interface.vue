@@ -72,7 +72,6 @@
 import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
-import { useStores } from '@directus/extensions-sdk';
 import LinkWrapper from '../shared/components/LinkWrapper.vue';
 import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
@@ -123,12 +122,9 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['input']);
 
-const { isCopySupported, copyToClipboard } = useClipboard();
 useAppTranslations().loadLocaleMessages();
 
-const { useNotificationsStore } = useStores();
-const notificationStore = useNotificationsStore();	
-
+const { isCopySupported, copyToClipboard } = useClipboard();
 const { computedLink, computedCopyValue } = usePrefixedValues(props);
 
 const { copyTooltip, linkTooltip, actionTooltip } = useTooltips({
@@ -149,7 +145,7 @@ const inputType = computed(() => {
 
 
 async function copyValue() {
-	await copyToClipboard(`${computedCopyValue.value}`, notificationStore);
+	await copyToClipboard(`${computedCopyValue.value}`);
 };
 
 
