@@ -1,5 +1,6 @@
 <template>
 	<value-null v-if="!value" />
+	
 	<span v-else class="action-display">
 		<click-action-wrapper
 			v-if="!hideFieldValue"
