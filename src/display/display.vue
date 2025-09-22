@@ -4,7 +4,7 @@
 		<!-- NOTE: @click.stop to prevent the opening of item page -->
 		<component
 			v-if="!hideFieldValue"
-			:is="(clickAction === 'link') ? linkWrapper : 'span'" 
+			:is="(clickAction === 'link') ? LinkWrapper : 'span'" 
 			v-tooltip.left="actionTooltip"
 			:href="computedLink"
 			:target="openLinkAsNewTab ? '_blank' : '_self'"
@@ -74,7 +74,7 @@ import { computed, PropType } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
-import linkWrapper from '../shared/components/linkWrapper.vue';
+import LinkWrapper from '../shared/components/LinkWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';
