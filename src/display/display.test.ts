@@ -67,7 +67,7 @@ describe('Display.vue - Click-Action: copy', () => {
   });
 
   test('Input-wrapper should be a LinkWrapper', () => {
-    expect(componentWrapper.findComponent('.defa-link-wrapper.dynamic-input-wrapper').exists()).toBe(true);
+    expect(componentWrapper.findComponent('.defa-link-wrapper.defa-click-action-wrapper').exists()).toBe(true);
   });
 });
 

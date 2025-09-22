@@ -1,16 +1,13 @@
 <template>
 	<value-null v-if="!value" />
 	<span v-else class="action-display">
-		<!-- NOTE: @click.stop to prevent the opening of item page -->
-		<component
+		<click-action-wrapper
 			v-if="!hideFieldValue"
-			:is="(clickAction === 'link') ? LinkWrapper : 'span'" 
-			v-tooltip.left="actionTooltip"
-			:href="computedLink"
-			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			:safeMode="openLinkSafeMode === 'always'"
-			class="dynamic-input-wrapper"
-			@click.stop
+			:click-action="clickAction"
+			:computed-link="computedLink"
+			:open-link-as-new-tab="openLinkAsNewTab"
+			:open-link-safe-mode="openLinkSafeMode"
+			:action-tooltip="actionTooltip"
 		>
 			<span 
 				:class="hasValueClickAction ? 'action-background' : ''"
@@ -18,7 +15,7 @@
 			>
 				{{ value }}
 			</span>
-		</component>
+		</click-action-wrapper>
 		
 		<component
 			v-if="showCopy"
@@ -75,6 +72,7 @@ import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
 import LinkWrapper from '../shared/components/LinkWrapper.vue';
+import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';

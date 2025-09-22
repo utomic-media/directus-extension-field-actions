@@ -1,11 +1,11 @@
 <template>
 	<div class="action-interface">
-		<component 
-			:is="(clickAction === 'link') ? LinkWrapper : 'div'" 
-			:href="computedLink"
-			:target="openLinkAsNewTab ? '_blank' : '_self'"
-			:safeMode="openLinkSafeMode === 'always'"
-			class="dynamic-input-wrapper"
+		<ClickActionWrapper
+			:click-action="clickAction"
+			:computed-link="computedLink"
+			:open-link-as-new-tab="openLinkAsNewTab"
+			:open-link-safe-mode="openLinkSafeMode"
+			:action-tooltip="actionTooltip"
 		>
 			<v-input 
 				:model-value="value" 
@@ -15,7 +15,6 @@
 				:min="min"
 				:max="max"
 				:step="step"
-				v-tooltip="actionTooltip"
 				@update:model-value="$emit('input', $event)"
 				@click="valueClickAction"
 			>
@@ -27,7 +26,7 @@
 					<v-icon :name="iconRight" />
 				</template>
 			</v-input>
-		</component>
+		</ClickActionWrapper>
 
 		<v-button
 			v-if="showCopy"
@@ -75,6 +74,7 @@ import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
 import LinkWrapper from '../shared/components/LinkWrapper.vue';
+import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';
@@ -237,7 +237,7 @@ function valueClickAction(e: Event) {
 	align-items: center;
 	gap:8px;
 
-	.dynamic-input-wrapper {
+	.defa-click-action-wrapper {
 		width: 100%;
 	}
 
