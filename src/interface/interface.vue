@@ -80,14 +80,55 @@ import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import type { ClickAction } from '../shared/types';
 
 const props = defineProps({
+	// Directus default props
 	value: {
 		type: [String, Number],
 		default: null,
 	},
+	type: {
+		type: String,
+		default: null,
+	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+
+	// interfaceOptions
+	placeholder: {
+		type: String,
+		default: null,
+	},
+	iconLeft: {
+		type: String,
+		default: null,
+	},
+	iconRight: {
+		type: String,
+		default: null,
+	},
+	
+	// readOnlyOptions
 	clickAction: {
 		type: String as PropType<ClickAction>,
 		default: 'default',
 	},
+
+	// numberOptions
+	min: {
+		type: Number,
+		default: undefined,
+	},
+	max: {
+		type: Number,
+		default: undefined,
+	},
+	step: {
+		type: Number,
+		default: 1,
+	},
+
+	// SharedOptions
 	showCopy: {
 		type: Boolean,
 		default: false,
@@ -127,39 +168,6 @@ const props = defineProps({
 	customLinkTooltip: {
 		type: String,
 		default: null,
-	},
-	placeholder: {
-		type: String,
-		default: null,
-	},
-	iconLeft: {
-		type: String,
-		default: null,
-	},
-	iconRight: {
-		type: String,
-		default: null,
-	},
-	min: {
-		type: Number,
-		default: undefined,
-	},
-	max: {
-		type: Number,
-		default: undefined,
-	},
-	step: {
-		type: Number,
-		default: 1,
-	},
-	// global optiopns (independend from this interface)
-	type: {
-		type: String,
-		default: null,
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
 	},
   openLinkAsNewTab: {
     type: Boolean,
