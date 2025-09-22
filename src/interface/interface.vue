@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
@@ -77,106 +77,49 @@ import LinkWrapper from '../shared/components/LinkWrapper.vue';
 import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
+import { sharedOptionsPropsDefaults } from '../shared/options/sharedConfigOptions';
 import type { ClickAction } from '../shared/types';
+import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptions';
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
 	// Directus default props
-	value: {
-		type: [String, Number],
-		default: null,
-	},
-	type: {
-		type: String,
-		default: null,
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
+	value: string | number | null;
+	type: string | null;
+	disabled: boolean;
 
 	// interfaceOptions
-	placeholder: {
-		type: String,
-		default: null,
-	},
-	iconLeft: {
-		type: String,
-		default: null,
-	},
-	iconRight: {
-		type: String,
-		default: null,
-	},
-	
+	placeholder: string | null;
+	iconLeft: string | null;
+	iconRight: string | null;
+
 	// readOnlyOptions
-	clickAction: {
-		type: String as PropType<ClickAction>,
-		default: 'default',
-	},
+	clickAction: ClickAction;
 
 	// numberOptions
-	min: {
-		type: Number,
-		default: undefined,
-	},
-	max: {
-		type: Number,
-		default: undefined,
-	},
-	step: {
-		type: Number,
-		default: 1,
-	},
+	min: number | undefined;
+	max: number | undefined;
+	step: number;
+} & SharedCopyOptionsProps>(), {
+	// Directus default props
+	value: null,
+	type: null,
+	disabled: false,
+
+	// interfaceOptions
+	placeholder: null,
+	iconLeft: null,
+	iconRight: null,
+
+	// readOnlyOptions
+	clickAction: 'default',
+
+	// numberOptions
+	min: undefined,
+	max: undefined,
+	step: 1,
 
 	// SharedOptions
-	showCopy: {
-		type: Boolean,
-		default: false,
-	},
-	copyPosition: {
-		type: String,
-		default: 'end',
-	},
-	copyPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomCopyTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customCopyTooltip: {
-		type: String,
-		default: null,
-	},
-	showLink: {
-		type: Boolean,
-		default: false,
-	},
-	linkPosition: {
-		type: String,
-		default: 'end',
-	},
-	linkPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomLinkTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customLinkTooltip: {
-		type: String,
-		default: null,
-	},
-  openLinkAsNewTab: {
-    type: Boolean,
-    default: true
-	},
-	openLinkSafeMode: {
-		type: String,
-		default: 'never',
-	},
+	...sharedOptionsPropsDefaults,
 });
 
 const emit = defineEmits(['input']);

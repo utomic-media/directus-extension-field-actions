@@ -67,7 +67,7 @@
 
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import { useStores } from '@directus/extensions-sdk';
@@ -75,92 +75,38 @@ import LinkWrapper from '../shared/components/LinkWrapper.vue';
 import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
+import { sharedOptionsPropsDefaults } from '../shared/options/sharedConfigOptions';
 import type { ClickAction } from '../shared/types';
+import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptions';
 
-const props = defineProps({
+const props = withDefaults(defineProps<{
 	// Directus default props
-	value: {
-		type: String,
-		default: null,
-	},
-	type: {
-		type: String,
-		default: null,
-	},
-	interfaceOptions: {
-		type: Object,
-		default: {},	// TODO: type to options!
-	},
+	value: string | null;
+	type: string | null;
 
 	// customOptionsBeforeShared
-	hideFieldValue: {
-		type: Boolean,
-		default: false,
-	},
-	clickAction: {
-		type: String as PropType<ClickAction>,
-		default: 'default',
-	},
-
-	// SharedOptions
-	showCopy: {
-		type: Boolean,
-		default: false,
-	},
-	copyPosition: {
-		type: String,
-		default: 'end',
-	},
-	copyPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomCopyTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customCopyTooltip: {
-		type: String,
-		default: null,
-	},
-	showLink: {
-		type: Boolean,
-		default: false,
-	},
-	linkPosition: {
-		type: String,
-		default: 'end',
-	},
-	linkPrefix: {
-		type: String,
-		default: '',
-	},
-	useCustomLinkTooltip: {
-		type: Boolean,
-		default: false,
-	},
-	customLinkTooltip: {
-		type: String,
-		default: null,
-	},
-  openLinkAsNewTab: {
-    type: Boolean,
-    default: true
-	},
-	openLinkSafeMode: {
-		type: String,
-		default: 'never',
-	},
+	hideFieldValue: boolean;
+	clickAction: ClickAction;
 
 	// customOptionsAfterShared
-	copyButtonLabel: {
-		type: String,
-		default: '',
-	},
-	linkButtonLabel: {
-		type: String,
-		default: '',
-	},
+	copyButtonLabel: string;
+	linkButtonLabel: string;
+} & SharedCopyOptionsProps>(), {
+	// Directus default props
+	value: null,
+	type: null,
+
+	// customOptionsBeforeShared
+	hideFieldValue: false,
+	clickAction: 'default',
+	
+
+	// SharedOptions
+	...sharedOptionsPropsDefaults,
+
+	// customOptionsAfterShared
+	copyButtonLabel: '',
+	linkButtonLabel: '',
 });
 
 

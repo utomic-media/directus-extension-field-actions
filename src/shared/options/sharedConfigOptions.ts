@@ -3,6 +3,49 @@ import type { DeepPartial, AppField } from '@directus/types';
 
 type ConfigTarget = 'display' | 'interface';
 
+type CopyOptionsProps = {
+  showCopy: boolean;
+  copyPosition: 'start' | 'end';
+  copyPrefix: string;
+  useCustomCopyTooltip: boolean;
+  customCopyTooltip: string;
+};
+
+type LinkOptionsProps = {
+  showLink: boolean;
+  linkPosition: 'start' | 'end';
+  linkPrefix: string;
+  useCustomLinkTooltip: boolean;
+  customLinkTooltip: string;
+  openLinkAsNewTab: boolean;
+  openLinkSafeMode: 'never' | 'always';
+}
+
+export type SharedCopyOptionsProps = CopyOptionsProps & LinkOptionsProps;
+
+const copyOptionsPropsDefaults: CopyOptionsProps = {
+  showCopy: false,
+  copyPosition: 'end',
+  copyPrefix: '',
+  useCustomCopyTooltip: false,
+  customCopyTooltip: 'Copy value',
+};
+
+const linkOptionsPropsDefaults: LinkOptionsProps = {
+  showLink: false,
+  linkPosition: 'end',
+  linkPrefix: '',
+  useCustomLinkTooltip: false,
+  customLinkTooltip: 'Open link',
+  openLinkAsNewTab: true,
+  openLinkSafeMode: 'never',
+};
+
+export const sharedOptionsPropsDefaults: SharedCopyOptionsProps = {
+  ...copyOptionsPropsDefaults,
+  ...linkOptionsPropsDefaults,
+};
+
 export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget): DeepPartial<AppField>[] {
   const groups: DeepPartial<AppField>[] = [
     {
