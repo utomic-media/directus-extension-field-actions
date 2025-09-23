@@ -86,7 +86,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         interface: 'group-raw',
         special: ['alias', 'no-data', 'group'],
         group: 'groupCopySettings',
-        readonly: fieldConfigMatchesValue(field, configTarget, 'showCopy', true),
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showCopy', false),
       },
     },
     {
@@ -97,7 +97,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         interface: 'group-raw',
         special: ['alias', 'no-data', 'group'],
         group: 'groupLinkSettings',
-        readonly: fieldConfigMatchesValue(field, configTarget, 'showLink', true),
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showLink', false),
       },
     },
   ];
@@ -187,7 +187,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'groupCopySettingsEnabled',
-        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomCopyTooltip', true),
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomCopyTooltip', false),
       },
       schema: {
         default_value: 'Copy value',
@@ -282,7 +282,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'groupLinkSettingsEnabled',
-        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomLinkTooltip', true),
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomLinkTooltip', false),
       },
       schema: {
         default_value: 'Open link',
@@ -359,12 +359,12 @@ export function getClickActionChoices(isString: boolean) {
 
 
 /**
- * Conditionally show/hide a field based on another field's value
+ * Check if a certain config option of the field matches the expected value
  * 
  * @param field The field contextOptions
  * @param configTarget Switch between 'display' and 'interface' config options
- * @param targetField The field to watch
- * @param showIfValue The expected value of the target field to show the current field
+ * @param optionsKey The field to watch
+ * @param expectedValue The expected value of the target field 
  * 
  * @returns true, if the target field equals the expected value, else false
  */
@@ -372,8 +372,13 @@ function fieldConfigMatchesValue(field: ExtensionOptionsContext['field'], config
   const options = configTarget === 'display' ? field.meta?.display_options : field.meta?.options;
 
   if (options?.[optionsKey] === expectedValue) {
-    return false; // don't hide field
+    return true;
   }
 
-  return true; // hide field
+  // In case of a false, check for undefined & null as well
+  else if (expectedValue === false && !options?.[optionsKey]) {
+    return true;
+  }
+
+  return false;
 }
