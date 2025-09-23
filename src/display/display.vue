@@ -82,16 +82,16 @@ import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptio
 
 const props = withDefaults(defineProps<{
 	// Directus default props
-	value: string | null;
+	value?: string | null;
 	type: string;
 
 	// customOptionsBeforeShared
-	hideFieldValue: boolean;
-	clickAction: ClickAction;
+	hideFieldValue?: boolean;
+	clickAction?: ClickAction;
 
 	// customOptionsAfterShared
-	copyButtonLabel: string;
-	linkButtonLabel: string;
+	copyButtonLabel?: string | null;
+	linkButtonLabel?: string | null;
 } & SharedCopyOptionsProps>(), {
 	// Directus default props
 	value: null,
@@ -105,8 +105,8 @@ const props = withDefaults(defineProps<{
 	...sharedOptionsPropsDefaults,
 
 	// customOptionsAfterShared
-	copyButtonLabel: '',
-	linkButtonLabel: '',
+	copyButtonLabel: null,
+	linkButtonLabel: null,
 });
 
 useAppTranslations().loadLocaleMessages();

@@ -1,29 +1,30 @@
 import type { ExtensionOptionsContext } from '@directus/types';
 import type { DeepPartial, AppField } from '@directus/types';
+import type { RequiredProps } from '../types';
 
 type ConfigTarget = 'display' | 'interface';
 
 type CopyOptionsProps = {
-  showCopy: boolean;
-  copyPosition: 'start' | 'end';
-  copyPrefix: string;
-  useCustomCopyTooltip: boolean;
-  customCopyTooltip: string;
+  showCopy?: boolean;
+  copyPosition?: 'start' | 'end';
+  copyPrefix?: string;
+  useCustomCopyTooltip?: boolean;
+  customCopyTooltip?: string;
 };
 
 type LinkOptionsProps = {
-  showLink: boolean;
-  linkPosition: 'start' | 'end';
-  linkPrefix: string;
-  useCustomLinkTooltip: boolean;
-  customLinkTooltip: string;
-  openLinkAsNewTab: boolean;
-  openLinkSafeMode: 'never' | 'always';
+  showLink?: boolean;
+  linkPosition?: 'start' | 'end';
+  linkPrefix?: string;
+  useCustomLinkTooltip?: boolean;
+  customLinkTooltip?: string;
+  openLinkAsNewTab?: boolean;
+  openLinkSafeMode?: 'never' | 'always';
 };
 
 export type SharedCopyOptionsProps = CopyOptionsProps & LinkOptionsProps;
 
-const copyOptionsPropsDefaults: CopyOptionsProps = {
+const copyOptionsPropsDefaults: RequiredProps<CopyOptionsProps> = {
   showCopy: false,
   copyPosition: 'end',
   copyPrefix: '',
@@ -31,7 +32,7 @@ const copyOptionsPropsDefaults: CopyOptionsProps = {
   customCopyTooltip: 'Copy value',
 };
 
-const linkOptionsPropsDefaults: LinkOptionsProps = {
+const linkOptionsPropsDefaults: RequiredProps<LinkOptionsProps> = {
   showLink: false,
   linkPosition: 'end',
   linkPrefix: '',

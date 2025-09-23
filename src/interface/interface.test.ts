@@ -27,6 +27,7 @@ describe('Interface.vue - With value', () => {
   const componentWrapper = mount(Interface, {
     props: {
       value: value,
+      type: "string",
     },
   });
 
@@ -42,6 +43,7 @@ describe('Interface.vue - With value', () => {
 describe('Interface.vue - Enabled Buttons', () => {
   const componentWrapper = mount(Interface, {
     props: {
+      type: "string",
       showCopy: true,
       showLink: true
     }
@@ -63,6 +65,7 @@ describe('Interface.vue - Enabled Buttons', () => {
 describe('Interface.vue - Click-Action: copy', () => { 
   const componentWrapper = mount(Interface, {
     props: {
+      type: "string",
       clickAction: "link"
     }
   });

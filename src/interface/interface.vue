@@ -83,22 +83,22 @@ import type { SharedCopyOptionsProps } from '../shared/options/sharedConfigOptio
 
 const props = withDefaults(defineProps<{
 	// Directus default props
-	value: string | number | null;
+	value?: string | number | null;
 	type: string;
-	disabled: boolean;
+	disabled?: boolean;
 
 	// interfaceOptions
-	placeholder: string | null;
-	iconLeft: string | null;
-	iconRight: string | null;
+	placeholder?: string | null;
+	iconLeft?: string | null;
+	iconRight?: string | null;
 
 	// readOnlyOptions
-	clickAction: ClickAction;
+	clickAction?: ClickAction;
 
 	// numberOptions
-	min: number | undefined;
-	max: number | undefined;
-	step: number;
+	min?: number | undefined;
+	max?: number | undefined;
+	step?: number;
 } & SharedCopyOptionsProps>(), {
 	// Directus default props
 	value: null,

@@ -26,6 +26,7 @@ describe('Display.vue - With value', () => {
   const componentWrapper = mount(Display, {
     props: {
       value: value,
+      type: "string",
     },
   });
 
@@ -40,6 +41,7 @@ describe('Display.vue - Enabled Buttons', () => {
   const componentWrapper = mount(Display, {
     props: {
       value: value,
+      type: "string",
       showCopy: true,
       showLink: true,
     }
@@ -62,8 +64,8 @@ describe('Display.vue - Click-Action: copy', () => {
   const componentWrapper = mount(Display, {
     props: {
       value: value,
-      clickAction: "link",
       type: "string",
+      clickAction: "link",
     }
   });
 
@@ -76,6 +78,7 @@ describe('Display.vue - Hide field value', () => {
   const componentWrapper = mount(Display, {
     props: {
       value: value,
+      type: "string",
       clickAction: "link",
       hideFieldValue: true,
     }
