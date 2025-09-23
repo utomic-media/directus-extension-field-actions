@@ -86,7 +86,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         interface: 'group-raw',
         special: ['alias', 'no-data', 'group'],
         group: 'groupCopySettings',
-        readonly: hideBasedOnOtherField(field, configTarget, 'showCopy', true),
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showCopy', true),
       },
     },
     {
@@ -97,7 +97,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         interface: 'group-raw',
         special: ['alias', 'no-data', 'group'],
         group: 'groupLinkSettings',
-        readonly: hideBasedOnOtherField(field, configTarget, 'showLink', true),
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showLink', true),
       },
     },
   ];
@@ -187,7 +187,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'groupCopySettingsEnabled',
-        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomCopyTooltip', true),
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomCopyTooltip', true),
       },
       schema: {
         default_value: 'Copy value',
@@ -282,7 +282,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         width: 'half',
         interface: 'system-input-translated-string',
         group: 'linkCopySettingsEnabled',
-        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomLinkTooltip', true),
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomLinkTooltip', true),
       },
       schema: {
         default_value: 'Open link',
@@ -368,10 +368,10 @@ export function getClickActionChoices(isString: boolean) {
  * 
  * @returns true, if the target field equals the expected value, else false
  */
-function hideBasedOnOtherField(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, targetField: string, showIfValue: any) {
+function fieldConfigMatchesValue(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, optionsKey: string, expectedValue: any) {
   const options = configTarget === 'display' ? field.meta?.display_options : field.meta?.options;
 
-  if (options?.[targetField] === showIfValue) {
+  if (options?.[optionsKey] === expectedValue) {
     return false; // don't hide field
   }
 
