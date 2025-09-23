@@ -78,6 +78,17 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         },
       },
     },
+    {
+      field: 'groupCopySettingsEnabled',
+      type: 'alias',
+      meta: {
+        field: 'groupCopySettingsEnabled', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-raw',
+        special: ['alias', 'no-data', 'group'],
+        group: 'groupCopySettings',
+        readonly: hideBasedOnOtherField(field, configTarget, 'showCopy', true),
+      },
+    },
   ];
 
   const copyOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof CopyOptionsProps }>[] = [
@@ -92,6 +103,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Display a copy button next to the item',
         },
         group: 'groupCopySettings',
+        sort: 1,
       },
       schema: {
         default_value: false,
@@ -110,7 +122,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'End', value: 'end' }
           ],
         },
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: 'end',
@@ -133,7 +145,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           allowNone: true,
         },
         note: 'Copies the field value with the given prefix',
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: '',
@@ -150,7 +162,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Enable',
         },
         note: 'Use a custom tooltip for the copy button',
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: false,
@@ -163,7 +175,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       meta: {
         width: 'half',
         interface: 'system-input-translated-string',
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
         hidden: hideBasedOnOtherField(field, configTarget, 'useCustomCopyTooltip', true),
       },
       schema: {
