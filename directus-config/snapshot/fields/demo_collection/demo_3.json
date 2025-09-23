@@ -21,6 +21,7 @@
     "note": null,
     "options": {
       "clickAction": "link",
+      "openLinkSafeMode": "always",
       "showCopy": true,
       "showLink": true
     },
@@ -31,7 +32,7 @@
     "translations": [
       {
         "language": "en-US",
-        "translation": "Demo 3 - Disabled Field"
+        "translation": "Demo 3 - Disabled Field: Link"
       }
     ],
     "validation": null,

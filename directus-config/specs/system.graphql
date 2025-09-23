@@ -264,7 +264,6 @@ type Subscription {
   directus_activity_mutated(event: EventEnum): directus_activity_mutated
   demo_collection_mutated(event: EventEnum): demo_collection_mutated
   directus_sync_id_map_mutated(event: EventEnum): directus_sync_id_map_mutated
-  testcoll_mutated(event: EventEnum): testcoll_mutated
 }
 
 """The `Boolean` scalar type represents `true` or `false`."""
@@ -397,6 +396,7 @@ type demo_collection {
   demo_2: String
   demo_3: String
   demo_4: String
+  demo_5: String
 }
 
 type demo_collection_mutated {
@@ -1681,17 +1681,6 @@ type server_info_websocket_graphql {
 type server_info_websocket_rest {
   authentication: server_info_websocket_rest_authentication
   path: String
-}
-
-type testcoll {
-  id: ID!
-  test: String
-}
-
-type testcoll_mutated {
-  key: ID!
-  event: EventEnum
-  data: testcoll
 }
 
 type users_me_tfa_generate_data {

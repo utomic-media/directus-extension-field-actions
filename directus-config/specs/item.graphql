@@ -7,10 +7,6 @@ type Query {
   directus_sync_id_map_by_id(id: ID!, version: String): directus_sync_id_map
   directus_sync_id_map_aggregated(groupBy: [String], filter: directus_sync_id_map_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_sync_id_map_aggregated!]!
   directus_sync_id_map_by_version(version: String!, id: ID!): version_directus_sync_id_map
-  testcoll(filter: testcoll_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [testcoll!]!
-  testcoll_by_id(id: ID!, version: String): testcoll
-  testcoll_aggregated(groupBy: [String], filter: testcoll_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [testcoll_aggregated!]!
-  testcoll_by_version(version: String!, id: ID!): version_testcoll
 }
 
 type Mutation {
@@ -18,23 +14,16 @@ type Mutation {
   create_demo_collection_item(data: create_demo_collection_input!): demo_collection
   create_directus_sync_id_map_items(filter: directus_sync_id_map_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_directus_sync_id_map_input!]): [directus_sync_id_map!]!
   create_directus_sync_id_map_item(data: create_directus_sync_id_map_input!): directus_sync_id_map
-  create_testcoll_items(filter: testcoll_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [create_testcoll_input!]): [testcoll!]!
-  create_testcoll_item(data: create_testcoll_input!): testcoll
   update_demo_collection_items(filter: demo_collection_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_demo_collection_input!): [demo_collection!]!
   update_demo_collection_batch(filter: demo_collection_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_demo_collection_input!]): [demo_collection!]!
   update_demo_collection_item(id: ID!, data: update_demo_collection_input!): demo_collection
   update_directus_sync_id_map_items(filter: directus_sync_id_map_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_directus_sync_id_map_input!): [directus_sync_id_map!]!
   update_directus_sync_id_map_batch(filter: directus_sync_id_map_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_directus_sync_id_map_input!]): [directus_sync_id_map!]!
   update_directus_sync_id_map_item(id: ID!, data: update_directus_sync_id_map_input!): directus_sync_id_map
-  update_testcoll_items(filter: testcoll_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_testcoll_input!): [testcoll!]!
-  update_testcoll_batch(filter: testcoll_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_testcoll_input!]): [testcoll!]!
-  update_testcoll_item(id: ID!, data: update_testcoll_input!): testcoll
   delete_demo_collection_items(ids: [ID]!): delete_many
   delete_demo_collection_item(id: ID!): delete_one
   delete_directus_sync_id_map_items(ids: [ID]!): delete_many
   delete_directus_sync_id_map_item(id: ID!): delete_one
-  delete_testcoll_items(ids: [ID]!): delete_many
-  delete_testcoll_item(id: ID!): delete_one
 }
 
 type Subscription {
@@ -61,7 +50,6 @@ type Subscription {
   directus_activity_mutated(event: EventEnum): directus_activity_mutated
   demo_collection_mutated(event: EventEnum): demo_collection_mutated
   directus_sync_id_map_mutated(event: EventEnum): directus_sync_id_map_mutated
-  testcoll_mutated(event: EventEnum): testcoll_mutated
 }
 
 """The `Boolean` scalar type represents `true` or `false`."""
@@ -146,6 +134,7 @@ type demo_collection {
   demo_2: String
   demo_3: String
   demo_4: String
+  demo_5: String
 }
 
 type demo_collection_aggregated {
@@ -172,6 +161,7 @@ type demo_collection_aggregated_count {
   demo_2: Int
   demo_3: Int
   demo_4: Int
+  demo_5: Int
 }
 
 type demo_collection_aggregated_fields {
@@ -745,39 +735,6 @@ type directus_webhooks_mutated {
   data: directus_webhooks
 }
 
-type testcoll {
-  id: ID!
-  test: String
-}
-
-type testcoll_aggregated {
-  group: JSON
-  countAll: Int
-  count: testcoll_aggregated_count
-  countDistinct: testcoll_aggregated_count
-  avg: testcoll_aggregated_fields
-  sum: testcoll_aggregated_fields
-  avgDistinct: testcoll_aggregated_fields
-  sumDistinct: testcoll_aggregated_fields
-  min: testcoll_aggregated_fields
-  max: testcoll_aggregated_fields
-}
-
-type testcoll_aggregated_count {
-  id: Int
-  test: Int
-}
-
-type testcoll_aggregated_fields {
-  id: Float
-}
-
-type testcoll_mutated {
-  key: ID!
-  event: EventEnum
-  data: testcoll
-}
-
 """"""
 type version_demo_collection {
   id: ID
@@ -790,6 +747,7 @@ type version_demo_collection {
   demo_2: String
   demo_3: String
   demo_4: String
+  demo_5: String
 }
 
 """"""
@@ -799,12 +757,6 @@ type version_directus_sync_id_map {
   sync_id: String
   local_id: String
   created_at: Date
-}
-
-""""""
-type version_testcoll {
-  id: ID
-  test: String
 }
 
 input big_int_filter_operators {
@@ -844,6 +796,7 @@ input create_demo_collection_input {
   demo_2: String
   demo_3: String
   demo_4: String
+  demo_5: String
 }
 
 input create_directus_access_input {
@@ -966,11 +919,6 @@ input create_directus_users_input {
   policies: [create_directus_access_input]
 }
 
-input create_testcoll_input {
-  id: ID
-  test: String
-}
-
 input date_filter_operators {
   _eq: String
   _neq: String
@@ -1010,6 +958,7 @@ input demo_collection_filter {
   demo_2: string_filter_operators
   demo_3: string_filter_operators
   demo_4: string_filter_operators
+  demo_5: string_filter_operators
   _and: [demo_collection_filter]
   _or: [demo_collection_filter]
 }
@@ -1522,13 +1471,6 @@ input string_filter_operators {
   _nempty: Boolean
 }
 
-input testcoll_filter {
-  id: number_filter_operators
-  test: string_filter_operators
-  _and: [testcoll_filter]
-  _or: [testcoll_filter]
-}
-
 input update_demo_collection_input {
   id: ID
   status: String
@@ -1540,6 +1482,7 @@ input update_demo_collection_input {
   demo_2: String
   demo_3: String
   demo_4: String
+  demo_5: String
 }
 
 input update_directus_access_input {
@@ -1660,9 +1603,4 @@ input update_directus_users_input {
   theme_dark_overrides: JSON
   text_direction: String
   policies: [update_directus_access_input]
-}
-
-input update_testcoll_input {
-  id: ID
-  test: String
 }
