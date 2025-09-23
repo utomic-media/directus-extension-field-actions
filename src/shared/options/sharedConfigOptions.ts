@@ -89,6 +89,17 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         readonly: hideBasedOnOtherField(field, configTarget, 'showCopy', true),
       },
     },
+    {
+      field: 'linkCopySettingsEnabled',
+      type: 'alias',
+      meta: {
+        field: 'linkCopySettingsEnabled', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-raw',
+        special: ['alias', 'no-data', 'group'],
+        group: 'groupLinkSettings',
+        readonly: hideBasedOnOtherField(field, configTarget, 'showLink', true),
+      },
+    },
   ];
 
   const copyOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof CopyOptionsProps }>[] = [
@@ -196,6 +207,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Display a link button next to the item',
         },
         group: 'groupLinkSettings',
+        sort: 1,
       },
       schema: {
         default_value: false,
@@ -214,7 +226,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'End', value: 'end' }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
       },
       schema: {
         default_value: 'end',
@@ -239,7 +251,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           allowNone: true,
         },
         note: 'Links to the field value with the given prefix',
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
       },
       schema: {
         default_value: '',
@@ -256,7 +268,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Enable',
         },
         note: 'Use a custom tooltip for the link button',
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
       },
       schema: {
         default_value: false,
@@ -269,7 +281,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       meta: {
         width: 'half',
         interface: 'system-input-translated-string',
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
         hidden: hideBasedOnOtherField(field, configTarget, 'useCustomLinkTooltip', true),
       },
       schema: {
@@ -289,7 +301,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'Current Tab', value: false }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
       },
       schema: {
         default_value: true,
@@ -308,7 +320,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'Always', value: 'always' }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'linkCopySettingsEnabled',
       },
       schema: {
         default_value: 'never',
