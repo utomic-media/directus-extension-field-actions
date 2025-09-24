@@ -5,11 +5,12 @@ import type { DeepPartial, AppField } from '@directus/types';
 
 export default defineDisplay({
 	id: 'field-actions',
-	name: 'Action display',
+	name: 'Action Display',
 	icon: 'ads_click',
 	description: 'Display content with linking and copy to clipboard options',
 	component: DisplayComponent,
 	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
+	group: 'standard',
 	options: ({ field }): any => {
 		const isString = ['string', 'text'].includes(field.type ?? 'unknown');
 
