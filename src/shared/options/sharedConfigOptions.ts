@@ -309,21 +309,22 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
     },
     {
       field: 'openLinkSafeMode',
-      name: 'Warn before following external links',
+      name: 'Link safe mode',
       type: 'string',
       meta: {
         width: 'full',
         interface: 'select-radio',
+        note: 'Choose when to display a confirmation dialog before following external links. The dialog shows the target URL and requires user confirmation.',
         options: {
           choices: [
             { text: 'Never', value: 'never' },
-            { text: 'Always', value: 'always' }
+            { text: 'Always', value: 'always' },
           ],
         },
         group: 'groupLinkSettingsEnabled',
       },
       schema: {
-        default_value: 'never',
+        default_value: 'always',
       },
     },
   ];
