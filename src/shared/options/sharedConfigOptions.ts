@@ -149,13 +149,13 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         options: {
           placeholder: 'Enter prefix or select variable',
           choices: [
-            { text: '$project_url', value: '$project_url' },
+            { text: '{{ project_url }}', value: '{{ project_url }}' },
             { text: 'https://', value: 'https://' }
           ],
           allowOther: true,
           allowNone: true,
         },
-        note: 'Copies the field value with the given prefix',
+        note: 'Copies the field value with the given prefix. Available variables: {{ project_url }}',
         group: 'groupCopySettingsEnabled',
       },
       schema: {
@@ -242,15 +242,15 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         options: {
           placeholder: 'Enter prefix or select variable',
           choices: [
-            { text: '$project_url', value: '$project_url' },
+            { text: '{{ project_url }}', value: '{{ project_url }}' },
             { text: 'Mail-Link (mailto:)', value: 'mailto:' },
-            { text: 'Phole-Link (tel:)', value: 'tel:' },
+            { text: 'Phone-Link (tel:)', value: 'tel:' },
             { text: 'https://', value: 'https://' }
           ],
           allowOther: true,
           allowNone: true,
         },
-        note: 'Links to the field value with the given prefix',
+        note: 'Links to the field value with the given prefix. Available variables: {{ project_url }}',
         group: 'groupLinkSettingsEnabled',
       },
       schema: {
