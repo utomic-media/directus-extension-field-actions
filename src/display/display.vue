@@ -15,7 +15,7 @@
 			<span 
 				:class="hasValueClickAction ? 'defa-action-background' : ''"
 			>
-				{{ value }}
+				<v-text-overflow :text="value" />
 			</span>
 		</click-action-wrapper>
 		
@@ -165,6 +165,7 @@ const hasValueClickAction = computed(() => {
     flex-direction: row;
     align-items: center;
 		gap: 8px;
+		width: 100%;
 
 		span,
 		a,
@@ -191,6 +192,12 @@ const hasValueClickAction = computed(() => {
 			&:hover {
 				--v-icon-color: var(--theme--primary);
 			}
+		}
+
+		.defa-click-action-wrapper {
+			width: auto;
+			min-width: 0;
+			max-width: 100%;
 		}
 
 		.defa-action-background {
