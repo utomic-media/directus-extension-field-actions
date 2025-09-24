@@ -38,7 +38,11 @@ export function useClipboard() {
 
 	async function copyToClipboard(value: string, message?: Message): Promise<boolean> {
 		try {
-			await navigator?.clipboard?.writeText(value);
+			if (!isCopySupported.value) {
+				throw new Error('Clipboard API not supported');
+			}
+			
+			await navigator.clipboard.writeText(value);
 			notificationStore.add({
 				title: message?.success ?? t('copy_raw_value_success'),
 			});
