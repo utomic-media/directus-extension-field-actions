@@ -70,13 +70,13 @@ Just go to `settings -> marketplace` and search for `field-actions`.
 ## ⚙️ Installation (npm)
 
 ```
-npm i directus-extension-field-actions
+npm i --save-prod directus-extension-field-actions
 ```
 
 or
 
 ```
-pnpm i directus-extension-field-actions
+pnpm add --save-prod directus-extension-field-actions
 ```
 
 ## ⚙️ Installation (manually)
