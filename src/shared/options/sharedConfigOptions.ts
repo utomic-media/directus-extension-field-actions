@@ -78,6 +78,28 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
         },
       },
     },
+    {
+      field: 'groupCopySettingsEnabled',
+      type: 'alias',
+      meta: {
+        field: 'groupCopySettingsEnabled', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-raw',
+        special: ['alias', 'no-data', 'group'],
+        group: 'groupCopySettings',
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showCopy', false),
+      },
+    },
+    {
+      field: 'groupLinkSettingsEnabled',
+      type: 'alias',
+      meta: {
+        field: 'groupLinkSettingsEnabled', // NOTE: NEEDED FOR OTHER FIELDS TO REFERENCE THIS GROUP
+        interface: 'group-raw',
+        special: ['alias', 'no-data', 'group'],
+        group: 'groupLinkSettings',
+        readonly: fieldConfigMatchesValue(field, configTarget, 'showLink', false),
+      },
+    },
   ];
 
   const copyOptions: DeepPartial<Omit<AppField, 'field'> & { field: keyof CopyOptionsProps }>[] = [
@@ -92,6 +114,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Display a copy button next to the item',
         },
         group: 'groupCopySettings',
+        sort: 1,
       },
       schema: {
         default_value: false,
@@ -110,7 +133,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'End', value: 'end' }
           ],
         },
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: 'end',
@@ -133,7 +156,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           allowNone: true,
         },
         note: 'Copies the field value with the given prefix',
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: '',
@@ -150,7 +173,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Enable',
         },
         note: 'Use a custom tooltip for the copy button',
-        group: 'groupCopySettings',
+        group: 'groupCopySettingsEnabled',
       },
       schema: {
         default_value: false,
@@ -163,8 +186,8 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       meta: {
         width: 'half',
         interface: 'system-input-translated-string',
-        group: 'groupCopySettings',
-        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomCopyTooltip', true),
+        group: 'groupCopySettingsEnabled',
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomCopyTooltip', false),
       },
       schema: {
         default_value: 'Copy value',
@@ -184,6 +207,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Display a link button next to the item',
         },
         group: 'groupLinkSettings',
+        sort: 1,
       },
       schema: {
         default_value: false,
@@ -202,7 +226,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'End', value: 'end' }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'groupLinkSettingsEnabled',
       },
       schema: {
         default_value: 'end',
@@ -227,7 +251,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           allowNone: true,
         },
         note: 'Links to the field value with the given prefix',
-        group: 'groupLinkSettings',
+        group: 'groupLinkSettingsEnabled',
       },
       schema: {
         default_value: '',
@@ -244,7 +268,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
           label: 'Enable',
         },
         note: 'Use a custom tooltip for the link button',
-        group: 'groupLinkSettings',
+        group: 'groupLinkSettingsEnabled',
       },
       schema: {
         default_value: false,
@@ -257,8 +281,8 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
       meta: {
         width: 'half',
         interface: 'system-input-translated-string',
-        group: 'groupLinkSettings',
-        hidden: hideBasedOnOtherField(field, configTarget, 'useCustomLinkTooltip', true),
+        group: 'groupLinkSettingsEnabled',
+        hidden: fieldConfigMatchesValue(field, configTarget, 'useCustomLinkTooltip', false),
       },
       schema: {
         default_value: 'Open link',
@@ -277,7 +301,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'Current Tab', value: false }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'groupLinkSettingsEnabled',
       },
       schema: {
         default_value: true,
@@ -296,7 +320,7 @@ export function getSharedConfigOptions(field: ExtensionOptionsContext['field'], 
             { text: 'Always', value: 'always' }
           ],
         },
-        group: 'groupLinkSettings',
+        group: 'groupLinkSettingsEnabled',
       },
       schema: {
         default_value: 'never',
@@ -335,21 +359,21 @@ export function getClickActionChoices(isString: boolean) {
 
 
 /**
- * Conditionally show/hide a field based on another field's value
+ * Check if a certain config option of the field matches the expected value
  * 
  * @param field The field contextOptions
  * @param configTarget Switch between 'display' and 'interface' config options
- * @param targetField The field to watch
- * @param showIfValue The expected value of the target field to show the current field
+ * @param optionsKey The field to watch
+ * @param expectedValue The expected value of the target field 
  * 
  * @returns true, if the target field equals the expected value, else false
  */
-function hideBasedOnOtherField(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, targetField: string, showIfValue: any) {
+function fieldConfigMatchesValue(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, optionsKey: string, expectedValue: any) {
   const options = configTarget === 'display' ? field.meta?.display_options : field.meta?.options;
 
-  if (options?.[targetField] === showIfValue) {
-    return false; // don't hide field
+  if ((options?.[optionsKey] ?? false) === expectedValue) {
+    return true;
   }
 
-  return true; // hide field
+  return false;
 }
