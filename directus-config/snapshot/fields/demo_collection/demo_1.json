@@ -9,7 +9,6 @@
     "display_options": {
       "clickAction": "copy",
       "copyButtonLabel": null,
-      "openLinkSafeMode": "always",
       "showCopy": true,
       "showLink": true
     },
@@ -19,7 +18,6 @@
     "interface": "field-actions",
     "note": null,
     "options": {
-      "openLinkSafeMode": "always",
       "showCopy": true,
       "showLink": true
     },

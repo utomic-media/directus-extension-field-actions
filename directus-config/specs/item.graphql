@@ -555,6 +555,21 @@ type directus_settings {
   visual_editor_urls_func: count_functions
   accepted_terms: Boolean
   project_id: String
+
+  """$t:fields.directus_settings.mcp_enabled_note"""
+  mcp_enabled: Boolean!
+
+  """$t:fields.directus_settings.mcp_allow_deletes_note"""
+  mcp_allow_deletes: Boolean!
+
+  """$t:fields.directus_settings.mcp_prompts_collection_note"""
+  mcp_prompts_collection: String
+
+  """$t:fields.directus_settings.mcp_system_prompt_enabled_note"""
+  mcp_system_prompt_enabled: Boolean
+
+  """$t:fields.directus_settings.mcp_system_prompt_note"""
+  mcp_system_prompt: String
 }
 
 type directus_settings_mutated {

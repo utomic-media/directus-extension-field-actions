@@ -3,7 +3,7 @@
   "info": {
     "title": "Dynamic API Specification",
     "description": "This is a dynamically generated API specification for all endpoints existing on the current project.",
-    "version": "752e6cd79b1c02fdd6a2f115dc79109528112faf"
+    "version": "5af7d14ae561aab01a9bc0e4b931fb8f690ec82c"
   },
   "servers": [
     {
@@ -9808,6 +9808,31 @@
           },
           "project_id": {
             "nullable": true,
+            "type": "string"
+          },
+          "mcp_enabled": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_enabled_note",
+            "type": "boolean"
+          },
+          "mcp_allow_deletes": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_allow_deletes_note",
+            "type": "boolean"
+          },
+          "mcp_prompts_collection": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.mcp_prompts_collection_note",
+            "type": "string"
+          },
+          "mcp_system_prompt_enabled": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_system_prompt_enabled_note",
+            "type": "boolean"
+          },
+          "mcp_system_prompt": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.mcp_system_prompt_note",
             "type": "string"
           }
         },

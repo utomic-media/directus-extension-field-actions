@@ -30,6 +30,11 @@
     "visual_editor_urls": null,
     "accepted_terms": true,
     "project_id": "0198f0f2-d358-77ff-899a-8a19d1d569ee",
+    "mcp_enabled": false,
+    "mcp_allow_deletes": false,
+    "mcp_prompts_collection": null,
+    "mcp_system_prompt_enabled": true,
+    "mcp_system_prompt": null,
     "_syncId": "999ba4b9-9cc2-43a4-9b71-7d1b0ec97ce5"
   }
 ]
