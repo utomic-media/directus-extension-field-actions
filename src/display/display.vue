@@ -195,9 +195,9 @@ const hasValueClickAction = computed(() => {
 		}
 
 		.defa-click-action-wrapper {
-			flex-grow: 1;
+			width: auto;
 			min-width: 0;
-			max-width: fit-content;
+			max-width: 100%;
 		}
 
 		.defa-action-background {
