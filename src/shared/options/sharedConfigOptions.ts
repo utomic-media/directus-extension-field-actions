@@ -371,12 +371,7 @@ export function getClickActionChoices(isString: boolean) {
 function fieldConfigMatchesValue(field: ExtensionOptionsContext['field'], configTarget: ConfigTarget, optionsKey: string, expectedValue: any) {
   const options = configTarget === 'display' ? field.meta?.display_options : field.meta?.options;
 
-  if (options?.[optionsKey] === expectedValue) {
-    return true;
-  }
-
-  // In case of a false, check for undefined & null as well
-  else if (expectedValue === false && !options?.[optionsKey]) {
+  if ((options?.[optionsKey] ?? false) === expectedValue) {
     return true;
   }
 
