@@ -52,17 +52,17 @@ describe('replaceVariables', () => {
   });
 
   test('keeps unknown placeholders unchanged', () => {
-    const text = 'Visit {{project_url}} and {{unknown}}.';
+    const text = '{{project_url}}/{{unknown}}.';
     const variables = { project_url: 'https://example.com' };
     const result = replaceVariables(text, variables);
-    expect(result).toBe('Visit https://example.com and {{unknown}}.');
+    expect(result).toBe('https://example.com/{{unknown}}.');
   });
 
   test('handles text without placeholders', () => {
-    const text = 'No placeholders here.';
+    const text = 'https://example.com';
     const variables = { project_url: 'https://example.com' };
     const result = replaceVariables(text, variables);
-    expect(result).toBe('No placeholders here.');
+    expect(result).toBe(text);
   });
 
   test('handles placeholders with trailing spaces', () => {
