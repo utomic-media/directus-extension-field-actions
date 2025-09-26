@@ -103,7 +103,12 @@ pnpm add --save-prod directus-extension-field-actions
 ## 🖼 Screenshots
 
 ![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-copy.png)
-*↑ Copy values from table views directly by clicking on them or an icon (configurable)*
+*↑ Copy (or link) values from table views directly by clicking on them*
+
+---
+
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-link-icon.png)
+*↑ Copy & Link icons in the display*
 
 ---
 
@@ -122,12 +127,12 @@ pnpm add --save-prod directus-extension-field-actions
 
 ---
 
-![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/interface-config-2023-03.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/interface-config.png)
 *↑ Interfaces settings*
 
 ---
 
-![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-config-2023-03.png)
+![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/screenshots/display-config.png)
 *↑ Displays settings*
 
 ---
