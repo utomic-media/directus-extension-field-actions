@@ -39,7 +39,7 @@ const linkOptionsPropsDefaults: RequiredProps<LinkOptionsProps> = {
   useCustomLinkTooltip: false,
   customLinkTooltip: 'Open link',
   openLinkAsNewTab: true,
-  openLinkSafeMode: 'never',
+  openLinkSafeMode: 'always',
 };
 
 export const sharedOptionsPropsDefaults: SharedCopyOptionsProps = {
