@@ -1,10 +1,10 @@
 ![](https://raw.githubusercontent.com/utomic-media/directus-extension-field-actions/main/docs/Directus-Extension-Field-Actions.png)
 
-# 🐰 Directus extension: Field action display & interface
+# Field actions Interface & Display
 
-> 💡 Add `link` & `copy to clipboard` functionalities to your directus fields. Supports interfaces as well as displays.
->
-> The actions can be performed by a button next to the items or by clicking on the value. The settings allow customisations for a bunch of different use-cases.
+Add `copy to clipboard` & `link`  functionalities to your directus fields. Supports interfaces as well as displays.
+
+Copy & Link actions can be performed by a button next to the items or by clicking on the value. The settings allow customisations for a lot of different use-cases.
 
 <br />
 
@@ -47,15 +47,15 @@ The click action defines what should happen when you click on the value. This is
 
 #### Warn before following external links
 
-- Enabling this setting prompts users with a confirmation popup displaying the full link when clicking on external links
-- If disabled, external links open directly.
+- Prompt users with a confirmation popup displaying the full link when clicking on external links
+- If disabled, external links will open directly.
 
-#### Hide field value (_display only_)
+#### Hide field value (*display only*)
 
 - Hides the field value for a button only mode
 - Mostly to be used in combinaiton with button labels
 
-#### Button labels (_display only_)
+#### Button labels (*display only*)
 
 - Add custom labels to the copy-/ and link icons for the display
 - Mostly to be used in combinaiton with the "Hide field value" option for a button only mode
@@ -69,13 +69,13 @@ Just go to `settings -> marketplace` and search for `field-actions`.
 
 ## ⚙️ Installation (npm)
 
-```
+```shell
 npm i --save-prod directus-extension-field-actions
 ```
 
 or
 
-```
+```shell
 pnpm add --save-prod directus-extension-field-actions
 ```
 
@@ -88,7 +88,8 @@ pnpm add --save-prod directus-extension-field-actions
 4. Restart directus
 
 **The result should look like this:**
-```
+
+```none
 ├── extensions
 │   ├── directus-extension-field-actions
 │   │   ├── dist
