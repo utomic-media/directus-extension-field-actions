@@ -9,7 +9,7 @@ export default defineInterface({
 	icon: 'ads_click',
 	description: 'Display content with linking and copy to clipboard options',
 	component: InterfaceComponent,
-	types: ['uuid', 'string', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
+	types: ['string', 'uuid', 'text', 'bigInteger', 'integer', 'decimal', 'float'],
 	group: 'standard',
 	recommendedDisplays: ['field-actions'],
 	options: ({ field }): any => {
