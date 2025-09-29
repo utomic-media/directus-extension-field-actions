@@ -73,7 +73,7 @@ import { computed } from 'vue';
 import { useClipboard } from '../shared/composable/use-clipboard';
 import { usePrefixedValues } from '../shared/composable/use-prefixed-values';
 import LinkWrapper from '../shared/components/LinkWrapper.vue';
-import ClickActionWrapper from '../shared/components/clickActionWrapper.vue';
+import ClickActionWrapper from '../shared/components/ClickActionWrapper.vue';
 import { useTooltips } from '../shared/composable/use-tooltips';
 import { useAppTranslations } from '../shared/composable/useAppTranslations';
 import { sharedOptionsPropsDefaults } from '../shared/options/sharedConfigOptions';
