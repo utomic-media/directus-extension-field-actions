@@ -1,6 +1,6 @@
 {
   "name": "directus-extension-field-actions",
-  "version": "1.10.0",
+  "version": "2.0.0",
   "type": "module",
   "icon": "web_traffic",
   "directus:extension": {
