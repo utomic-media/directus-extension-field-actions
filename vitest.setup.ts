@@ -16,6 +16,9 @@ vi.mock('@directus/extensions-sdk', async (importOriginal) => {
       useNotificationsStore: () => ({
         add: vi.fn(),
       }),
+      useSettingsStore: () => ({
+        project_url: 'http://example.com',
+      }),
     })
   }
 });
