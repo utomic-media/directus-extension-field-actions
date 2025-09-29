@@ -11,6 +11,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   #workflow_dispatch:
 
+
+permissions:
+  id-token: write  # allows GitHub Actions to generate OIDC tokens used for trusted publishing
+  contents: read
+
 jobs:
   
   release:
@@ -51,5 +56,3 @@ jobs:
 
       - name: Add release to npm 💾 
         run: pnpm publish --no-git-checks # --no-git-checks as we're not on a branch but a tag!
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
