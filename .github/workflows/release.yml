@@ -14,7 +14,7 @@ on:
 
 permissions:
   id-token: write  # allows GitHub Actions to generate OIDC tokens used for trusted publishing
-  contents: read
+  contents: write # required to write GH-release
 
 jobs:
   
