@@ -86,4 +86,8 @@ em {
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
+
+code {
+  overflow-wrap: break-word;
+}
 </style>
