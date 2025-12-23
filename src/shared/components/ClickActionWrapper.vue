@@ -44,10 +44,10 @@ const emit = defineEmits<{
 
 function valueClickAction(e: Event) {
   if (props.clickAction === 'copy' && props.disabled) {
-		e.stopPropagation();
-		emit('copy');
+    e.stopPropagation();
+    emit('copy');
   }
-	// else go on with the default events
+  // else go on with the default events
 }
 </script>
 
