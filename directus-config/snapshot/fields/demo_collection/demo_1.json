@@ -23,6 +23,7 @@
     },
     "readonly": false,
     "required": false,
+    "searchable": true,
     "sort": 7,
     "special": null,
     "translations": [

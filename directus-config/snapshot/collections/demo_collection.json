@@ -8,7 +8,7 @@
     "collapse": "open",
     "collection": "demo_collection",
     "color": null,
-    "display_template": null,
+    "display_template": "Field Actions",
     "group": null,
     "hidden": false,
     "icon": null,
@@ -18,7 +18,14 @@
     "singleton": false,
     "sort": 1,
     "sort_field": null,
-    "translations": null,
+    "translations": [
+      {
+        "language": "en-US",
+        "plural": "Field Actions",
+        "singular": "Field Actions",
+        "translation": "Field Actions"
+      }
+    ],
     "unarchive_value": "draft",
     "versioning": false
   },

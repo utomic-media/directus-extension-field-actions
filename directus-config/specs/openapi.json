@@ -3,7 +3,7 @@
   "info": {
     "title": "Dynamic API Specification",
     "description": "This is a dynamically generated API specification for all endpoints existing on the current project.",
-    "version": "5af7d14ae561aab01a9bc0e4b931fb8f690ec82c"
+    "version": "e138f6586e12960013496c2554498062da238671"
   },
   "servers": [
     {
@@ -861,12 +861,14 @@
               "schema": {
                 "properties": {
                   "format": {
-                    "description": "What file format to save the export to. One of csv, xml, json",
+                    "description": "What file format to save the export to. One of csv, csv_utf8, xml, json, yaml",
                     "type": "string",
                     "enum": [
                       "csv",
+                      "csv_utf8",
                       "xml",
-                      "json"
+                      "json",
+                      "yaml"
                     ]
                   },
                   "query": {
@@ -4698,93 +4700,6 @@
         ]
       }
     },
-    "/settings": {
-      "get": {
-        "summary": "Retrieve Settings",
-        "description": "List the settings.",
-        "operationId": "getSettings",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Page"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Settings"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        },
-        "tags": [
-          "Settings"
-        ]
-      },
-      "patch": {
-        "summary": "Update Settings",
-        "description": "Update the settings",
-        "operationId": "updateSetting",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Settings"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        },
-        "tags": [
-          "Settings"
-        ]
-      }
-    },
     "/permissions": {
       "get": {
         "summary": "List Permissions",
@@ -8288,6 +8203,93 @@
           }
         ]
       }
+    },
+    "/settings": {
+      "get": {
+        "summary": "Retrieve Settings",
+        "description": "List the settings.",
+        "operationId": "getSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Settings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "tags": [
+          "Settings"
+        ]
+      },
+      "patch": {
+        "summary": "Update Settings",
+        "description": "Update the settings",
+        "operationId": "updateSetting",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Settings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "tags": [
+          "Settings"
+        ]
+      }
     }
   },
   "tags": [
@@ -8374,11 +8376,6 @@
       "x-collection": "directus_webhooks"
     },
     {
-      "name": "Settings",
-      "description": "Settings control the way the platform works and acts.",
-      "x-collection": "directus_settings"
-    },
-    {
       "name": "Permissions",
       "description": "Permissions control who has access to what and when.",
       "x-collection": "directus_permissions"
@@ -8420,6 +8417,11 @@
     {
       "name": "ItemsDirectusSyncIDMap",
       "x-collection": "directus_sync_id_map"
+    },
+    {
+      "name": "Settings",
+      "description": "Settings control the way the platform works and acts.",
+      "x-collection": "directus_settings"
     }
   ],
   "components": {
@@ -9174,6 +9176,10 @@
           "validation_message": {
             "nullable": true,
             "type": "string"
+          },
+          "searchable": {
+            "nullable": false,
+            "type": "boolean"
           }
         },
         "x-collection": "directus_fields"
@@ -9539,304 +9545,6 @@
           }
         },
         "x-collection": "directus_webhooks"
-      },
-      "Settings": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for the setting.",
-            "type": "integer",
-            "example": 1
-          },
-          "project_name": {
-            "description": "The name of the project.",
-            "type": "string",
-            "example": "Directus"
-          },
-          "project_url": {
-            "description": "The url of the project.",
-            "type": "string",
-            "example": null,
-            "nullable": true
-          },
-          "project_color": {
-            "description": "The brand color of the project.",
-            "type": "string",
-            "example": null,
-            "nullable": true
-          },
-          "project_logo": {
-            "description": "The logo of the project.",
-            "type": "string",
-            "example": null,
-            "nullable": true
-          },
-          "public_foreground": {
-            "description": "The foreground of the project.",
-            "type": "string",
-            "example": null,
-            "nullable": true
-          },
-          "public_background": {
-            "description": "The background of the project.",
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              }
-            },
-            "example": null,
-            "nullable": true
-          },
-          "public_note": {
-            "description": "Note rendered on the public pages of the app.",
-            "type": "string",
-            "example": null,
-            "nullable": true
-          },
-          "auth_login_attempts": {
-            "description": "Allowed authentication login attempts before the user's status is set to blocked.",
-            "type": "integer",
-            "example": 25
-          },
-          "auth_password_policy": {
-            "description": "Authentication password policy.",
-            "type": "string",
-            "nullable": true
-          },
-          "storage_asset_transform": {
-            "description": "What transformations are allowed in the assets endpoint.",
-            "type": "string",
-            "enum": [
-              "all",
-              "none",
-              "presets"
-            ],
-            "example": "all",
-            "nullable": true
-          },
-          "storage_asset_presets": {
-            "description": "Array of allowed",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "key": {
-                  "description": "Key for the asset. Used in the assets endpoint.",
-                  "type": "string"
-                },
-                "fit": {
-                  "description": "Whether to crop the thumbnail to match the size, or maintain the aspect ratio.",
-                  "type": "string",
-                  "enum": [
-                    "cover",
-                    "contain",
-                    "inside",
-                    "outside"
-                  ]
-                },
-                "width": {
-                  "description": "Width of the thumbnail.",
-                  "type": "integer"
-                },
-                "height": {
-                  "description": "Height of the thumbnail.",
-                  "type": "integer"
-                },
-                "withoutEnlargement": {
-                  "description": "No image upscale",
-                  "type": "boolean"
-                },
-                "quality": {
-                  "description": "Quality of the compression used.",
-                  "type": "integer"
-                },
-                "format": {
-                  "description": "Reformat output image",
-                  "type": "string",
-                  "enum": [
-                    "",
-                    "jpeg",
-                    "png",
-                    "webp",
-                    "tiff",
-                    "avif"
-                  ]
-                },
-                "transforms": {
-                  "description": "Additional transformations to apply",
-                  "type": "array",
-                  "nullable": true,
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "method": {
-                        "description": "The Sharp method name",
-                        "type": "string"
-                      },
-                      "arguments": {
-                        "description": "A list of arguments to pass to the Sharp method",
-                        "type": "array",
-                        "nullable": true,
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "argument": {
-                              "description": "A JSON representation of the argument value",
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "example": null,
-            "nullable": true
-          },
-          "custom_css": {
-            "nullable": true,
-            "type": "string"
-          },
-          "storage_default_folder": {
-            "description": "Default folder to place files",
-            "type": "string",
-            "format": "uuid"
-          },
-          "basemaps": {
-            "nullable": true
-          },
-          "mapbox_key": {
-            "nullable": true,
-            "type": "string"
-          },
-          "module_bar": {
-            "nullable": true
-          },
-          "project_descriptor": {
-            "nullable": true,
-            "type": "string"
-          },
-          "default_language": {
-            "nullable": false,
-            "type": "string"
-          },
-          "custom_aspect_ratios": {
-            "nullable": true
-          },
-          "public_favicon": {
-            "nullable": true,
-            "description": "$t:field_options.directus_settings.project_favicon_note",
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Files"
-              }
-            ]
-          },
-          "default_appearance": {
-            "nullable": false,
-            "type": "string"
-          },
-          "default_theme_light": {
-            "nullable": true,
-            "type": "string"
-          },
-          "theme_light_overrides": {
-            "nullable": true
-          },
-          "default_theme_dark": {
-            "nullable": true,
-            "type": "string"
-          },
-          "theme_dark_overrides": {
-            "nullable": true
-          },
-          "report_error_url": {
-            "nullable": true,
-            "type": "string"
-          },
-          "report_bug_url": {
-            "nullable": true,
-            "type": "string"
-          },
-          "report_feature_url": {
-            "nullable": true,
-            "type": "string"
-          },
-          "public_registration": {
-            "nullable": false,
-            "description": "$t:fields.directus_settings.public_registration_note",
-            "type": "boolean"
-          },
-          "public_registration_verify_email": {
-            "nullable": false,
-            "description": "$t:fields.directus_settings.public_registration_verify_email_note",
-            "type": "boolean"
-          },
-          "public_registration_role": {
-            "nullable": true,
-            "description": "$t:fields.directus_settings.public_registration_role_note",
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Roles"
-              }
-            ]
-          },
-          "public_registration_email_filter": {
-            "nullable": true,
-            "description": "$t:fields.directus_settings.public_registration_email_filter_note"
-          },
-          "visual_editor_urls": {
-            "nullable": true
-          },
-          "accepted_terms": {
-            "nullable": true,
-            "type": "boolean"
-          },
-          "project_id": {
-            "nullable": true,
-            "type": "string"
-          },
-          "mcp_enabled": {
-            "nullable": false,
-            "description": "$t:fields.directus_settings.mcp_enabled_note",
-            "type": "boolean"
-          },
-          "mcp_allow_deletes": {
-            "nullable": false,
-            "description": "$t:fields.directus_settings.mcp_allow_deletes_note",
-            "type": "boolean"
-          },
-          "mcp_prompts_collection": {
-            "nullable": true,
-            "description": "$t:fields.directus_settings.mcp_prompts_collection_note",
-            "type": "string"
-          },
-          "mcp_system_prompt_enabled": {
-            "nullable": false,
-            "description": "$t:fields.directus_settings.mcp_system_prompt_enabled_note",
-            "type": "boolean"
-          },
-          "mcp_system_prompt": {
-            "nullable": true,
-            "description": "$t:fields.directus_settings.mcp_system_prompt_note",
-            "type": "string"
-          }
-        },
-        "x-collection": "directus_settings"
       },
       "Permissions": {
         "type": "object",
@@ -10446,6 +10154,333 @@
           "sync_id",
           "local_id"
         ]
+      },
+      "Settings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier for the setting.",
+            "type": "integer",
+            "example": 1
+          },
+          "project_name": {
+            "description": "The name of the project.",
+            "type": "string",
+            "example": "Directus"
+          },
+          "project_url": {
+            "description": "The url of the project.",
+            "type": "string",
+            "example": null,
+            "nullable": true
+          },
+          "project_color": {
+            "description": "The brand color of the project.",
+            "type": "string",
+            "example": null,
+            "nullable": true
+          },
+          "project_logo": {
+            "description": "The logo of the project.",
+            "type": "string",
+            "example": null,
+            "nullable": true
+          },
+          "public_foreground": {
+            "description": "The foreground of the project.",
+            "type": "string",
+            "example": null,
+            "nullable": true
+          },
+          "public_background": {
+            "description": "The background of the project.",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "example": null,
+            "nullable": true
+          },
+          "public_note": {
+            "description": "Note rendered on the public pages of the app.",
+            "type": "string",
+            "example": null,
+            "nullable": true
+          },
+          "auth_login_attempts": {
+            "description": "Allowed authentication login attempts before the user's status is set to blocked.",
+            "type": "integer",
+            "example": 25
+          },
+          "auth_password_policy": {
+            "description": "Authentication password policy.",
+            "type": "string",
+            "nullable": true
+          },
+          "storage_asset_transform": {
+            "description": "What transformations are allowed in the assets endpoint.",
+            "type": "string",
+            "enum": [
+              "all",
+              "none",
+              "presets"
+            ],
+            "example": "all",
+            "nullable": true
+          },
+          "storage_asset_presets": {
+            "description": "Array of allowed",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "description": "Key for the asset. Used in the assets endpoint.",
+                  "type": "string"
+                },
+                "fit": {
+                  "description": "Whether to crop the thumbnail to match the size, or maintain the aspect ratio.",
+                  "type": "string",
+                  "enum": [
+                    "cover",
+                    "contain",
+                    "inside",
+                    "outside"
+                  ]
+                },
+                "width": {
+                  "description": "Width of the thumbnail.",
+                  "type": "integer"
+                },
+                "height": {
+                  "description": "Height of the thumbnail.",
+                  "type": "integer"
+                },
+                "withoutEnlargement": {
+                  "description": "No image upscale",
+                  "type": "boolean"
+                },
+                "quality": {
+                  "description": "Quality of the compression used.",
+                  "type": "integer"
+                },
+                "format": {
+                  "description": "Reformat output image",
+                  "type": "string",
+                  "enum": [
+                    "",
+                    "jpeg",
+                    "png",
+                    "webp",
+                    "tiff",
+                    "avif"
+                  ]
+                },
+                "transforms": {
+                  "description": "Additional transformations to apply",
+                  "type": "array",
+                  "nullable": true,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "method": {
+                        "description": "The Sharp method name",
+                        "type": "string"
+                      },
+                      "arguments": {
+                        "description": "A list of arguments to pass to the Sharp method",
+                        "type": "array",
+                        "nullable": true,
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "argument": {
+                              "description": "A JSON representation of the argument value",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "example": null,
+            "nullable": true
+          },
+          "custom_css": {
+            "nullable": true,
+            "type": "string"
+          },
+          "storage_default_folder": {
+            "description": "Default folder to place files",
+            "type": "string",
+            "format": "uuid"
+          },
+          "basemaps": {
+            "nullable": true
+          },
+          "mapbox_key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "module_bar": {
+            "nullable": true
+          },
+          "project_descriptor": {
+            "nullable": true,
+            "type": "string"
+          },
+          "default_language": {
+            "nullable": false,
+            "type": "string"
+          },
+          "custom_aspect_ratios": {
+            "nullable": true
+          },
+          "public_favicon": {
+            "nullable": true,
+            "description": "$t:field_options.directus_settings.project_favicon_note",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Files"
+              }
+            ]
+          },
+          "default_appearance": {
+            "nullable": false,
+            "type": "string"
+          },
+          "default_theme_light": {
+            "nullable": true,
+            "type": "string"
+          },
+          "theme_light_overrides": {
+            "nullable": true
+          },
+          "default_theme_dark": {
+            "nullable": true,
+            "type": "string"
+          },
+          "theme_dark_overrides": {
+            "nullable": true
+          },
+          "report_error_url": {
+            "nullable": true,
+            "type": "string"
+          },
+          "report_bug_url": {
+            "nullable": true,
+            "type": "string"
+          },
+          "report_feature_url": {
+            "nullable": true,
+            "type": "string"
+          },
+          "public_registration": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.public_registration_note",
+            "type": "boolean"
+          },
+          "public_registration_verify_email": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.public_registration_verify_email_note",
+            "type": "boolean"
+          },
+          "public_registration_role": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.public_registration_role_note",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Roles"
+              }
+            ]
+          },
+          "public_registration_email_filter": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.public_registration_email_filter_note"
+          },
+          "visual_editor_urls": {
+            "nullable": true
+          },
+          "project_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "mcp_enabled": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_enabled_note",
+            "type": "boolean"
+          },
+          "mcp_allow_deletes": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_allow_deletes_note",
+            "type": "boolean"
+          },
+          "mcp_prompts_collection": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.mcp_prompts_collection_note",
+            "type": "string"
+          },
+          "mcp_system_prompt_enabled": {
+            "nullable": false,
+            "description": "$t:fields.directus_settings.mcp_system_prompt_enabled_note",
+            "type": "boolean"
+          },
+          "mcp_system_prompt": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.mcp_system_prompt_note",
+            "type": "string"
+          },
+          "project_owner": {
+            "nullable": true,
+            "type": "string"
+          },
+          "project_usage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "org_name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "product_updates": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "project_status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ai_openai_api_key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ai_anthropic_api_key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ai_system_prompt": {
+            "nullable": true,
+            "description": "$t:fields.directus_settings.ai_system_prompt_note",
+            "type": "string"
+          }
+        },
+        "x-collection": "directus_settings"
       }
     },
     "parameters": {
@@ -10568,13 +10603,14 @@
       },
       "Export": {
         "name": "export",
-        "description": "Saves the API response to a file. Accepts one of \"csv\", \"json\", \"xml\", \"yaml\".",
+        "description": "Saves the API response to a file. Accepts one of \"csv\", \"csv_utf8\", \"json\", \"xml\", \"yaml\".",
         "in": "query",
         "required": false,
         "schema": {
           "type": "string",
           "enum": [
             "csv",
+            "csv_utf8",
             "json",
             "xml",
             "yaml"

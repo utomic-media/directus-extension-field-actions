@@ -47,7 +47,6 @@ type Query {
   webhooks(filter: directus_webhooks_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_webhooks!]!
   webhooks_by_id(id: ID!, version: String): directus_webhooks
   webhooks_aggregated(groupBy: [String], filter: directus_webhooks_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_webhooks_aggregated!]!
-  settings(version: String): directus_settings
   policies(filter: directus_policies_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_policies!]!
   policies_by_id(id: ID!, version: String): directus_policies
   policies_aggregated(groupBy: [String], filter: directus_policies_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_policies_aggregated!]!
@@ -78,6 +77,7 @@ type Query {
   activity(filter: directus_activity_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String): [directus_activity!]!
   activity_by_id(id: ID!, version: String): directus_activity
   activity_aggregated(groupBy: [String], filter: directus_activity_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_activity_aggregated!]!
+  settings(version: String): directus_settings
 }
 
 type Mutation {
@@ -98,11 +98,12 @@ type Mutation {
   users_invite_accept(token: String!, password: String!): Boolean
   users_register(email: String!, password: String!, verification_url: String, first_name: String, last_name: String): Boolean
   users_register_verify(token: String!): Boolean
-  create_collections_item(data: write_directus_collections_input!): write_directus_collections
+  create_collections_item(data: write_directus_collections_input!, concurrentIndexCreation: Boolean = false): write_directus_collections
   update_collections_item(collection: String!, data: write_directus_collections_input!): write_directus_collections
   delete_collections_item(collection: String!): delete_collection
-  create_fields_item(collection: String!, data: write_directus_fields_input!): write_directus_fields
-  update_fields_item(collection: String!, field: String!, data: write_directus_fields_input!): write_directus_fields
+  create_fields_item(collection: String!, data: write_directus_fields_input!, concurrentIndexCreation: Boolean = false): write_directus_fields
+  update_fields_item(collection: String!, field: String!, data: write_directus_fields_input!, concurrentIndexCreation: Boolean = false): write_directus_fields
+  update_fields_items(collection: String!, data: [write_directus_fields_input!], concurrentIndexCreation: Boolean = false): write_directus_fields
   delete_fields_item(collection: String!, field: String!): delete_field
   create_relations_item(data: write_directus_relations_input!): write_directus_relations
   update_relations_item(collection: String!, field: String!, data: write_directus_relations_input!): write_directus_relations
@@ -174,7 +175,6 @@ type Mutation {
   update_webhooks_items(filter: directus_webhooks_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_directus_webhooks_input!): [directus_webhooks!]!
   update_webhooks_batch(filter: directus_webhooks_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_directus_webhooks_input!]): [directus_webhooks!]!
   update_webhooks_item(id: ID!, data: update_directus_webhooks_input!): directus_webhooks
-  update_settings(data: update_directus_settings_input!): directus_settings
   update_policies_items(filter: directus_policies_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_directus_policies_input!): [directus_policies!]!
   update_policies_batch(filter: directus_policies_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_directus_policies_input!]): [directus_policies!]!
   update_policies_item(id: ID!, data: update_directus_policies_input!): directus_policies
@@ -202,6 +202,7 @@ type Mutation {
   update_comments_items(filter: directus_comments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, ids: [ID]!, data: update_directus_comments_input!): [directus_comments!]!
   update_comments_batch(filter: directus_comments_filter, sort: [String], limit: Int, offset: Int, page: Int, search: String, data: [update_directus_comments_input!]): [directus_comments!]!
   update_comments_item(id: ID!, data: update_directus_comments_input!): directus_comments
+  update_settings(data: update_directus_settings_input!): directus_settings
   delete_folders_items(ids: [ID]!): delete_many
   delete_folders_item(id: ID!): delete_one
   delete_files_items(ids: [ID]!): delete_many
@@ -251,7 +252,6 @@ type Subscription {
   directus_revisions_mutated(event: EventEnum): directus_revisions_mutated
   directus_users_mutated(event: EventEnum): directus_users_mutated
   directus_webhooks_mutated(event: EventEnum): directus_webhooks_mutated
-  directus_settings_mutated(event: EventEnum): directus_settings_mutated
   directus_policies_mutated(event: EventEnum): directus_policies_mutated
   directus_permissions_mutated(event: EventEnum): directus_permissions_mutated
   directus_access_mutated(event: EventEnum): directus_access_mutated
@@ -264,6 +264,7 @@ type Subscription {
   directus_activity_mutated(event: EventEnum): directus_activity_mutated
   demo_collection_mutated(event: EventEnum): demo_collection_mutated
   directus_sync_id_map_mutated(event: EventEnum): directus_sync_id_map_mutated
+  directus_settings_mutated(event: EventEnum): directus_settings_mutated
 }
 
 """The `Boolean` scalar type represents `true` or `false`."""
@@ -647,6 +648,7 @@ type directus_fields_meta {
   group: String
   validation: JSON
   validation_message: String
+  searchable: Boolean!
 }
 
 type directus_fields_schema {
@@ -1330,7 +1332,6 @@ type directus_settings {
   public_registration_email_filter_func: count_functions
   visual_editor_urls: JSON
   visual_editor_urls_func: count_functions
-  accepted_terms: Boolean
   project_id: String
 
   """$t:fields.directus_settings.mcp_enabled_note"""
@@ -1347,6 +1348,16 @@ type directus_settings {
 
   """$t:fields.directus_settings.mcp_system_prompt_note"""
   mcp_system_prompt: String
+  project_owner: String
+  project_usage: String
+  org_name: String
+  product_updates: Boolean
+  project_status: String
+  ai_openai_api_key: String
+  ai_anthropic_api_key: String
+
+  """$t:fields.directus_settings.ai_system_prompt_note"""
+  ai_system_prompt: String
 }
 
 type directus_settings_mutated {
@@ -1765,6 +1776,7 @@ type write_directus_fields_meta {
   group: String
   validation: JSON
   validation_message: String
+  searchable: Boolean
 }
 
 type write_directus_fields_schema {
@@ -2964,7 +2976,6 @@ input update_directus_settings_input {
   """$t:fields.directus_settings.public_registration_email_filter_note"""
   public_registration_email_filter: JSON
   visual_editor_urls: JSON
-  accepted_terms: Boolean
   project_id: String
 
   """$t:fields.directus_settings.mcp_enabled_note"""
@@ -2981,6 +2992,16 @@ input update_directus_settings_input {
 
   """$t:fields.directus_settings.mcp_system_prompt_note"""
   mcp_system_prompt: String
+  project_owner: String
+  project_usage: String
+  org_name: String
+  product_updates: Boolean
+  project_status: String
+  ai_openai_api_key: String
+  ai_anthropic_api_key: String
+
+  """$t:fields.directus_settings.ai_system_prompt_note"""
+  ai_system_prompt: String
 }
 
 input update_directus_shares_input {
@@ -3128,6 +3149,7 @@ input write_directus_fields_meta_input {
   group: String
   validation: JSON
   validation_message: String
+  searchable: Boolean
 }
 
 input write_directus_fields_schema_input {

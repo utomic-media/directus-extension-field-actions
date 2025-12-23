@@ -37,7 +37,6 @@ type Subscription {
   directus_revisions_mutated(event: EventEnum): directus_revisions_mutated
   directus_users_mutated(event: EventEnum): directus_users_mutated
   directus_webhooks_mutated(event: EventEnum): directus_webhooks_mutated
-  directus_settings_mutated(event: EventEnum): directus_settings_mutated
   directus_policies_mutated(event: EventEnum): directus_policies_mutated
   directus_permissions_mutated(event: EventEnum): directus_permissions_mutated
   directus_access_mutated(event: EventEnum): directus_access_mutated
@@ -50,6 +49,7 @@ type Subscription {
   directus_activity_mutated(event: EventEnum): directus_activity_mutated
   demo_collection_mutated(event: EventEnum): demo_collection_mutated
   directus_sync_id_map_mutated(event: EventEnum): directus_sync_id_map_mutated
+  directus_settings_mutated(event: EventEnum): directus_settings_mutated
 }
 
 """The `Boolean` scalar type represents `true` or `false`."""
@@ -553,7 +553,6 @@ type directus_settings {
   public_registration_email_filter_func: count_functions
   visual_editor_urls: JSON
   visual_editor_urls_func: count_functions
-  accepted_terms: Boolean
   project_id: String
 
   """$t:fields.directus_settings.mcp_enabled_note"""
@@ -570,6 +569,16 @@ type directus_settings {
 
   """$t:fields.directus_settings.mcp_system_prompt_note"""
   mcp_system_prompt: String
+  project_owner: String
+  project_usage: String
+  org_name: String
+  product_updates: Boolean
+  project_status: String
+  ai_openai_api_key: String
+  ai_anthropic_api_key: String
+
+  """$t:fields.directus_settings.ai_system_prompt_note"""
+  ai_system_prompt: String
 }
 
 type directus_settings_mutated {

@@ -7,7 +7,7 @@
     "conditions": null,
     "display": "field-actions",
     "display_options": {
-      "clickAction": "copy",
+      "clickAction": "link",
       "copyButtonLabel": null,
       "copyPosition": "start",
       "customCopyTooltip": "$t:custom_copy_tooltip",
@@ -25,8 +25,8 @@
     "interface": "field-actions",
     "note": null,
     "options": {
-      "customCopyTooltip": "CUSTOM - Copy Value",
-      "customLinkTooltip": "CUSTOM - Copy link",
+      "customCopyTooltip": "$t:custom_copy_tooltip",
+      "customLinkTooltip": "$t:custom_link_tooltip",
       "showCopy": true,
       "showLink": true,
       "useCustomCopyTooltip": true,
@@ -34,6 +34,7 @@
     },
     "readonly": false,
     "required": false,
+    "searchable": true,
     "sort": 11,
     "special": null,
     "translations": [
