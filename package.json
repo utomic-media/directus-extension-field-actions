@@ -4,7 +4,7 @@
   "type": "module",
   "icon": "web_traffic",
   "directus:extension": {
-    "host": "^10.10.0",
+    "host": "^10.0.0 || ^11.0.0",
     "type": "bundle",
     "path": {
       "app": "dist/app.js",
