@@ -6,6 +6,7 @@
       :target="openLinkAsNewTab ? '_blank' : '_self'"
       :safeMode="openLinkSafeMode === 'always'"
       v-tooltip="actionTooltip"
+      @click.stop
     >
       <slot />
     </link-wrapper>
@@ -44,7 +45,7 @@ function valueClickAction(e: Event) {
   if (props.clickAction === 'copy' && props.disabled) {
 		e.stopPropagation();
 		emit('copy');
-	} 
+  }
 	// else go on with the default events
 }
 </script>
