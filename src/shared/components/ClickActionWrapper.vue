@@ -1,11 +1,13 @@
 <template>
   <div class="defa-click-action-wrapper">
+    <!-- NOTE: use @click.stop to prevent parent/item click handlers (e.g., opening the item page) -->
     <link-wrapper
       v-if="clickAction === 'link'"
       :href="computedLink"
       :target="openLinkAsNewTab ? '_blank' : '_self'"
       :safeMode="openLinkSafeMode === 'always'"
       v-tooltip="actionTooltip"
+      @click.stop
     >
       <slot />
     </link-wrapper>
@@ -42,10 +44,10 @@ const emit = defineEmits<{
 
 function valueClickAction(e: Event) {
   if (props.clickAction === 'copy' && props.disabled) {
-		e.stopPropagation();
-		emit('copy');
-	} 
-	// else go on with the default events
+    e.stopPropagation();
+    emit('copy');
+  }
+  // else go on with the default events
 }
 </script>
 
