@@ -1,5 +1,6 @@
 <template>
   <div class="defa-click-action-wrapper">
+    <!-- NOTE: use @click.stop to prevent parent/item click handlers (e.g., opening the item page) -->
     <link-wrapper
       v-if="clickAction === 'link'"
       :href="computedLink"
