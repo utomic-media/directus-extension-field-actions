@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/utomic-media/directus-extension-field-actions.git#readme",
   "devDependencies": {
-    "@directus/extensions-sdk": "^16.0.2",
+    "@directus/extensions-sdk": "^17.0.4",
     "@directus/types": "^13.5.0",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/test-utils": "^2.4.6",
