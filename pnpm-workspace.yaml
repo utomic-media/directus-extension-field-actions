@@ -1,0 +1,3 @@
+# NOTE: Mitigating supply chain attacks
+#       globally increase  minimum release age to increase security
+minimumReleaseAge: 7200
