@@ -1,5 +1,5 @@
-ARG DIRECTUS_VERSION=11.14.0
-ARG NODE_VERSION=22
+ARG DIRECTUS_VERSION=12.0.2
+ARG NODE_VERSION=24
 
 
 # # # # # # # # # # # # # # # # # # # # #
