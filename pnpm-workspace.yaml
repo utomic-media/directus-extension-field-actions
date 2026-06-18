@@ -1,3 +1,8 @@
 # NOTE: Mitigating supply chain attacks
 #       globally increase  minimum release age to increase security
 minimumReleaseAge: 7200
+
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+  vue-demi: false
