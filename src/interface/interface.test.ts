@@ -5,8 +5,9 @@ import { mount } from '@vue/test-utils'
 
 describe('Interface.vue - Default', () => {
   const componentWrapper = mount(Interface, {
-    // props: {
-    // }
+    props: {
+      type: "string",
+    }
   });
 
   // Debugging output

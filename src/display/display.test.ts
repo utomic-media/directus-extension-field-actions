@@ -6,8 +6,9 @@ const value = "Hello world";
 
 describe('Display.vue - Default', () => {
   const componentWrapper = mount(Display, {
-    // props: {
-    // }
+    props: {
+      type: "string",
+    }
   })
 
   // Debugging output
