@@ -38,10 +38,10 @@
 			xLarge
 			data-testid="copy-button"
 			:class="copyPosition === 'start' ? '-defa-order-1' : 'defa-order-1'"
+			@click.stop="copyValue"
 		>
 			<v-icon
 				name="content_copy"
-				@click.stop="copyValue"
 			/>
 		</v-button>
 		
