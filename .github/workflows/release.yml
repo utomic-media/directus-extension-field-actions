@@ -23,19 +23,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout 🛎
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install pnpm 👷🏽‍♂️
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v6
         id: pnpm-install
         with:
-          version: 9
+          version: 11
           run_install: false
       
       - name: Setup node 👷🏽‍♂️
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
         
