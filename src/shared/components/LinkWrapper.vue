@@ -46,7 +46,7 @@ const props = defineProps({
     default: '_blank',
   },
   href: {
-    type: String,
+    type: [String, null] as const,
     required: true,
   },
   safeMode: {
@@ -61,6 +61,10 @@ const activeDialog = ref(false);
 
 
 function handleClick(e: MouseEvent) {
+  if (!props.href) {
+    return;
+  }
+
   const isExternal = new URL(props.href, window.location.origin).origin !== window.location.origin;
 
   if (props.safeMode && isExternal) {

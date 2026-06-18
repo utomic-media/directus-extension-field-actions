@@ -30,7 +30,7 @@ import type { ClickAction } from '../types';
 
 const props = defineProps<{
   clickAction: ClickAction;
-  computedLink: string;
+  computedLink: string | null;
   openLinkAsNewTab?: boolean;
   openLinkSafeMode?: string;
   actionTooltip?: string | null;
